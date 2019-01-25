@@ -1,12 +1,13 @@
 const express = require('express');
 const plaid = require('plaid');
 const router = express.Router();
+
 // const passport = require('passport');
 module.exports = router;
 
-const PLAID_CLIENT_ID = '5c49e781d8717a0010e5173a';
-const PLAID_SECRET = 'd28935c3230fc922ea33fb5528a2de';
-const PUBLIC_KEY = '5c49e781d8717a0010e5173a';
+const PLAID_CLIENT_ID = process.env.PLAID_CLIENT_ID;
+const PLAID_SECRET = process.env.PLAID_SECRET_DEVELOPMENT;
+const PUBLIC_KEY = process.env.PUBLIC_KEY;
 
 const plaidClient = new plaid.Client(
   PLAID_CLIENT_ID,
