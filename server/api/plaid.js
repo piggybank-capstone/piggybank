@@ -1,6 +1,7 @@
 const express = require('express');
 const plaid = require('plaid');
 const router = express.Router();
+const User = require('../db/models');
 
 // const passport = require('passport');
 module.exports = router;
@@ -24,7 +25,7 @@ router.post('/get_access_token', async (req, res) => {
     const access_token = res.access_token;
     const accounts = await plaidClient.getAccounts(access_token);
     console.log('accounts.accounts is ', accounts.accounts);
-    res.json(accounts);
+    // res.json(accounts);
   } catch (err) {
     if (!plaid.isPlaidError(err)) {
       res.sendStatus(500);
@@ -36,8 +37,15 @@ router.post('/get_access_token', async (req, res) => {
       error_message: err.error_message,
       display_message: err.display_message,
       request_id: err.request_id,
-      status_code: err.status_code,
+      status_code: err.status_code
     });
     res.sendStatus(500);
+  }
+});
+
+router.post('/accounts/get', async (req, res, next) => {
+  try {
+  } catch (error) {
+    next(error);
   }
 });
