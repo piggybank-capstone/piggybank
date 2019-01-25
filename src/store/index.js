@@ -1,9 +1,9 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import createLogger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import accounts from './accounts';
-import transactions from './translactions';
+import transactions from './transactions';
 // import cart from './cart';
 // import orderHistory from './orderHistory';
 
