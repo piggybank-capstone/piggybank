@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
-import { LineChart, Line, PieChart, Pie, Legend, Tooltip } from 'recharts';
+import { LineChart, Line, PieChart, Pie, Tooltip } from 'recharts';
 
 class Trends extends Component {
   constructor() {

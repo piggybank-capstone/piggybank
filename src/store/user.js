@@ -1,5 +1,5 @@
 import axios from 'axios';
-import history from '../history';
+// import history from '../history';
 
 /**
  * ACTION TYPES
@@ -44,7 +44,7 @@ export const auth = (
       firstName,
       lastName,
       email,
-      password
+      password,
     });
   } catch (authError) {
     return dispatch(getUser({ error: authError }));
@@ -52,10 +52,9 @@ export const auth = (
 
   try {
     dispatch(getUser(res.data));
-    history.goBack();
-    if (history.location.pathname === '/login') {
-      history.push('/');
-    }
+    // history.goBack();
+    // if (history.location.pathname === '/login') {
+    // history.push('/');
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr);
   }
@@ -65,7 +64,7 @@ export const logout = () => async dispatch => {
   try {
     await axios.post('/auth/logout');
     dispatch(removeUser());
-    history.push('/');
+    // history.push('/');
   } catch (err) {
     console.error(err);
   }
