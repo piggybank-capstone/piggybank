@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import PlaidLink from 'react-plaid-link';
+import { Login, Signup } from './AuthForm';
 
 // hi
 
@@ -28,7 +29,7 @@ class App extends Component {
           <p>piggybank</p>
           <PlaidLink
             clientName="piggybank"
-            env="development"
+            env="sandbox"
             product={['auth', 'transactions']}
             publicKey="b50d6c5ab6295ff1aca2a4b971fc7e"
             onExit={this.handleOnExit}
@@ -36,6 +37,8 @@ class App extends Component {
           >
             Open Link and Connect Your Bank!
           </PlaidLink>
+          <Login />
+          <Signup />
         </header>
       </div>
     );

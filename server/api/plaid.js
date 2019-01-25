@@ -7,14 +7,14 @@ const User = require('../db/models');
 module.exports = router;
 
 const PLAID_CLIENT_ID = process.env.PLAID_CLIENT_ID;
-const PLAID_SECRET = process.env.PLAID_SECRET_DEVELOPMENT;
+const PLAID_SECRET = process.env.PLAID_SECRET_SANDBOX;
 const PUBLIC_KEY = process.env.PUBLIC_KEY;
 
 const plaidClient = new plaid.Client(
   PLAID_CLIENT_ID,
   PLAID_SECRET,
   PUBLIC_KEY,
-  plaid.environments.development,
+  plaid.environments.sandbox,
   { version: '2018-05-22' }
 );
 
@@ -37,7 +37,7 @@ router.post('/get_access_token', async (req, res) => {
       error_message: err.error_message,
       display_message: err.display_message,
       request_id: err.request_id,
-      status_code: err.status_code
+      status_code: err.status_code,
     });
     res.sendStatus(500);
   }

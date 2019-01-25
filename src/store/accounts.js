@@ -1,17 +1,15 @@
-import Axios from 'axios';
-
 //action types
 const GOT_ALL_ACCOUNTS = 'GET_ALL_ACCOUNTS';
 const GOT_ACCESS_TOKEN = 'GET_ACCESS_TOKEN';
 
 export const gotAllAccounts = accounts => ({
   type: GOT_ALL_ACCOUNTS,
-  accounts
+  accounts,
 });
 
 export const gotAccessToken = account => ({
   type: GOT_ACCESS_TOKEN,
-  account
+  account,
 });
 
 //thunk to get data to front end
