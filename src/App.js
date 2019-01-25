@@ -1,36 +1,39 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Axios from 'axios';
-// import Plaid from 'plaid';
-
-// const plaidClient = new plaid.Client(
-//   process.env.PLAID_CLIENT_ID,
-//   process.env.PLAID_SECRET,
-//   process.env.PUBLIC_KEY,
-//   plaid.environments.sandbox,
-//   { version: '2018-05-22' }
-// );
+import axios from 'axios';
+import PlaidLink from 'react-plaid-link';
 
 class App extends Component {
+  async handleOnSuccess(token, metadata) {
+    console.log('handleOnSuccess, token is ', token);
+    console.log('handleOnSuccess, metadata is ', metadata);
+    const access_token = await axios.post('/api/plaid/get_access_token', {
+      public_token: token,
+    });
+    console.log(access_token);
+  }
+  handleOnExit() {
+    console.log('handleOnExit');
+  }
   async componentDidMount() {
-    const { data } = await Axios.get('/api/users');
+    const { data } = await axios.get('/api/users');
     console.log('data:', data);
   }
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <p>piggybank</p>
-          {/* <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
+          <PlaidLink
+            clientName="piggybank"
+            env="development"
+            product={['auth', 'transactions']}
+            publicKey="b50d6c5ab6295ff1aca2a4b971fc7e"
+            onExit={this.handleOnExit}
+            onSuccess={this.handleOnSuccess}
           >
-            Learn React
-          </a> */}
+            Open Link and Connect Your Bank!
+          </PlaidLink>
         </header>
       </div>
     );
