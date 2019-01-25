@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import Trends from './Trends';
+import Trends from './components/Trends';
 
 ReactDOM.render(
   <div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../App.css';
 import axios from 'axios';
 import PlaidLink from 'react-plaid-link';
 import { LineChart, Line, PieChart, Pie, Legend, Tooltip } from 'recharts';
