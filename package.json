@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^3.9.0",
+    "@material-ui/icons": "^3.0.2",
     "axios": "^0.18.0",
     "compression": "^1.7.3",
     "connect-session-sequelize": "^6.0.0",
@@ -19,6 +21,7 @@
     "plaid": "^2.10.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
+    "react-material-ui": "0.0.1",
     "react-plaid-link": "^1.0.3",
     "react-redux": "^6.0.0",
     "react-router": "^4.3.1",
@@ -38,7 +41,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "seed": "node script/seed.js"
+    "seed": "node script/seed.js",
+    "server": "nodemon server/index.js"
   },
   "proxy": "http://localhost:8080",
   "eslintConfig": {
