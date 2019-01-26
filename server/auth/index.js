@@ -37,7 +37,6 @@ router.post('/logout', (req, res) => {
 });
 
 router.get('/me', (req, res) => {
-  console.log('hit auth/me route');
   res.json(req.user);
 });
 
