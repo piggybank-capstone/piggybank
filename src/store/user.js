@@ -43,12 +43,10 @@ export const auth = (email, password, method) => async dispatch => {
   }
 
   try {
-    console.log('auth res is ', res);
     dispatch(getUser(res.data));
     // history.goBack();
     if (history.location.pathname === '/login') {
-      console.log('history.location.pathname === login hit');
-      history.push('/');
+      history.push('/home');
     }
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr);
@@ -59,7 +57,7 @@ export const logout = () => async dispatch => {
   try {
     await axios.post('/auth/logout');
     dispatch(removeUser());
-    // history.push('/');
+    history.push('/');
   } catch (err) {
     console.error(err);
   }

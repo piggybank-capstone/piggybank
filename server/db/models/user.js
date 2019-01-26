@@ -4,18 +4,27 @@ const db = require('../db');
 
 const User = db.define('user', {
   firstName: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
   },
   lastName: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
   },
-  accessToken: {
-    type: Sequelize.STRING
+  access_token: {
+    type: Sequelize.STRING,
+    get() {
+      return () => this.getDataValue('access_token');
+    },
+  },
+  item_id: {
+    type: Sequelize.STRING,
+    get() {
+      return () => this.getDataValue('item_id');
+    },
   },
   email: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false
+    allowNull: false,
   },
   password: {
     type: Sequelize.STRING,
@@ -23,7 +32,7 @@ const User = db.define('user', {
     // This is a hack to get around Sequelize's lack of a "private" option.
     get() {
       return () => this.getDataValue('password');
-    }
+    },
   },
   salt: {
     type: Sequelize.STRING,
@@ -31,11 +40,11 @@ const User = db.define('user', {
     // This is a hack to get around Sequelize's lack of a "private" option.
     get() {
       return () => this.getDataValue('salt');
-    }
+    },
   },
   googleId: {
-    type: Sequelize.STRING
-  }
+    type: Sequelize.STRING,
+  },
 });
 
 module.exports = User;
