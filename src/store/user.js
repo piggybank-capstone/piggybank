@@ -1,5 +1,5 @@
 import axios from 'axios';
-// import history from '../history';
+import history from '../history';
 
 /**
  * ACTION TYPES
@@ -31,18 +31,10 @@ export const me = () => async dispatch => {
 };
 
 // the methods are signup or login
-export const auth = (
-  firstName,
-  lastName,
-  email,
-  password,
-  method
-) => async dispatch => {
+export const auth = (email, password, method) => async dispatch => {
   let res;
   try {
     res = await axios.post(`/auth/${method}`, {
-      firstName,
-      lastName,
       email,
       password,
     });
@@ -53,8 +45,9 @@ export const auth = (
   try {
     dispatch(getUser(res.data));
     // history.goBack();
-    // if (history.location.pathname === '/login') {
-    // history.push('/');
+    if (history.location.pathname === '/login') {
+      history.push('/home');
+    }
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr);
   }
@@ -64,7 +57,7 @@ export const logout = () => async dispatch => {
   try {
     await axios.post('/auth/logout');
     dispatch(removeUser());
-    // history.push('/');
+    history.push('/');
   } catch (err) {
     console.error(err);
   }

@@ -18,13 +18,23 @@ const plaidClient = new plaid.Client(
   { version: '2018-05-22' }
 );
 
-router.post('/get_access_token', async (req, res) => {
+router.post('/accounts/get', async (req, res, next) => {
   try {
     const public_token = req.body.public_token;
-    const res = await plaidClient.exchangePublicToken(public_token);
-    const access_token = res.access_token;
-    const accounts = await plaidClient.getAccounts(access_token);
-    console.log('accounts.accounts is ', accounts.accounts);
+    console.log('public token is ', public_token);
+    const userId = req.user.id;
+    const { access_token, item_id } = await plaidClient.exchangePublicToken(
+      public_token
+    );
+    const user = await User.findByPk(userId);
+    await user.update({
+      access_token: access_token,
+      item_id: item_id,
+    });
+    console.log('user is now ', user);
+
+    // const accountRes = await plaidClient.getAccounts(access_token);
+    // console.log('accounts are ', accountRes);
     // res.json(accounts);
   } catch (err) {
     if (!plaid.isPlaidError(err)) {
