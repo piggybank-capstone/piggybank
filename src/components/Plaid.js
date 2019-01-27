@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import PlaidLink from 'react-plaid-link';
+import { connect } from 'react-redux';
+import { getAccounts, getTransactions } from '../store';
 
 class Plaid extends Component {
-  async handleOnSuccess(token, metadata) {
-    console.log('handleOnSuccess, token is ', token);
-    console.log('handleOnSuccess, metadata is ', metadata);
-    const res = await axios.post('/api/plaid/accounts/get', {
-      public_token: token,
-      metadata: metadata,
-    });
-    console.log('res from front end axios request is ', res);
-  }
+  handleOnSuccess = (token, metadata) => {
+    this.props.getAccounts(token);
+    this.props.getTransactions(token);
+  };
   handleOnExit() {
     console.log('handleOnExit');
   }
@@ -33,4 +29,12 @@ class Plaid extends Component {
   }
 }
 
-export default Plaid;
+const mapDispatchToProps = dispatch => ({
+  getAccounts: token => dispatch(getAccounts(token)),
+  getTransactions: token => dispatch(getTransactions(token)),
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Plaid);
