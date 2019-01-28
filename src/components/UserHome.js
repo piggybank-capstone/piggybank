@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Plaid from './Plaid';
 import Accounts from './Accounts';
 import Transactions from './Transactions';
+
 /**
  * COMPONENT
  */
