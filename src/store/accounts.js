@@ -14,7 +14,7 @@ export const gotAccessToken = account => ({
   account,
 });
 
-//thunk to get data to front end
+//thunk to get account data from plaid api using public token
 export const getAccounts = token => async dispatch => {
   try {
     const { data } = await axios.post(`/api/plaid/get_access_token`, {
@@ -28,10 +28,9 @@ export const getAccounts = token => async dispatch => {
 
 //reducer
 export default function accountsReducer(accounts = [], action) {
-  const accountsCopy = [...accounts];
   switch (action.type) {
     case GOT_ALL_ACCOUNTS:
-      return [...accountsCopy, ...action.accounts];
+      return [...accounts, ...action.accounts];
     default:
       return accounts;
   }

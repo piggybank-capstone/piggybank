@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 /**
@@ -25,9 +24,6 @@ class Transactions extends Component {
   }
 }
 
-/**
- * CONTAINER
- */
 const mapState = state => {
   return {
     transactions: state.transactions,
@@ -35,7 +31,3 @@ const mapState = state => {
 };
 
 export default connect(mapState)(Transactions);
-
-/**
- * PROP TYPES
- */

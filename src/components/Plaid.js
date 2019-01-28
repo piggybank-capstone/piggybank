@@ -29,10 +29,10 @@ class Plaid extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  getAccounts: token => dispatch(getAccounts(token)),
-  getTransactions: token => dispatch(getTransactions(token)),
-});
+const mapDispatchToProps = {
+  getAccounts,
+  getTransactions,
+};
 
 export default connect(
   null,

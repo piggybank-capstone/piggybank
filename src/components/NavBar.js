@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../store';
 import { NavLink } from 'react-router-dom';
-import Trends from './Trends';
 
 const NavBar = props => {
   const { isLoggedIn, handleClick } = props;

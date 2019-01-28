@@ -2,58 +2,52 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../App.css';
-import { LineChart, Line, PieChart, Pie, Tooltip } from 'recharts';
-import { Plaid } from './index';
-import { getAccounts } from '../store/accounts';
+import { LineChart, Line, PieChart, Pie, Tooltip, Cell } from 'recharts';
 
 class Trends extends Component {
-  // constructor() {
-  //   super();
-  //   // sample data for trying recharts
-  //   this.state = {
-  //     spending: [
-  //       { date: 1, amount: 25 },
-  //       { date: 2, amount: 62 },
-  //       { date: 3, amount: 85 },
-  //       { date: 4, amount: 65 },
-  //       { date: 5, amount: 98 },
-  //       { date: 6, amount: 33 },
-  //     ],
-  //     transactions: [
-  //       { category: 'coffee', amount: 4.23 },
-  //       { category: 'groceries', amount: 68.23 },
-  //       { category: 'groceries', amount: 12.42 },
-  //     ],
-  //   };
-  // }
-
   async componentDidMount() {
     console.log(this.props);
   }
 
   render() {
+    let recreation = this.props.transactions.filter(
+      item => item.category[0] === 'Recreation'
+    );
+    console.log(recreation);
     return (
       <div className="App">
         <header className="App-header">
           <h3>Trends</h3>
-          <LineChart
-            width={400}
-            height={400}
-            data={this.props.accounts.balances}
-          >
-            <Line type="monotone" dataKey="available" stroke="#8884d8" />
-          </LineChart>
           <PieChart width={500} height={500}>
             <Pie
+              name={
+                this.props.transactions.category
+                  ? this.props.transactions.category[0]
+                  : null
+              }
               isAnimationActive={false}
               data={this.props.transactions}
               dataKey="amount"
-              cx={200}
-              cy={200}
-              outerRadius={200}
+              cx={300}
+              cy={300}
+              outerRadius={100}
               fill="#8884d8"
               label
             />
+            <Tooltip />
+          </PieChart>
+          <PieChart width={500} height={500}>
+            <Pie
+              name="recreation"
+              isAnimationActive={true}
+              data={recreation}
+              dataKey="amount"
+              cx={300}
+              cy={300}
+              outerRadius={100}
+            >
+              <Cell data={recreation} dataKey="amount" fill="#8884d8" />
+            </Pie>
             <Tooltip />
           </PieChart>
         </header>
@@ -67,9 +61,9 @@ const mapStateToProps = state => ({
   transactions: state.transactions,
 });
 
-const mapDispatchToProps = dispatch => ({
-  // fetchAccounts: token => dispatch(getAccounts(token)),
-});
+const mapDispatchToProps = {
+  // fetchAccounts,
+};
 
 export default withRouter(
   connect(
