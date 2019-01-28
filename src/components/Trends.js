@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { LineChart, Line, PieChart, Pie, Tooltip } from 'recharts';
+import Plaid from './Plaid';
 
 class Trends extends Component {
   constructor() {
@@ -22,12 +23,15 @@ class Trends extends Component {
       ],
     };
   }
+
   async componentDidMount() {}
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <h3>Trends</h3>
+          <Plaid />
           <LineChart width={400} height={400} data={this.state.spending}>
             <Line type="monotone" dataKey="amount" stroke="#8884d8" />
           </LineChart>
