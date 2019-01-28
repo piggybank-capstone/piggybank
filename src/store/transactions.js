@@ -20,10 +20,9 @@ export const getTransactions = token => async dispatch => {
 };
 
 export default function transactionsReducer(transactions = [], action) {
-  const transactionsCopy = [...transactions];
   switch (action.type) {
     case GOT_ALL_TRANSACTIONS:
-      return [...transactionsCopy, ...action.transactions];
+      return [...transactions, ...action.transactions];
     default:
       return transactions;
   }
