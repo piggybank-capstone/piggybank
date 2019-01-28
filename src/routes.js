@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
-import Trends from './components/Trends';
-import { Login, Signup } from './components/AuthForm';
-import UserHome from './components/UserHome';
 import PropTypes from 'prop-types';
 import { me } from './store';
+import { Trends, Login, Signup, UserHome } from './components';
 
 /**
  * COMPONENT

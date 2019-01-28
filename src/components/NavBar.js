@@ -6,6 +6,8 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from '../store';
+import { NavLink } from 'react-router-dom';
+import Trends from './Trends';
 
 const NavBar = props => {
   const { isLoggedIn, handleClick } = props;
@@ -13,9 +15,11 @@ const NavBar = props => {
     <div>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="title" color="inherit">
-            piggybank
-          </Typography>
+          <NavLink to={'/home'}>
+            <Typography variant="title" color="inherit">
+              piggybank
+            </Typography>
+          </NavLink>
           {isLoggedIn ? (
             <Button color="inherit" onClick={handleClick}>
               Logout
@@ -30,6 +34,7 @@ const NavBar = props => {
               </Button>
             </div>
           )}
+          <NavLink to={'/trends'}>Trends</NavLink>
         </Toolbar>
       </AppBar>
     </div>
