@@ -1,0 +1,127 @@
+main {
+  margin: 0;
+}
+
+/* sidebar and check stuff */
+#sidebar {
+  min-width: 300px;
+  background: var(--darkgray);
+  padding: 2em;
+  padding-left: 3em;
+}
+
+#sidebar form label {
+  display: block;
+}
+
+#sidebar h3 {
+  color: white;
+}
+
+.sidebar-check {
+  padding: 0 1.5em;
+  color: var(--gray);
+}
+
+.sidebar-check {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.sidebar-check:hover {
+  color: greenyellow;
+  transition: color 0.5s ease;
+}
+
+.sidebar-check input[type='checkbox'] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.sidebar-check:hover input[type='checkbox'] ~ .checkmark {
+  background-color: red;
+}
+
+/* When the checkbox is checked, add a blue background */
+.sidebar-check input[type='checkbox']:checked ~ .checkmark {
+  background-color: green;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.sidebar-check input[type='checkbox']:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkmark:after {
+  left: 10px;
+  top: 6px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+#main-container {
+  width: 100%;
+}
+
+.login-new {
+  width: 45%;
+  margin: auto;
+  padding: 5em 3em;
+  padding-top: 2em;
+}
+
+.checkout-new {
+  width: 45%;
+  margin: auto;
+  padding: 5em 3em;
+  padding-top: 2em;
+  margin-top: 4em;
+  margin-bottom: 3em;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+}
+
+.form-error {
+  color: red;
+}
+
+#purchase-complete {
+  margin: 7em 0;
+}

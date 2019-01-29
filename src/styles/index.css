@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+
+@import './header.css';
+@import './navbar.css';
+@import './main.css';
+
+body {
+  /* https://uigradients.com/#Ash */
+
+  background: white; /* fallback for old browsers */
+  margin: 0;
+  font-family: 'Quicksand', sans-serif;
+  font-style: bold;
+  color: black;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Quicksand', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  color: black;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+came with create-react-app. replaced with html */ html {
+  font-family: 'Quicksand', sans-serif;
+}

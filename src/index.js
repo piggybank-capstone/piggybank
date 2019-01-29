@@ -1,27 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './styles/index.css';
 import history from './history';
 import * as serviceWorker from './serviceWorker';
 import store from './store';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
 import App from './App';
-import {
-  MuiThemeProvider,
-  createMuiTheme,
-  withTheme
-} from '@material-ui/core/styles';
-import { teal, blue } from '@material-ui/core/colors';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { colors } from '@material-ui/core';
 
 const theme = createMuiTheme({
   palette: {
-    primary: {
-      main: '#ff4400',
-      mainGradient: 'linear-gradient(to right, tomato, cyan)'
-    },
-    secondary: blue,
+    primary: colors.white,
+    secondary: colors.blue,
     textColor: colors.white
   },
   status: {
@@ -33,13 +25,14 @@ const theme = createMuiTheme({
   overrides: {
     MuiButton: {
       text: {
-        // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        background: 'linear-gradient(45deg, #83EAF1 30%, #63A4FF 90%)',
         borderRadius: 3,
         border: 1,
-        color: 'white',
-        height: 48,
-        padding: '0 30px'
-        // boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
+        color: 'black',
+        height: 40,
+        padding: '10px 30px',
+        margin: '10px',
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
       }
     }
   },
