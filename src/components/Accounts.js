@@ -20,6 +20,18 @@ class Accounts extends Component {
             </ul>
           </div>
         ))}
+        <table>
+          <tr>
+            <th>Account</th>
+          </tr>
+          {accounts.map(account => {
+            return (
+              <tr>
+                <td>{account.name}</td>
+              </tr>
+            );
+          })}
+        </table>
       </div>
     );
   }
