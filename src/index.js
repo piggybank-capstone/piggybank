@@ -14,13 +14,13 @@ const theme = createMuiTheme({
   palette: {
     primary: colors.white,
     secondary: colors.blue,
-    textColor: colors.white
+    textColor: colors.white,
   },
   status: {
-    danger: 'blue'
+    danger: 'blue',
   },
   appBar: {
-    background: colors.white
+    background: colors.white,
   },
   overrides: {
     MuiButton: {
@@ -32,20 +32,20 @@ const theme = createMuiTheme({
         height: 40,
         padding: '10px 30px',
         margin: '10px',
-        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
-      }
-    }
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+      },
+    },
   },
-  typography: { useNextVariants: true }
+  typography: { useNextVariants: true },
 });
 
 ReactDOM.render(
   <Provider store={store}>
-    <MuiThemeProvider theme={theme}>
-      <Router history={history}>
+    <Router history={history}>
+      <MuiThemeProvider theme={theme}>
         <App />
-      </Router>
-    </MuiThemeProvider>
+      </MuiThemeProvider>
+    </Router>
   </Provider>,
   document.getElementById('root')
 );
