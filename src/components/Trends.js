@@ -3,35 +3,22 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../App.css';
 import { PieChart, Pie, Sector, Tooltip, Cell } from 'recharts';
+import { categorizeTransactions } from '../utils/transactions';
 
 class Trends extends Component {
-  async componentDidMount() {
-    console.log(this.props);
-  }
-
   render() {
-    let recreation = this.props.transactions
-      .filter(item => item.category[0] === 'Recreation')
-      .reduce((total, num) => {
-        return total + parseFloat(num.amount);
-      }, 0);
-    let food = this.props.transactions
-      .filter(item => item.category[0] === 'Food and Drink')
-      .reduce((total, num) => {
-        return total + parseFloat(num.amount);
-      }, 0);
-    let travel = this.props.transactions
-      .filter(item => item.category[0] === 'Travel')
-      .reduce((total, num) => {
-        return total + parseFloat(num.amount);
-      }, 0);
-    const data = [
-      { name: 'recreation', value: recreation },
-      { name: 'food and drink', value: food },
-      { name: 'travel', value: travel },
-      { name: 'Group D', value: 200 },
+    let data = !this.props.transactions
+      ? null
+      : categorizeTransactions(this.props.transactions);
+    console.log(data);
+    const COLORS = [
+      '#0088FE',
+      '#ff9787',
+      '#00C49F',
+      '#FFBB28',
+      '#FF8042',
+      '#ff87db',
     ];
-    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
     const RADIAN = Math.PI / 180;
     const renderCustomizedLabel = ({
       cx,
@@ -62,30 +49,12 @@ class Trends extends Component {
       <div className="App">
         <header className="App-header">
           <h3>Trends</h3>
-          {/* <PieChart width={500} height={500}>
-            <Pie
-              name={
-                this.props.transactions.category
-                  ? this.props.transactions.category[0]
-                  : null
-              }
-              isAnimationActive={false}
-              data={this.props.transactions}
-              dataKey="amount"
-              cx={300}
-              cy={300}
-              outerRadius={100}
-              fill="#8884d8"
-              label
-            />
-            <Tooltip />
-          </PieChart> */}
           <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
             <Pie
               data={data}
               cx={300}
               cy={200}
-              labelLine={false}
+              labelLine={true}
               //label={renderCustomizedLabel}
               outerRadius={80}
               fill="#8884d8"
@@ -107,13 +76,9 @@ const mapStateToProps = state => ({
   transactions: state.transactions,
 });
 
-const mapDispatchToProps = {
-  // fetchAccounts,
-};
-
 export default withRouter(
   connect(
     mapStateToProps,
-    mapDispatchToProps
+    null
   )(Trends)
 );
