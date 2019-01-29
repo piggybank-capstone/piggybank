@@ -13,7 +13,7 @@ export const gotAllBudgets = budgets => ({
  * INITIAL STATE
  */
 const initialState = {
-  budgetList: {}
+  budgetList: []
 };
 
 //thunk to get account data from plaid api using public token

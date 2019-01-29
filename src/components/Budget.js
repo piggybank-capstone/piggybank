@@ -22,7 +22,7 @@ class Budget extends Component {
             <ul>
               {budget.map(budget => {
                 return (
-                  <li>{budget.amount}</li>
+                  <li>Category {budget.category.name} : I want to budget {budget.amount} this month</li>
                 )
               })}
             </ul>

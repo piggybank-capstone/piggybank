@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Budget } = require('../db/models');
+const { Budget, Category } = require('../db/models');
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -9,7 +9,8 @@ router.get('/', async (req, res, next) => {
     const budgets = await Budget.findAll({
       where: {
         userId
-      }
+      },
+      include: [{ model: Category }]
     })
     res.json(budgets);
   } catch (err) {
