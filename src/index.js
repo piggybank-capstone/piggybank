@@ -41,11 +41,11 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history}>
-      <MuiThemeProvider theme={theme}>
+    <MuiThemeProvider theme={theme}>
+      <Router history={history}>
         <App />
-      </MuiThemeProvider>
-    </Router>
+      </Router>
+    </MuiThemeProvider>
   </Provider>,
   document.getElementById('root')
 );

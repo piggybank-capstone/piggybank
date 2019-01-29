@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import NavBar from './NavBar';
 import Header from './Header';
 
@@ -18,7 +18,8 @@ export const LandingPage = props => {
 
 const mapState = state => {
   return {
-    isLoggedin: !!state.user.id
+    isLoggedin: !!state.user.id,
   };
 };
-export default connect(mapState)(LandingPage);
+
+export default withRouter(connect(mapState)(null)(LandingPage));
