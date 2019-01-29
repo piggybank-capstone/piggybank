@@ -20,6 +20,7 @@
     "pg-hstore": "^2.3.2",
     "pg-native": "^3.0.0",
     "plaid": "^2.10.0",
+    "ramda": "^0.26.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-material-ui": "0.0.1",
