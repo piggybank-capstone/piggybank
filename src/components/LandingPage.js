@@ -9,9 +9,16 @@ import Header from './Header';
 export const LandingPage = props => {
   return (
     <div>
-      <NavBar />
-      <Header />
-      <p>Get advice on budgeting with piggybot.</p>
+      {props.isLoggedin ? (
+        <NavBar />
+      ) : (
+        <div>
+          <NavBar />
+          <Header />
+          <p>Get advice on budgeting with piggybot.</p>
+        </div>
+      )}
+      ;
     </div>
   );
 };
