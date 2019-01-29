@@ -2,57 +2,53 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../App.css';
-import { PieChart, Pie, Cell, Legend, BarChart, Bar } from 'recharts';
-import { categorizeTransactions } from '../utils/transactions';
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Legend,
+  BarChart,
+  Bar,
+  ReferenceLine,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+} from 'recharts';
+import { categorizeTransactions, COLORS } from '../utils/transactions';
+import { categorizeAccounts } from '../utils/accounts';
 
 class Trends extends Component {
   render() {
-    let data = !this.props.transactions
+    let transactions = !this.props.transactions
       ? null
       : categorizeTransactions(this.props.transactions);
-    console.log(data);
-    const COLORS = [
-      '#0088FE',
-      '#ff9787',
-      '#00C49F',
-      '#FFBB28',
-      '#FF8042',
-      '#ff87db',
-    ];
-    const RADIAN = Math.PI / 180;
-    const renderCustomizedLabel = ({
-      cx,
-      cy,
-      midAngle,
-      innerRadius,
-      outerRadius,
-      percent,
-      index,
-    }) => {
-      const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-      const x = cx + radius * Math.cos(-midAngle * RADIAN);
-      const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-      return (
-        <text
-          x={x}
-          y={y}
-          fill="white"
-          textAnchor={x > cx ? 'start' : 'end'}
-          dominantBaseline="central"
-        >
-          {`${(percent * 100).toFixed(0)}%`}
-        </text>
-      );
-    };
+    let accounts = !this.props.accounts
+      ? null
+      : categorizeAccounts(this.props.accounts);
+    console.log(accounts);
     return (
       <div className="App">
         <header className="App-header">
           <h3>Accounts</h3>
+          <BarChart
+            width={600}
+            height={300}
+            data={accounts}
+            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <ReferenceLine y={0} stroke="#000" />
+            <Bar dataKey="value" fill="#82ca9d" />
+          </BarChart>
           <h3>Transactions</h3>
           <PieChart width={700} height={400} onMouseEnter={this.onPieEnter}>
             <Pie
-              data={data}
+              data={transactions}
               cx={250}
               cy={150}
               labelLine={true}
@@ -61,7 +57,7 @@ class Trends extends Component {
               fill="#8884d8"
               label
             >
-              {data.map((entry, index) => (
+              {transactions.map((entry, index) => (
                 <Cell fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>
