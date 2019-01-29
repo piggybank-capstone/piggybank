@@ -36,7 +36,7 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
       let lastName = profile.name.familyName
       const email = profile.emails[0].value
 
-      console.log("WHAT GOOGLE GOT BACK", profile)
+
       User.findOrCreate({
         where: { googleId },
         defaults: { firstName, lastName, email }
