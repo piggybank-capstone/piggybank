@@ -1,7 +1,7 @@
 
 
 const db = require('../server/db');
-const { User } = require('../server/db/models');
+const { User, Category, Budget } = require('../server/db/models');
 
 async function seed() {
   await db.sync({ force: true });
@@ -22,6 +22,49 @@ async function seed() {
     }),
   ]);
 
+  const categories = await Promise.all([
+    Category.create({
+      name: 'Food and Drink'
+    }),
+    Category.create({
+      name: 'Travel'
+    }),
+    Category.create({
+      name: 'Shops'
+    }),
+    Category.create({
+      name: 'Payment'
+    }),
+    Category.create({
+      name: 'Recreation'
+    }),
+    Category.create({
+      name: 'Transfer'
+    })
+  ]);
+
+  const budgets = await Promise.all([
+    Budget.create({
+      amount: 400,
+      userId: 2,
+      categoryId: 1
+    }),
+    Budget.create({
+      amount: 150,
+      userId: 2,
+      categoryId: 2
+    }),
+    Budget.create({
+      amount: 200,
+      userId: 1,
+      categoryId: 3
+    }),
+    Budget.create({
+      amount: 100,
+      userId: 1,
+      categoryId: 4
+    }),
+  ]);
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
 }
