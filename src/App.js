@@ -3,6 +3,7 @@ import './App.css';
 import axios from 'axios';
 import NavBar from './components/NavBar';
 import Routes from './routes';
+import LandingPage from './components/LandingPage';
 
 class App extends Component {
   async componentDidMount() {
@@ -13,7 +14,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <NavBar />
+          <LandingPage />
           <Routes />
         </header>
       </div>
