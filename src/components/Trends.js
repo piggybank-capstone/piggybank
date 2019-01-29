@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../App.css';
-import { PieChart, Pie, Sector, Tooltip, Cell } from 'recharts';
+import { PieChart, Pie, Cell } from 'recharts';
 import { categorizeTransactions } from '../utils/transactions';
 
 class Trends extends Component {
