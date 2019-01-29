@@ -1,6 +1,6 @@
 const passport = require('passport')
 const router = require('express').Router()
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
+const GoogleStrategy = require('passport-google-oauth20').Strategy
 const { User } = require('../db/models')
 module.exports = router
 
@@ -24,18 +24,21 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
   const googleConfig = {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: process.env.GOOGLE_CALLBACK
+    callbackURL: process.env.GOOGLE_CALLBACK,
+    userProfileURL: 'https://www.googleapis.com/oauth2/v3/userinfo'
   }
 
 
   const strategy = new GoogleStrategy(
     googleConfig,
     (token, refreshToken, profile, done) => {
+
+
       const googleId = profile.id
       let firstName = profile.name.givenName
       let lastName = profile.name.familyName
       const email = profile.emails[0].value
-
+      console.log(profile.emails[0].value, "EMAIL")
 
       User.findOrCreate({
         where: { googleId },
