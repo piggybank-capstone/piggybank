@@ -15,11 +15,20 @@ class Trends extends Component {
       .reduce((total, num) => {
         return total + parseFloat(num.amount);
       }, 0);
-    console.log(recreation);
+    let food = this.props.transactions
+      .filter(item => item.category[0] === 'Food and Drink')
+      .reduce((total, num) => {
+        return total + parseFloat(num.amount);
+      }, 0);
+    let travel = this.props.transactions
+      .filter(item => item.category[0] === 'Travel')
+      .reduce((total, num) => {
+        return total + parseFloat(num.amount);
+      }, 0);
     const data = [
       { name: 'recreation', value: recreation },
-      { name: 'Group B', value: 300 },
-      { name: 'Group C', value: 300 },
+      { name: 'food and drink', value: food },
+      { name: 'travel', value: travel },
       { name: 'Group D', value: 200 },
     ];
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
