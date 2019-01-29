@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-/**
- * COMPONENT
- */
+/* COMPONENT */
 class Accounts extends Component {
   render() {
     const { accounts } = this.props;
