@@ -6,9 +6,9 @@ export const categorizeTransactions = transactionsArr => {
   let finalData = [];
   transactionsArr.forEach(transaction => {
     if (transaction.category && data[transaction.category[0]]) {
-      data[transaction.category[0]] += transaction.amount;
+      data[transaction.category[0]] += Math.round(transaction.amount);
     } else {
-      data[transaction.category[0]] = transaction.amount;
+      data[transaction.category[0]] = Math.round(transaction.amount);
     }
   });
   for (let key in data) {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../App.css';
-import { PieChart, Pie, Cell } from 'recharts';
+import { PieChart, Pie, Cell, Legend } from 'recharts';
 import { categorizeTransactions } from '../utils/transactions';
 
 class Trends extends Component {
@@ -48,15 +48,16 @@ class Trends extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h3>Trends</h3>
-          <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
+          <h3>Accounts</h3>
+          <h3>Transactions</h3>
+          <PieChart width={700} height={400} onMouseEnter={this.onPieEnter}>
             <Pie
               data={data}
-              cx={300}
-              cy={200}
+              cx={250}
+              cy={150}
               labelLine={true}
               //label={renderCustomizedLabel}
-              outerRadius={80}
+              outerRadius={150}
               fill="#8884d8"
               label
             >
@@ -64,6 +65,7 @@ class Trends extends Component {
                 <Cell fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>
+            <Legend />
           </PieChart>
         </header>
       </div>
