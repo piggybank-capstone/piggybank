@@ -5,12 +5,25 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import accounts from './accounts';
 import transactions from './transactions';
 import user from './user';
+import { throttle } from 'lodash';
+
+import { loadState, saveState } from './localStorage';
+
+const persistedState = loadState();
 
 const reducer = combineReducers({ accounts, transactions, user });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
-const store = createStore(reducer, middleware);
+const store = createStore(reducer, persistedState, middleware);
+
+store.subscribe(
+  throttle(() => {
+    //this gets entire store, we can get specific object
+    saveState(store.getState());
+    //accounts: store.getState().accounts
+  }, 1000)
+);
 
 export default store;
 export * from './accounts';
