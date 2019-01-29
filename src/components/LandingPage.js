@@ -22,4 +22,9 @@ const mapState = state => {
   };
 };
 
-export default withRouter(connect(mapState)(null)(LandingPage));
+export default withRouter(
+  connect(
+    mapState,
+    null
+  )(LandingPage)
+);
