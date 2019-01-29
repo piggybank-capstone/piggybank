@@ -142,7 +142,7 @@ class NavBar extends Component {
       </Menu>
     );
     return (
-      <AppBar position="static" style={{ background: theme.palette.primary.mainGradient }}>
+      <AppBar position="static">
         <Toolbar>
           <NavLink to={'/home'}>
             <img src={Rectangle_Logo} height="40" alt="piggybank logo" />
