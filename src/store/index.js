@@ -6,12 +6,13 @@ import accounts from './accounts';
 import transactions from './transactions';
 import user from './user';
 import { throttle } from 'lodash';
+import budget from './budget';
 
 import { loadState, saveState } from './localStorage';
 
 const persistedState = loadState();
 
-const reducer = combineReducers({ accounts, transactions, user });
+const reducer = combineReducers({ accounts, transactions, user, budget });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
