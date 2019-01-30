@@ -17,3 +17,21 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+
+router.delete('/:budgetId', async (req, res, next) => {
+  try {
+
+    const budgetId = req.params.budgetId;
+    console.log(budgetId, "BUDGETID")
+    await Budget.destroy({
+      where: {
+        id: budgetId
+      }
+    });
+
+    res.sendStatus(202);
+  } catch (err) {
+    next(err)
+  }
+})
