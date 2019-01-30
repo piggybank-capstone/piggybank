@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
-import NavBar from './components/NavBar';
 import Routes from './routes';
 import LandingPage from './components/LandingPage';
 

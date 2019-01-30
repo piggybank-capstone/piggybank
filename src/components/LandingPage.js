@@ -2,10 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import NavBar from './NavBar';
-import Header from './Header';
 
-//if not logged in show this
-//else if it is. show User homepage
 export const LandingPage = props => {
   return (
     <div>
@@ -14,8 +11,8 @@ export const LandingPage = props => {
       ) : (
         <div>
           <NavBar />
-          <Header />
-          <p>Get advice on budgeting with piggybot.</p>
+          <div id="header"> Saving is Fun Again</div>
+          <h2>Manage your finances and budget with Piggybot.</h2>
           <iframe
             title="piggybot"
             allow="microphone;"
@@ -32,7 +29,7 @@ export const LandingPage = props => {
 
 const mapState = state => {
   return {
-    isLoggedin: !!state.user.id,
+    isLoggedin: !!state.user.id
   };
 };
 
