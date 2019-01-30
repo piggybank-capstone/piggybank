@@ -7,27 +7,23 @@ class Accounts extends Component {
     const { accounts } = this.props;
     return (
       <div>
-        <h4>Accounts List</h4>
-        {accounts.map(account => (
-          <div key={account.id}>
-            <ul>
-              <li>
-                Account Name: {account.name} ending in {account.mask}
-              </li>
-              <li>Account Official Name: {account.official_name}</li>
-              <li>Account Subtype: {account.subtype}</li>
-              <li>Account Current Balance: {account.balances.current}</li>
-            </ul>
-          </div>
-        ))}
+        <h4>Accounts</h4>
         <table>
           <tr>
-            <th>Account</th>
+            <th scope="row">Account</th>
+            <th scope="row">Official Name</th>
+            <th scope="row">Type</th>
+            <th scope="row">Available Balance</th>
+            <th scope="row">Current Balance</th>
           </tr>
           {accounts.map(account => {
             return (
-              <tr>
+              <tr key={account.id}>
                 <td>{account.name}</td>
+                <td>{account.official_name}</td>
+                <td>{account.subtype}</td>
+                <td>{account.balances.available}</td>
+                <td>{account.balances.current}</td>
               </tr>
             );
           })}
