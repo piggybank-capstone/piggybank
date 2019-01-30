@@ -11,7 +11,7 @@ export const LandingPage = props => {
       ) : (
         <div>
           <NavBar />
-          <div id="header"> Saving is Fun Again</div>
+          <div id="header"> We Make Saving Fun</div>
           <h2>Manage your finances and budget with Piggybot.</h2>
           <iframe
             title="piggybot"
