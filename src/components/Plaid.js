@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PlaidLink from 'react-plaid-link';
 import { connect } from 'react-redux';
 import { getAccounts, getTransactions } from '../store';
+import Button from '@material-ui/core/Button';
 
 class Plaid extends Component {
   handleOnSuccess = (token, metadata) => {
@@ -13,7 +14,7 @@ class Plaid extends Component {
   }
   render() {
     return (
-      <div>
+      <div id="plaid-link">
         <PlaidLink
           clientName="piggybank"
           env="sandbox"
@@ -22,7 +23,7 @@ class Plaid extends Component {
           onExit={this.handleOnExit}
           onSuccess={this.handleOnSuccess}
         >
-          Open Link and Connect Your Bank!
+          <Button>Open Link and Connect Your Bank!</Button>
         </PlaidLink>
       </div>
     );
@@ -31,7 +32,7 @@ class Plaid extends Component {
 
 const mapDispatchToProps = {
   getAccounts,
-  getTransactions,
+  getTransactions
 };
 
 export default connect(
