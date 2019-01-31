@@ -27,7 +27,7 @@ const mapStateToProps = state => {
   return {
     name: state.user.firstName,
     accounts: state.accounts,
-    transactions: state.transactions,
+    transactions: state.transactions
   };
 };
 
@@ -37,5 +37,5 @@ export default connect(mapStateToProps)(UserHome);
  * PROP TYPES
  */
 UserHome.propTypes = {
-  email: PropTypes.string,
+  email: PropTypes.string
 };

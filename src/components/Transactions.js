@@ -23,7 +23,7 @@ const styles = theme => ({
   }
 });
 
-function SimpleTable(props) {
+function Transactions(props) {
   const { classes, transactions } = props;
   console.log('transactions', transactions);
   return (
@@ -33,9 +33,12 @@ function SimpleTable(props) {
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
-              <TableCell width="30%">Date</TableCell>
-              <TableCell width="50%" align="left">
+              <TableCell width="20%">Date</TableCell>
+              <TableCell width="40%" align="left">
                 Name
+              </TableCell>
+              <TableCell width="20%" align="left">
+                Category
               </TableCell>
               <TableCell width="20%" align="right">
                 Amount
@@ -49,6 +52,7 @@ function SimpleTable(props) {
                   {transaction.date}
                 </TableCell>
                 <TableCell align="left">{transaction.name}</TableCell>
+                <TableCell align="left">{transaction.category[0]}</TableCell>
                 <TableCell align="right">
                   $
                   {transaction.amount
@@ -64,11 +68,11 @@ function SimpleTable(props) {
   );
 }
 
-SimpleTable.propTypes = {
+Transactions.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-const WrappedTable = withStyles(styles)(SimpleTable);
+const WrappedTransactions = withStyles(styles)(Transactions);
 
 const mapState = state => {
   return {
@@ -76,4 +80,4 @@ const mapState = state => {
   };
 };
 
-export default connect(mapState)(WrappedTable);
+export default connect(mapState)(WrappedTransactions);
