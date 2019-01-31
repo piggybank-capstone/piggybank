@@ -41,15 +41,15 @@
     "socket.io": "^2.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "cra-start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "seed": "node script/seed.js",
     "server": "nodemon server/index.js",
+    "start": "node server/index.js",
     "deploy": "script/deploy"
   },
-  "proxy": "http://localhost:8080",
   "eslintConfig": {
     "extends": "react-app"
   },
