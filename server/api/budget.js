@@ -55,31 +55,30 @@ router.post('/', async (req, res, next) => {
       }
     });
 
+    console.log('foundbudget', foundBudget);
     if (foundBudget) {
       await foundBudget.update({
         amount,
         where: {
           id: foundBudget.id
         }
-
       });
-      foundBudget.save();
-
+      await foundBudget.save();
     } else {
-      foundBudget = Budget.create({
+      foundBudget = await Budget.create({
         categoryId,
         amount,
         userId
       });
     }
-
+    console.log('foundbudget', foundBudget);
     let returnedBudget = await Budget.find({
       where: {
         id: foundBudget.id
       },
       include: [{ model: Category }]
     });
-
+    console.log('returnedbudget', returnedBudget);
     // const createdBudget = await Budget.create({
     //   categoryId,
     //   amount,
