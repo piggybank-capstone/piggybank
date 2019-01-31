@@ -79,7 +79,8 @@ class Budget extends Component {
     return (
       <div>
         <h2>The budget</h2>
-        <h3>You have spent ${this.state.totalSpent} this month</h3>
+        <h3>You have spent ${this.state.totalSpent.toFixed(2)
+          .replace(/\d(?=(\d{3})+\.)/g, '$&,')} this month</h3>
 
         <div>
           <Paper className={classes.root}>

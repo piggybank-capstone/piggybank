@@ -47,17 +47,20 @@ const styles = theme => ({
 
 const SingleBudget = props => {
   const { budget, transactions, removeBudget } = props;
+  const delta = budget.amount -
+    sortTransactionsByCategory(budget.category.name, transactions)
+      .totalSpent;
   return (
     <TableRow>
       <TableCell component="th" scope="row">
         {budget.category.name}
       </TableCell>
-      <TableCell align="right">${budget.amount}</TableCell>
+      <TableCell align="right">${budget.amount.toFixed(2)
+        .replace(/\d(?=(\d{3})+\.)/g, '$&,')}</TableCell>
       <TableCell align="right">
         $
-        {budget.amount -
-          sortTransactionsByCategory(budget.category.name, transactions)
-            .totalSpent}
+        {delta.toFixed(2)
+          .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
       </TableCell>
       <TableCell>
         <Button
