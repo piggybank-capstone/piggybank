@@ -14,6 +14,11 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
+  Radar,
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
 } from 'recharts';
 import {
   categorizeTransactions,
@@ -53,8 +58,8 @@ class Trends extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h3>Spending by Category</h3>
           <Paper className={classes.root}>
+            <h3>Spending by Category</h3>
             <PieChart
               className={classes.table}
               width={700}
@@ -75,11 +80,12 @@ class Trends extends Component {
                 ))}
               </Pie>
               <Legend />
+              <Tooltip />
             </PieChart>
           </Paper>
 
-          <h3>Total Spending Over Time</h3>
           <Paper className={classes.root}>
+            <h3>Total Spending Over Time</h3>
             <BarChart
               className={classes.table}
               width={600}
@@ -95,6 +101,30 @@ class Trends extends Component {
               <ReferenceLine y={0} stroke="#000" />
               <Bar dataKey="value" fill="#82ca9d" cx="50%" cy="50%" />
             </BarChart>
+          </Paper>
+
+          <Paper className={classes.root}>
+            <h3>Spending by Category</h3>
+            <RadarChart
+              className={classes.root}
+              cx={300}
+              cy={250}
+              outerRadius={150}
+              width={600}
+              height={500}
+              data={transactions}
+            >
+              <PolarGrid />
+              <PolarAngleAxis dataKey="name" />
+              <PolarRadiusAxis />
+              <Radar
+                className={classes.table}
+                dataKey="value"
+                stroke="#8884d8"
+                fill="#8884d8"
+                fillOpacity={0.6}
+              />
+            </RadarChart>
           </Paper>
         </header>
       </div>
