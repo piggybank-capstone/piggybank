@@ -1,6 +1,6 @@
-const router = require('express').Router()
+const router = require('express').Router();
 const { Budget, Category } = require('../db/models');
-module.exports = router
+module.exports = router;
 
 router.get('/', async (req, res, next) => {
   try {
@@ -11,51 +11,24 @@ router.get('/', async (req, res, next) => {
         userId
       },
       include: [{ model: Category }]
-    })
+    });
     res.json(budgets);
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
+});
 
 router.get('/categories', async (req, res, next) => {
   try {
-    const userId = req.session.userId;
-
-    const budgets = await Budget.findAll({
-      where: {
-        userId
-      },
-      include: [{ model: Category }]
-    })
-
     const categories = await Category.findAll();
-    let unUsedCat = [];
-
-    const currentCats = budgets.map(budget => {
-      return (budget.category.id);
-    })
-
-
-    categories.forEach(cat => {
-      if (!currentCats.includes(cat.id)) {
-        unUsedCat.push(cat)
-      }
-    })
-
-    res.json(unUsedCat)
-
-
+    res.json(categories);
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
-
-
+});
 
 router.delete('/:budgetId', async (req, res, next) => {
   try {
-
     const budgetId = req.params.budgetId;
 
     await Budget.destroy({
@@ -66,38 +39,59 @@ router.delete('/:budgetId', async (req, res, next) => {
 
     res.sendStatus(202);
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
-
+});
 
 router.post('/', async (req, res, next) => {
   try {
-
     const { categoryId, amount } = req.body;
-    const { userId } = req.session
+    const { userId } = req.session;
 
+    let foundBudget = await Budget.findOne({
+      where: {
+        categoryId: categoryId,
+        userId: userId
+      }
+    });
 
-    const createdBudget = await Budget.create(
-
-      {
+    console.log('foundbudget', foundBudget);
+    if (foundBudget) {
+      await foundBudget.update({
+        amount,
+        where: {
+          id: foundBudget.id
+        }
+      });
+      await foundBudget.save();
+    } else {
+      foundBudget = await Budget.create({
         categoryId,
         amount,
         userId
-      }
-    );
-    const budgetFound = await Budget.find({
+      });
+    }
+    console.log('foundbudget', foundBudget);
+    let returnedBudget = await Budget.find({
       where: {
-        id: createdBudget.id
+        id: foundBudget.id
       },
       include: [{ model: Category }]
-    })
-
-    console.log(budgetFound)
-
-
-    res.json(budgetFound);
+    });
+    console.log('returnedbudget', returnedBudget);
+    // const createdBudget = await Budget.create({
+    //   categoryId,
+    //   amount,
+    //   userId
+    // });
+    // const budgetFound = await Budget.find({
+    //   where: {
+    //     id: createdBudget.id
+    //   },
+    //   include: [{ model: Category }]
+    // });
+    res.json(returnedBudget);
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
+});

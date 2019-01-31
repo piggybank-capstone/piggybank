@@ -3,7 +3,11 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../App.css';
 import { getBudgets } from '../store/budget';
-import { sortTransactionsByMonth, getCurrentMonth, sortTransactionsByCategory } from '../../src/utils/transactions.js'
+import {
+  sortTransactionsByMonth,
+  getCurrentMonth,
+  sortTransactionsByCategory
+} from '../../src/utils/transactions.js';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -21,8 +25,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 
 import { Button } from '@material-ui/core';
 
-
-
 const styles = theme => ({
   root: {
     width: '50%',
@@ -33,7 +35,6 @@ const styles = theme => ({
   table: {
     width: '100%',
     margin: 'auto'
-
   },
   column: {
     width: '3%'
@@ -44,32 +45,32 @@ const styles = theme => ({
   }
 });
 
-
-const SingleBudget = (props) => {
-  const { budget, transactions, removeBudget } = props
-  console.log(budget)
+const SingleBudget = props => {
+  const { budget, transactions, removeBudget } = props;
   return (
-
-    <TableRow >
+    <TableRow>
       <TableCell component="th" scope="row">
         {budget.category.name}
       </TableCell>
       <TableCell align="right">${budget.amount}</TableCell>
-      <TableCell align="right">${budget.amount - sortTransactionsByCategory(budget.category.name, transactions).totalSpent}</TableCell>
-      <TableCell >
-        <Button align="center" onClick={(id) => { removeBudget(budget.id) }}>
+      <TableCell align="right">
+        $
+        {budget.amount -
+          sortTransactionsByCategory(budget.category.name, transactions)
+            .totalSpent}
+      </TableCell>
+      <TableCell>
+        <Button
+          align="center"
+          onClick={id => {
+            removeBudget(budget.id);
+          }}
+        >
           Remove
-                  </Button>
-
+        </Button>
       </TableCell>
     </TableRow>
+  );
+};
 
-  )
-
-}
-
-
-export default withRouter(
-  withStyles(styles)
-    (SingleBudget)
-);
+export default withRouter(withStyles(styles)(SingleBudget));

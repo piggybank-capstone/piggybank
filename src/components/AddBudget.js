@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../App.css';
-import { getBudgets, removeBudget, getUnusedCategories, createBudget } from '../store/budget';
+import {
+  getBudgets,
+  removeBudget,
+  getCategories,
+  createOrUpdateBudget
+} from '../store/budget';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -32,22 +37,19 @@ const styles = theme => ({
   formStyle: {
     alignItems: 'flex-start'
   }
-
-
 });
-
 
 class AddBudget extends Component {
   constructor() {
     super();
     this.state = {
-      categeory: '',
+      categeory: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.createBudget = this.createBudget.bind(this);
   }
   componentDidMount() {
-    this.props.getUnusedCategories();
+    this.props.getCategories();
   }
 
   handleChange = event => {
@@ -61,34 +63,34 @@ class AddBudget extends Component {
     const categoryId = event.target.category.value;
     const amount = event.target.amount.value;
     this.props.createBudget({ categoryId, amount });
-  }
-
-
+  };
 
   render() {
     const { classes, categories } = this.props;
 
     return (
       <div>
-        <h2>Add a budget</h2>
+        <h2>Add Or Update A Budget</h2>
 
         <Paper className={classes.root}>
-          {(categories.length > 0) ?
+          {categories.length > 0 ? (
             <form onSubmit={this.createBudget}>
               <FormControl className={classes.formControl}>
                 <InputLabel htmlFor="cat">Category</InputLabel>
-                <Select value={this.state.categeory}
+                <Select
+                  value={this.state.categeory}
                   onChange={this.handleChange}
                   inputProps={{
                     name: 'category',
                     id: 'cat'
                   }}
-                  className={classes.dropDown} >
-                  {
-                    categories.map(categeory => {
-                      return (<MenuItem value={categeory.id}>{categeory.name}</MenuItem>)
-                    })
-                  }
+                  className={classes.dropDown}
+                >
+                  {categories.map(categeory => {
+                    return (
+                      <MenuItem value={categeory.id}>{categeory.name}</MenuItem>
+                    );
+                  })}
                 </Select>
               </FormControl>
               <FormControl className={classes.formControl}>
@@ -102,16 +104,15 @@ class AddBudget extends Component {
                   margin="normal"
                   variant="outlined"
                 />
-                <Button type='submit' >Add Budget</Button>
+                <Button type="submit">Update Budget</Button>
               </FormControl>
             </form>
-            :
-            <h3>You have all the budget categories</h3>
-          }
+          ) : (
+              <h3>You have all the budget categories</h3>
+            )}
         </Paper>
-
-      </div >
-    )
+      </div>
+    );
   }
 }
 
@@ -120,22 +121,21 @@ const mapStateToProps = state => ({
   transactions: state.transactions,
   budgets: state.budget.budgetList,
   categories: state.budget.categories
-
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-
-  getUnusedCategories: () => dispatch(getUnusedCategories()),
-  createBudget: (budget) => {
-    dispatch(createBudget(budget))
+  getCategories: () => dispatch(getCategories()),
+  createBudget: budget => {
+    dispatch(createOrUpdateBudget(budget));
     ownProps.history.push('./budget');
   }
-
 });
 
 export default withRouter(
-  withStyles(styles)(connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(AddBudget))
+  withStyles(styles)(
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )(AddBudget)
+  )
 );
