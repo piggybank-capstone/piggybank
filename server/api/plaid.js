@@ -56,7 +56,7 @@ router.post('/get_access_token', async (req, res, next) => {
         );
         const transactionRes = await plaidClient.getTransactions(
           tokenResponse.access_token,
-          '2018-10-01',
+          '2018-01-20',
           '2019-01-20'
         );
         res.json({
