@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { withStyles } from '@material-ui/core/styles';
 import '../App.css';
 import {
   PieChart,
@@ -19,6 +20,19 @@ import { categorizeTransactions, COLORS } from '../utils/transactions';
 import { categorizeAccounts } from '../utils/accounts';
 import Paper from '@material-ui/core/Paper';
 
+const styles = theme => ({
+  root: {
+    width: '80%',
+    marginTop: theme.spacing.unit * 3,
+    overflowX: 'auto',
+    margin: 'auto',
+  },
+  chart: {
+    width: '100%',
+    margin: 'auto',
+  },
+});
+
 class Trends extends Component {
   render() {
     let transactions = !this.props.transactions
@@ -27,13 +41,14 @@ class Trends extends Component {
     let accounts = !this.props.accounts
       ? null
       : categorizeAccounts(this.props.accounts);
-    console.log(accounts);
+    const { classes } = this.props;
     return (
-      <div className="App">
+      <div className={classes.root}>
         <header className="App-header">
           <h3>Accounts</h3>
           <Paper>
             <BarChart
+              className={classes.chart}
               width={600}
               height={300}
               data={accounts}
@@ -51,7 +66,12 @@ class Trends extends Component {
 
           <h3>Transactions</h3>
           <Paper>
-            <PieChart width={700} height={400} onMouseEnter={this.onPieEnter}>
+            <PieChart
+              className={classes.chart}
+              width={700}
+              height={400}
+              onMouseEnter={this.onPieEnter}
+            >
               <Pie
                 data={transactions}
                 cx={250}
@@ -80,9 +100,11 @@ const mapStateToProps = state => ({
   transactions: state.transactions,
 });
 
+const StyledTrends = withStyles(styles)(Trends);
+
 export default withRouter(
   connect(
     mapStateToProps,
     null
-  )(Trends)
+  )(StyledTrends)
 );
