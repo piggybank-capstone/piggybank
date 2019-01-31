@@ -8,10 +8,14 @@ export const categorizeTransactions = transactionsArr => {
     if (
       transaction.category &&
       data[transaction.category[0]] &&
-      transaction.category[0] !== 'Payment'
+      transaction.category[0] !== 'Payment' &&
+      transaction.category[0] !== 'Transfer'
     ) {
       data[transaction.category[0]] += Math.round(transaction.amount);
-    } else if (transaction.category[0] !== 'Payment') {
+    } else if (
+      transaction.category[0] !== 'Payment' &&
+      transaction.category[0] !== 'Transfer'
+    ) {
       data[transaction.category[0]] = Math.round(transaction.amount);
     }
   });
