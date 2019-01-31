@@ -18,9 +18,24 @@ import {
 import { categorizeTransactions, COLORS } from '../utils/transactions';
 import { categorizeAccounts } from '../utils/accounts';
 import Paper from '@material-ui/core/Paper';
+import { withStyles } from '@material-ui/core';
+
+const styles = theme => ({
+  root: {
+    width: '50%',
+    marginTop: theme.spacing.unit * 3,
+    overflowX: 'auto',
+    margin: 'auto',
+  },
+  table: {
+    width: '100%',
+    margin: 'auto',
+  },
+});
 
 class Trends extends Component {
   render() {
+    const { classes } = this.props;
     let transactions = !this.props.transactions
       ? null
       : categorizeTransactions(this.props.transactions);
@@ -32,8 +47,9 @@ class Trends extends Component {
       <div className="App">
         <header className="App-header">
           <h3>Accounts</h3>
-          <Paper>
+          <Paper className={classes.root}>
             <BarChart
+              className={classes.table}
               width={600}
               height={300}
               data={accounts}
@@ -50,8 +66,13 @@ class Trends extends Component {
           </Paper>
 
           <h3>Transactions</h3>
-          <Paper>
-            <PieChart width={700} height={400} onMouseEnter={this.onPieEnter}>
+          <Paper className={classes.root}>
+            <PieChart
+              className={classes.table}
+              width={700}
+              height={400}
+              onMouseEnter={this.onPieEnter}
+            >
               <Pie
                 data={transactions}
                 cx={250}
@@ -80,9 +101,11 @@ const mapStateToProps = state => ({
   transactions: state.transactions,
 });
 
+const WrappedTrends = withStyles(styles)(Trends);
+
 export default withRouter(
   connect(
     mapStateToProps,
     null
-  )(Trends)
+  )(WrappedTrends)
 );
