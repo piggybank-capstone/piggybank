@@ -35,6 +35,7 @@ export const sortTransactionsByMonth = transactionsArr => {
     if (month === currentMonth) {
 
       monthlyTransactions.push(transaction);
+      console.log(transaction.amount)
       total += transaction.amount;
     }
 
