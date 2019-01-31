@@ -17,6 +17,7 @@ import {
 } from 'recharts';
 import { categorizeTransactions, COLORS } from '../utils/transactions';
 import { categorizeAccounts } from '../utils/accounts';
+import Paper from '@material-ui/core/Paper';
 
 class Trends extends Component {
   render() {
@@ -31,38 +32,43 @@ class Trends extends Component {
       <div className="App">
         <header className="App-header">
           <h3>Accounts</h3>
-          <BarChart
-            width={600}
-            height={300}
-            data={accounts}
-            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <ReferenceLine y={0} stroke="#000" />
-            <Bar dataKey="value" fill="#82ca9d" />
-          </BarChart>
-          <h3>Transactions</h3>
-          <PieChart width={700} height={400} onMouseEnter={this.onPieEnter}>
-            <Pie
-              data={transactions}
-              cx={250}
-              cy={150}
-              labelLine={true}
-              //label={renderCustomizedLabel}
-              outerRadius={150}
-              fill="#8884d8"
-              label
+          <Paper>
+            <BarChart
+              width={600}
+              height={300}
+              data={accounts}
+              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
             >
-              {transactions.map((entry, index) => (
-                <Cell fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Pie>
-            <Legend />
-          </PieChart>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <ReferenceLine y={0} stroke="#000" />
+              <Bar dataKey="value" fill="#82ca9d" />
+            </BarChart>
+          </Paper>
+
+          <h3>Transactions</h3>
+          <Paper>
+            <PieChart width={700} height={400} onMouseEnter={this.onPieEnter}>
+              <Pie
+                data={transactions}
+                cx={250}
+                cy={150}
+                labelLine={true}
+                //label={renderCustomizedLabel}
+                outerRadius={150}
+                fill="#8884d8"
+                label
+              >
+                {transactions.map((entry, index) => (
+                  <Cell fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+              <Legend />
+            </PieChart>
+          </Paper>
         </header>
       </div>
     );
