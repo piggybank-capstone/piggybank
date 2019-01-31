@@ -27,7 +27,7 @@ class Accounts extends Component {
     const { accounts, classes } = this.props;
     return (
       <div>
-        <h4>Accounts</h4>
+        <h2>Accounts</h2>
         <Paper className={classes.root}>
           <Table className={classes.table}>
             <TableHead>
