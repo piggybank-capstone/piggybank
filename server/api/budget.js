@@ -79,11 +79,15 @@ router.post('/', async (req, res, next) => {
 
 
     const createdBudget = await Budget.create(
+
       {
         categoryId,
         amount,
         userId
+      }, {
+        include: [{ model: Category }]
       }
+
     );
 
     res.json(createdBudget);

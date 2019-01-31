@@ -60,9 +60,9 @@ export const removeBudget = (id) => async dispatch => {
 export const createBudget = (budget) => async dispatch => {
   try {
     console.log(budget)
-    const data = await axios.post(`/api/budget/`, budget);
-    console.log(data.res);
-    dispatch(createdBudget(data.res));
+    const res = await axios.post(`/api/budget/`, budget);
+    console.log(res.data);
+    dispatch(createdBudget(res.data));
 
   } catch (error) {
     console.error(error);
