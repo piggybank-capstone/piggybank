@@ -20,7 +20,7 @@ import FormControl from '@material-ui/core/FormControl';
 
 const styles = theme => ({
   root: {
-    width: '50%',
+    width: '60%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
     margin: 'auto'
@@ -31,11 +31,18 @@ const styles = theme => ({
     marginTop: theme.spacing.unit
   },
   dropDown: {
-    width: '40%',
-    marginTop: theme.spacing.unit
+    width: '100%',
+    marginTop: theme.spacing.unit,
+    display: 'flex',
+    fullWidth: true
   },
   formStyle: {
     alignItems: 'flex-start'
+  },
+  formControl: {
+    margin: 0,
+    fullWidth: true,
+    display: 'flex'
   }
 });
 
@@ -75,9 +82,10 @@ class AddBudget extends Component {
         <Paper className={classes.root}>
           {categories.length > 0 ? (
             <form onSubmit={this.createBudget}>
-              <FormControl className={classes.formControl}>
+              <FormControl className={classes.formControl} display="flex">
                 <InputLabel htmlFor="cat">Category</InputLabel>
                 <Select
+                  autoWidth={true}
                   value={this.state.categeory}
                   onChange={this.handleChange}
                   inputProps={{
@@ -108,8 +116,8 @@ class AddBudget extends Component {
               </FormControl>
             </form>
           ) : (
-              <h3>You have all the budget categories</h3>
-            )}
+            <h3>You have all the budget categories</h3>
+          )}
         </Paper>
       </div>
     );
