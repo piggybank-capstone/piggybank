@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../App.css';
-import { getBudgets, removeBudget } from '../store/budget';
+import { getBudgets, removeBudget, getCategories } from '../store/budget';
 import { sortTransactionsByMonth, getCurrentMonth, sortTransactionsByCategory } from '../../src/utils/transactions.js'
-import PropTypes from 'prop-types';
+
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -12,19 +12,9 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Checkbox from '@material-ui/core/Checkbox';
 import { Button } from '@material-ui/core';
 import SingleBudget from './SingleBudget';
-import AddBudget from './SingleBudget';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
+
 
 
 const styles = theme => ({
@@ -142,7 +132,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getBudgets: () => dispatch(getBudgets()),
-  removeBudget: (id) => dispatch(removeBudget(id))
+  removeBudget: (id) => dispatch(removeBudget(id)),
+
 
 });
 
