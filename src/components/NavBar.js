@@ -20,6 +20,9 @@ class NavBar extends Component {
             <div id="nav-right">
               {isLoggedIn ? (
                 <div>
+                  <NavLink to={'/budget'}>
+                    <Button color="inherit">Budgets</Button>
+                  </NavLink>
                   <NavLink to={'/trends'}>
                     <Button color="inherit">Trends</Button>
                   </NavLink>
