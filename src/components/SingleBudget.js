@@ -1,29 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
 import '../App.css';
-import { getBudgets } from '../store/budget';
 import {
-  sortTransactionsByMonth,
-  getCurrentMonth,
   sortTransactionsByCategory
 } from '../../src/utils/transactions.js';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Checkbox from '@material-ui/core/Checkbox';
+import Emoji from 'react-emoji-render';
 
 import { Button } from '@material-ui/core';
+
 
 const styles = theme => ({
   root: {
@@ -42,11 +29,14 @@ const styles = theme => ({
   checkboxstyle: {
     margin: 'auto',
     width: '100%'
+  },
+  emojiStyle: {
+    fontSize: '1.5rem'
   }
 });
 
 const SingleBudget = props => {
-  const { budget, transactions, removeBudget } = props;
+  const { budget, transactions, removeBudget, classes } = props;
   const delta = budget.amount -
     sortTransactionsByCategory(budget.category.name, transactions)
       .totalSpent;
@@ -61,6 +51,13 @@ const SingleBudget = props => {
         $
         {delta.toFixed(2)
           .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+      </TableCell>
+      <TableCell >
+        {(delta > 0) ?
+          <Emoji text="8-)" className={classes.emojiStyle} />
+          :
+          <Emoji text=":,-(" className={classes.emojiStyle} />
+        }
       </TableCell>
       <TableCell>
         <Button

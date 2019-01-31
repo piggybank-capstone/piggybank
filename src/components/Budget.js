@@ -90,6 +90,7 @@ class Budget extends Component {
                   <TableCell>Category</TableCell>
                   <TableCell align="right">Amount Budgeted</TableCell>
                   <TableCell align="right">Amount Left</TableCell>
+                  <TableCell align="right">On Goal?</TableCell>
                   <TableCell />
                 </TableRow>
               </TableHead>

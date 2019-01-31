@@ -55,7 +55,7 @@ router.post('/', async (req, res, next) => {
       }
     });
 
-    console.log('foundbudget', foundBudget);
+
     if (foundBudget) {
       await foundBudget.update({
         amount,
@@ -71,14 +71,14 @@ router.post('/', async (req, res, next) => {
         userId
       });
     }
-    console.log('foundbudget', foundBudget);
+
     let returnedBudget = await Budget.find({
       where: {
         id: foundBudget.id
       },
       include: [{ model: Category }]
     });
-    console.log('returnedbudget', returnedBudget);
+
     // const createdBudget = await Budget.create({
     //   categoryId,
     //   amount,
