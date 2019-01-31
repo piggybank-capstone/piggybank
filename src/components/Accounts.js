@@ -10,12 +10,14 @@ import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
   root: {
-    width: '100%',
+    width: '80%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
+    margin: 'auto',
   },
   table: {
-    minWidth: 700,
+    width: '100%',
+    margin: 'auto',
   },
 });
 
