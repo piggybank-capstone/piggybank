@@ -48,7 +48,7 @@ router.post('/', async (req, res, next) => {
     const { categoryId, amount } = req.body;
     const { userId } = req.session;
 
-    const foundBudget = await Budget.findOne({
+    let foundBudget = await Budget.findOne({
       where: {
         categoryId: categoryId,
         userId: userId
@@ -56,19 +56,29 @@ router.post('/', async (req, res, next) => {
     });
 
     if (foundBudget) {
-      Budget.update({
+      await foundBudget.update({
         amount,
         where: {
           id: foundBudget.id
         }
+
       });
+      foundBudget.save();
+
     } else {
-      Budget.create({
+      foundBudget = Budget.create({
         categoryId,
         amount,
         userId
       });
     }
+
+    let returnedBudget = await Budget.find({
+      where: {
+        id: foundBudget.id
+      },
+      include: [{ model: Category }]
+    });
 
     // const createdBudget = await Budget.create({
     //   categoryId,
@@ -81,7 +91,7 @@ router.post('/', async (req, res, next) => {
     //   },
     //   include: [{ model: Category }]
     // });
-    // res.json(budgetFound);
+    res.json(returnedBudget);
   } catch (err) {
     next(err);
   }

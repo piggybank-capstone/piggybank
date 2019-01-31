@@ -6,7 +6,7 @@ import {
   getBudgets,
   removeBudget,
   getCategories,
-  createBudget
+  createOrUpdateBudget
 } from '../store/budget';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -108,8 +108,8 @@ class AddBudget extends Component {
               </FormControl>
             </form>
           ) : (
-            <h3>You have all the budget categories</h3>
-          )}
+              <h3>You have all the budget categories</h3>
+            )}
         </Paper>
       </div>
     );
@@ -126,7 +126,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = (dispatch, ownProps) => ({
   getCategories: () => dispatch(getCategories()),
   createBudget: budget => {
-    dispatch(createBudget(budget));
+    dispatch(createOrUpdateBudget(budget));
     ownProps.history.push('./budget');
   }
 });

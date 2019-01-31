@@ -3,7 +3,7 @@ import axios from 'axios';
 //action types
 const GOT_ALL_BUDGETS = 'GET_ALL_BUDGETS';
 const REMOVE_BUDGET = 'REMOVE_BUDGET';
-const CREATE_A_BUDGET = 'CREATE_A_BUDGET';
+const CREATE_OR_UPDATE_A_BUDGET = 'CREATE_OR_UPDATE_A_BUDGET';
 const GET_CATEGORIES = 'GET_CATEGORIES';
 
 export const gotAllBudgets = budgets => ({
@@ -16,8 +16,8 @@ export const removedBudget = budgetId => ({
   budgetId
 });
 
-export const createdBudget = budget => ({
-  type: CREATE_A_BUDGET,
+export const createdOrUpdatedBudget = budget => ({
+  type: CREATE_OR_UPDATE_A_BUDGET,
   budget
 });
 
@@ -54,12 +54,11 @@ export const removeBudget = id => async dispatch => {
   }
 };
 
-export const createBudget = budget => async dispatch => {
+export const createOrUpdateBudget = budget => async dispatch => {
   try {
-    console.log(budget);
     const res = await axios.post(`/api/budget/`, budget);
-    console.log(res.data);
-    dispatch(createdBudget(res.data));
+    console.log(res.data, "BUDGET FOUND")
+    dispatch(createdOrUpdatedBudget(res.data));
   } catch (error) {
     console.error(error);
   }
@@ -90,8 +89,26 @@ export default function budgetsReducer(state = initialState, action) {
 
       return { ...state, budgetList: newArr };
     }
-    case CREATE_A_BUDGET:
-      return { ...state, budgetList: [...state.budgetList, action.budget] };
+    case CREATE_OR_UPDATE_A_BUDGET: {
+      let newArr = [];
+      let isUpdate = false;
+      state.budgetList.forEach(budget => {
+        if (budget.id === action.budget.id) {
+          const updatedBudget = { ...budget };
+          updatedBudget.amount = action.budget.amount;
+          isUpdate = true;
+          newArr.push(updatedBudget);
+        }
+        newArr.push(budget);
+      })
+
+      if (!isUpdate) {
+        newArr.push(action.budget);
+      }
+      console.log(newArr, "NEW ARR")
+      return { ...state, budgetList: newArr }
+    }
+
     case GET_CATEGORIES:
       return { ...state, categories: action.categories };
     default:

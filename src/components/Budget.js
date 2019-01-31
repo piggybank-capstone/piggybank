@@ -75,7 +75,7 @@ class Budget extends Component {
 
   render() {
     const { budgets, classes } = this.props;
-    console.log(budgets);
+
     return (
       <div>
         <h2>The budget</h2>

@@ -47,7 +47,6 @@ const styles = theme => ({
 
 const SingleBudget = props => {
   const { budget, transactions, removeBudget } = props;
-  console.log(budget);
   return (
     <TableRow>
       <TableCell component="th" scope="row">
