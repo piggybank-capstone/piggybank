@@ -36,6 +36,7 @@ class Routes extends Component {
             <Route path="/budget" component={Budget} />
             <Route path="/trends" component={Trends} />
             <Route path="/accounts" component={Accounts} />
+            <Route path="/addABudget" component={AddBudget} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback

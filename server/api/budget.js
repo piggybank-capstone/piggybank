@@ -84,13 +84,19 @@ router.post('/', async (req, res, next) => {
         categoryId,
         amount,
         userId
-      }, {
-        include: [{ model: Category }]
       }
-
     );
+    const budgetFound = await Budget.find({
+      where: {
+        id: createdBudget.id
+      },
+      include: [{ model: Category }]
+    })
 
-    res.json(createdBudget);
+    console.log(budgetFound)
+
+
+    res.json(budgetFound);
   } catch (err) {
     next(err)
   }
