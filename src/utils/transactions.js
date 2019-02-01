@@ -75,6 +75,45 @@ export const maxMerchant = uniqueMerchantArr => {
   return { maxMerchant, maxAmount };
 }
 
+export const countMerchant = transactionsArr => {
+  let data = {};
+  let mostCount = [];
+
+  transactionsArr.forEach(transaction => {
+
+    if (
+      transaction.name &&
+      data[transaction.name] &&
+      transaction.category[0] !== 'Payment' &&
+      transaction.category[0] !== 'Transfer'
+    ) {
+      data[transaction.name] += 1;
+    } else if (
+      transaction.category[0] !== 'Payment' &&
+      transaction.category[0] !== 'Transfer'
+    ) {
+      data[transaction.name] = 1;
+    }
+  });
+
+  let count = 0;
+
+  for (let key in data) {
+    if (data[key] > count) {
+      count = data[key];
+    }
+  }
+
+  for (let key in data) {
+    if (data[key] === count) {
+      mostCount.push(key)
+    }
+  }
+
+
+  return { merchants: mostCount, count };
+};
+
 export const spendingByMonth = transactionsArr => {
   let results = [];
   const months = [

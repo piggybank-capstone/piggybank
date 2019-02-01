@@ -27,6 +27,7 @@ import {
   spendingByMonth,
   categorizeTransactionsByMerchant,
   maxMerchant,
+  countMerchant,
 } from '../utils/transactions';
 import { categorizeAccounts } from '../utils/accounts';
 import Paper from '@material-ui/core/Paper';
@@ -59,6 +60,7 @@ class MerchantTable extends Component {
       ? null
       : categorizeTransactionsByMerchant(this.props.transactions);
     let mostSpent = maxMerchant(transactions);
+    let mostTrans = countMerchant(this.props.transactions);
     return (
       <div className="App">
         <header className="App-header">
@@ -67,29 +69,52 @@ class MerchantTable extends Component {
             <Table className={classes.table}>
               <TableHead>
                 <TableRow>
-                  <TableCell align="right">Top Merchant</TableCell>
-                  <TableCell align="right">Most Purchases</TableCell>
-                  <TableCell align="center">Most Expensive Per Visit</TableCell>
-                  <TableCell />
+                  <TableCell align="center">Top Merchant</TableCell>
+                  <TableCell align="center">Most Purchases</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 <TableRow>
-                  <TableCell align="right">
+                  <TableCell align="center">
                     {mostSpent.maxMerchant.map(merchant => {
                       return <h6>{merchant}</h6>
                     })}
                     <p>{mostSpent.maxAmount}</p>
                   </TableCell>
-                  <TableCell align="right">Test Merch</TableCell>
-                  <TableCell align="center">Merch #3</TableCell>
-                  <TableCell />
+                  <TableCell align="center">
+                    {mostTrans.merchants.map(merchant => {
+                      return <h6>{merchant}</h6>
+                    })}
+                    <p>{mostTrans.count}</p>
+                  </TableCell>
+
+                </TableRow>
+              </TableBody>
+            </Table>
+
+            <h3>Your Spending</h3>
+            <Table className={classes.table}>
+              <TableHead>
+                <TableRow>
+                  <TableCell align="center">Merchant</TableCell>
+                  <TableCell align="center">Spending</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow>
+                  <TableCell align="center">
+
+                  </TableCell>
+                  <TableCell align="center">
+
+                  </TableCell>
+
                 </TableRow>
               </TableBody>
             </Table>
           </Paper>
         </header>
-      </div>
+      </div >
     );
   }
 }
