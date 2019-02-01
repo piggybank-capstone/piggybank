@@ -32,7 +32,6 @@ export const categorizeTransactionsByMerchant = transactionsArr => {
   let finalData = [];
   transactionsArr.forEach(transaction => {
     const partialMerchant = transaction.name.slice(0, 4);
-    console.log('partialMerchant is ', partialMerchant);
     if (
       transaction.name &&
       data[transaction.name] &&
@@ -55,6 +54,26 @@ export const categorizeTransactionsByMerchant = transactionsArr => {
   }
   return finalData;
 };
+
+export const maxMerchant = uniqueMerchantArr => {
+
+  let maxMerchant = [];
+  let maxAmount = 0;
+
+  for (let i = 0; i < uniqueMerchantArr.length; i++) {
+
+    if (uniqueMerchantArr[i].value > maxAmount) {
+      maxAmount = uniqueMerchantArr[i].value;
+    }
+  }
+
+  maxMerchant = uniqueMerchantArr.map(merchant => {
+    if (merchant.value === maxAmount) {
+      return merchant.name;
+    }
+  });
+  return { maxMerchant, maxAmount };
+}
 
 export const spendingByMonth = transactionsArr => {
   let results = [];

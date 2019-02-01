@@ -30,6 +30,7 @@ import { categorizeAccounts } from '../utils/accounts';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core';
 import MerchantChart from './MerchantChart';
+import MerchantTable from './MerchantTable';
 
 const styles = theme => ({
   root: {
@@ -128,6 +129,7 @@ class Trends extends Component {
             </RadarChart>
           </Paper>
           <MerchantChart />
+          <MerchantTable />
         </header>
       </div>
     );
