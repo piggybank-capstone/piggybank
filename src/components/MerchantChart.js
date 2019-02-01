@@ -44,7 +44,7 @@ const styles = theme => ({
   },
 });
 
-class Trends extends Component {
+class MerchantChart extends Component {
   render() {
     const { classes } = this.props;
     let transactions = !this.props.transactions
@@ -89,7 +89,7 @@ const mapStateToProps = state => ({
   transactions: state.transactions,
 });
 
-const WrappedTrends = withStyles(styles)(Trends);
+const WrappedTrends = withStyles(styles)(MerchantChart);
 
 export default withRouter(
   connect(

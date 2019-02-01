@@ -49,7 +49,6 @@ const styles = theme => ({
   table: {
     width: '100%',
     margin: 'auto',
-
   },
 });
 
@@ -59,40 +58,41 @@ class MerchantTable extends Component {
     let transactions = !this.props.transactions
       ? null
       : categorizeTransactionsByMerchant(this.props.transactions);
-    let mostSpent = maxMerchant(transactions);
+    let maxMerchants = maxMerchant(transactions);
     let mostTrans = countMerchant(this.props.transactions);
     return (
       <div className="App">
         <header className="App-header">
           <Paper className={classes.root}>
-            <h3>Merchant</h3>
+            <h3>Top Merchants</h3>
             <Table className={classes.table}>
               <TableHead>
                 <TableRow>
-                  <TableCell align="center">Top Merchant</TableCell>
-                  <TableCell align="center">Most Purchases</TableCell>
+                  <TableCell align="center">
+                    <h4>Merchant Name</h4>
+                  </TableCell>
+                  <TableCell align="center">
+                    <h4>Total Spent</h4>
+                  </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                <TableRow>
-                  <TableCell align="center">
-                    {mostSpent.maxMerchant.map(merchant => {
-                      return <h6>{merchant}</h6>
-                    })}
-                    <p>{mostSpent.maxAmount}</p>
-                  </TableCell>
-                  <TableCell align="center">
-                    {mostTrans.merchants.map(merchant => {
-                      return <h6>{merchant}</h6>
-                    })}
-                    <p>{mostTrans.count}</p>
-                  </TableCell>
-
-                </TableRow>
+                {maxMerchants.map(merchant => {
+                  return (
+                    <TableRow>
+                      <TableCell align="center">
+                        <h5>{merchant.name}</h5>
+                      </TableCell>
+                      <TableCell align="center">
+                        <h5>${merchant.value}</h5>
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
               </TableBody>
             </Table>
 
-            <h3>Your Spending</h3>
+            {/* <h3>Your Spending</h3>
             <Table className={classes.table}>
               <TableHead>
                 <TableRow>
@@ -102,19 +102,14 @@ class MerchantTable extends Component {
               </TableHead>
               <TableBody>
                 <TableRow>
-                  <TableCell align="center">
-
-                  </TableCell>
-                  <TableCell align="center">
-
-                  </TableCell>
-
+                  <TableCell align="center" />
+                  <TableCell align="center" />
                 </TableRow>
               </TableBody>
-            </Table>
+            </Table> */}
           </Paper>
         </header>
-      </div >
+      </div>
     );
   }
 }

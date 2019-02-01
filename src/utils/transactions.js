@@ -30,21 +30,24 @@ export const categorizeTransactions = transactionsArr => {
 export const categorizeTransactionsByMerchant = transactionsArr => {
   let data = {};
   let finalData = [];
-  transactionsArr.forEach(transaction => {
-    const partialMerchant = transaction.name.slice(0, 4);
-    if (
-      transaction.name &&
-      data[transaction.name] &&
-      transaction.category[0] !== 'Payment' &&
-      transaction.category[0] !== 'Transfer' &&
-      transaction.name.includes(partialMerchant)
-    ) {
+  let filtered = transactionsArr.filter(
+    elem => elem.category[0] !== 'Payment' && elem.category[0] !== 'Transfer'
+  );
+  filtered.forEach(transaction => {
+    if (data[transaction.name]) {
       data[transaction.name] += Math.round(transaction.amount);
-    } else if (
-      transaction.category[0] !== 'Payment' &&
-      transaction.category[0] !== 'Transfer'
-    ) {
-      data[transaction.name] = Math.round(transaction.amount);
+    } else {
+      let included = false;
+      const partialName = transaction.name.slice(0, 4);
+      for (let key in data) {
+        if (key.includes(partialName)) {
+          data[key] += Math.round(transaction.amount);
+          included = true;
+        }
+      }
+      if (!included) {
+        data[transaction.name] = Math.round(transaction.amount);
+      }
     }
   });
   for (let key in data) {
@@ -56,31 +59,29 @@ export const categorizeTransactionsByMerchant = transactionsArr => {
 };
 
 export const maxMerchant = uniqueMerchantArr => {
-
-  let maxMerchant = [];
+  let maxAmountArr = [];
   let maxAmount = 0;
 
   for (let i = 0; i < uniqueMerchantArr.length; i++) {
-
     if (uniqueMerchantArr[i].value > maxAmount) {
       maxAmount = uniqueMerchantArr[i].value;
     }
   }
 
-  maxMerchant = uniqueMerchantArr.map(merchant => {
+  uniqueMerchantArr.forEach(merchant => {
     if (merchant.value === maxAmount) {
-      return merchant.name;
+      let maxMerchant = { value: merchant.value, name: merchant.name };
+      maxAmountArr.push(maxMerchant);
     }
   });
-  return { maxMerchant, maxAmount };
-}
+  return maxAmountArr;
+};
 
 export const countMerchant = transactionsArr => {
   let data = {};
   let mostCount = [];
 
   transactionsArr.forEach(transaction => {
-
     if (
       transaction.name &&
       data[transaction.name] &&
@@ -106,10 +107,9 @@ export const countMerchant = transactionsArr => {
 
   for (let key in data) {
     if (data[key] === count) {
-      mostCount.push(key)
+      mostCount.push(key);
     }
   }
-
 
   return { merchants: mostCount, count };
 };
