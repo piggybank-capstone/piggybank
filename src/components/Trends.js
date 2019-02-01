@@ -18,32 +18,53 @@ import {
   RadarChart,
   PolarGrid,
   PolarAngleAxis,
-  PolarRadiusAxis,
+  PolarRadiusAxis
 } from 'recharts';
 import {
   categorizeTransactions,
   COLORS,
   sortTransactionsByMonth,
   spendingByMonth,
+  months
 } from '../utils/transactions';
 import { categorizeAccounts } from '../utils/accounts';
+
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
 
 const styles = theme => ({
   root: {
     width: '50%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
-    margin: 'auto',
+    margin: 'auto'
   },
   table: {
     width: '100%',
-    margin: 'auto',
+    margin: 'auto'
   },
+  formControl: {
+    margin: 0,
+    fullWidth: true,
+    display: 'flex'
+  },
+  dropDown: {
+    width: '100%',
+    marginTop: theme.spacing.unit,
+    display: 'flex',
+    fullWidth: true
+  }
 });
 
 class Trends extends Component {
+  handleChange = event => {
+    return categorizeTransactions(this.props.transactions, event.target.value);
+  };
+
   render() {
     const { classes } = this.props;
     let transactions = !this.props.transactions
@@ -55,19 +76,35 @@ class Trends extends Component {
     let months = !this.props.transactions
       ? null
       : spendingByMonth(this.props.transactions);
+
     return (
       <div className="App">
         <header className="App-header">
           <Paper className={classes.root}>
             <h3>Spending by Category</h3>
+            <InputLabel htmlFor="month">Month</InputLabel>
+            <Select
+              value="January"
+              onChange={this.handleChange}
+              inputProps={{
+                name: 'Month',
+                id: 'month'
+              }}
+              classesName={classes.dropDown}
+            >
+              {months.map(month => {
+                return <MenuItem value={month[1]}>{month[0]}</MenuItem>;
+              })}
+            </Select>
+
             <PieChart
-              className={classes.table}
+              className={transactions}
               width={700}
               height={400}
               onMouseEnter={this.onPieEnter}
             >
               <Pie
-                data={transactions}
+                data={this.handleChange()}
                 cx="50%"
                 cy="50%"
                 labelLine={true}
@@ -134,7 +171,7 @@ class Trends extends Component {
 
 const mapStateToProps = state => ({
   accounts: state.accounts,
-  transactions: state.transactions,
+  transactions: state.transactions
 });
 
 const WrappedTrends = withStyles(styles)(Trends);
