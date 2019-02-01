@@ -27,6 +27,35 @@ export const categorizeTransactions = transactionsArr => {
   return finalData;
 };
 
+export const categorizeTransactionsByMerchant = transactionsArr => {
+  let data = {};
+  let finalData = [];
+  transactionsArr.forEach(transaction => {
+    const partialMerchant = transaction.name.slice(0, 4);
+    console.log('partialMerchant is ', partialMerchant);
+    if (
+      transaction.name &&
+      data[transaction.name] &&
+      transaction.category[0] !== 'Payment' &&
+      transaction.category[0] !== 'Transfer' &&
+      transaction.name.includes(partialMerchant)
+    ) {
+      data[transaction.name] += Math.round(transaction.amount);
+    } else if (
+      transaction.category[0] !== 'Payment' &&
+      transaction.category[0] !== 'Transfer'
+    ) {
+      data[transaction.name] = Math.round(transaction.amount);
+    }
+  });
+  for (let key in data) {
+    if (data.hasOwnProperty(key)) {
+      finalData.push({ name: key, value: data[key] });
+    }
+  }
+  return finalData;
+};
+
 export const spendingByMonth = transactionsArr => {
   let results = [];
   const months = [
@@ -144,6 +173,16 @@ export const COLORS = [
   '#FFBB28',
   '#FF8042',
   '#ff87db',
+  '#CEE0DC',
+  '#B9CFD4',
+  '#AFAAB9',
+  '#902D41',
+  '#B48291',
+  '#331832',
+  '#D81E5B',
+  '#F0544F',
+  '#C6D8D3',
+  '#FDF0D5',
 ];
 
 // const RADIAN = Math.PI / 180;
