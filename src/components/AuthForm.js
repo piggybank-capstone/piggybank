@@ -96,7 +96,7 @@ const AuthForm = props => {
               <div className="form-error"> {error.response.data} </div>
             )}
           </form>
-          <a href="http://localhost:8080/auth/google">
+          <a href="/auth/google">
             {displayName} with Google
           </a>
         </Paper>

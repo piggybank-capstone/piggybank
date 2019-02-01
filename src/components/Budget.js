@@ -21,7 +21,7 @@ import SingleBudget from './SingleBudget';
 
 const styles = theme => ({
   root: {
-    width: '50%',
+    width: '70%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
     margin: 'auto'
@@ -90,7 +90,7 @@ class Budget extends Component {
                   <TableCell>Category</TableCell>
                   <TableCell align="right">Amount Budgeted</TableCell>
                   <TableCell align="right">Amount Left</TableCell>
-                  <TableCell align="right">On Goal?</TableCell>
+                  <TableCell align="center">On Goal?</TableCell>
                   <TableCell />
                 </TableRow>
               </TableHead>
