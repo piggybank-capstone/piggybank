@@ -15,12 +15,10 @@ export const gotAccessToken = account => ({
 });
 
 //thunk to get account data from plaid api using public token
-export const getAccounts = token => async dispatch => {
+export const getAccounts = () => async dispatch => {
   try {
-    const { data } = await axios.post(`/api/plaid/get_access_token`, {
-      public_token: token,
-    });
-    dispatch(gotAllAccounts(data.accounts));
+    const { data } = await axios.get(`/api/plaid/accounts/get`);
+    dispatch(gotAllAccounts(data));
   } catch (error) {
     console.error(error);
   }

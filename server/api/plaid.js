@@ -18,21 +18,40 @@ const plaidClient = new plaid.Client(
   { version: '2018-05-22' }
 );
 
-// router.get('/accounts/get', async (req, res, next) => {
-//   try {
-//     console.log('post accounts/get route hit');
-//     if (req.user) {
-//       const userId = req.user.id;
-//       const user = User.findByPk(userId);
-//       const access_token = user.access_token;
-//       const accountRes = await plaidClient.getAccounts(access_token);
-//       console.log('accounts are ', accountRes);
-//       res.json(accountRes);
-//     }
-//   } catch (error) {
-//     console.error(error);
-//   }
-// });
+router.get('/accounts/get', async (req, res, next) => {
+  try {
+    console.log('get accounts route hit');
+    if (req.user) {
+      const userId = req.user.id;
+      const user = await User.findByPk(userId);
+      const access_token = user.access_token;
+      const response = await plaidClient.getAccounts(access_token);
+      res.json(response.accounts);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+router.get('/transactions/get', async (req, res, next) => {
+  try {
+    console.log('get transactions route hit');
+    if (req.user) {
+      const userId = req.user.id;
+      const user = await User.findByPk(userId);
+      const access_token = user.access_token;
+      const response = await plaidClient.getTransactions(
+        access_token,
+        '2018-01-20',
+        '2019-01-20'
+      );
+      console.log('transactions are ', response.transactions);
+      res.json(response.transactions);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 router.post('/get_access_token', async (req, res, next) => {
   try {
@@ -51,18 +70,19 @@ router.post('/get_access_token', async (req, res, next) => {
           access_token: tokenResponse.access_token,
           item_id: tokenResponse.item_id,
         });
-        const accountRes = await plaidClient.getAccounts(
-          tokenResponse.access_token
-        );
-        const transactionRes = await plaidClient.getTransactions(
-          tokenResponse.access_token,
-          '2018-01-20',
-          '2019-01-20'
-        );
-        res.json({
-          accounts: accountRes.accounts,
-          transactions: transactionRes.transactions,
-        });
+        res.end();
+        // const accountRes = await plaidClient.getAccounts(
+        //   tokenResponse.access_token
+        // );
+        // const transactionRes = await plaidClient.getTransactions(
+        //   tokenResponse.access_token,
+        //   '2018-01-20',
+        //   '2019-01-20'
+        // );
+        // res.json({
+        //   accounts: accountRes.accounts,
+        //   transactions: transactionRes.transactions,
+        // });
       }
     );
   } catch (err) {

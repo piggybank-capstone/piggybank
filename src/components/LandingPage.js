@@ -12,7 +12,7 @@ export const LandingPage = props => {
         <div>
           <NavBar />
           <div id="header"> We Make Saving Fun</div>
-          <h2>Manage your finances and budget with Piggybot.</h2>
+          <h2>Manage your finances and budget with us!</h2>
         </div>
       )}
       ;
@@ -22,7 +22,7 @@ export const LandingPage = props => {
 
 const mapState = state => {
   return {
-    isLoggedin: !!state.user.id
+    isLoggedin: !!state.user.id,
   };
 };
 

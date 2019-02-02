@@ -6,7 +6,7 @@ import { getBudgets, removeBudget, getCategories } from '../store/budget';
 import {
   sortTransactionsByMonth,
   getCurrentMonth,
-  sortTransactionsByCategory
+  sortTransactionsByCategory,
 } from '../../src/utils/transactions.js';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -24,22 +24,22 @@ const styles = theme => ({
     width: '70%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
-    margin: 'auto'
+    margin: 'auto',
   },
   table: {
     width: '100%',
-    margin: 'auto'
+    margin: 'auto',
   },
   buttonStyle: {
     width: '50%',
-    margin: 'auto'
+    margin: 'auto',
   },
   buttonContainer: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
     marginBottom: theme.spacing.unit * 3,
-    textAlign: 'center'
-  }
+    textAlign: 'center',
+  },
 });
 
 class Budget extends Component {
@@ -48,7 +48,7 @@ class Budget extends Component {
     this.state = {
       transactions: [],
       totalSpent: 0,
-      currentMonth: ''
+      currentMonth: '',
     };
   }
   componentDidMount() {
@@ -63,13 +63,13 @@ class Budget extends Component {
 
     this.setState({
       transactions: budgetObject.transactions,
-      totalSpent: budgetObject.total
+      totalSpent: budgetObject.total,
     });
   }
   updateToCurrentMonth() {
     const currentMonth = getCurrentMonth();
     this.setState({
-      currentMonth
+      currentMonth,
     });
   }
 
@@ -79,8 +79,11 @@ class Budget extends Component {
     return (
       <div>
         <h2>The budget</h2>
-        <h3>You have spent ${this.state.totalSpent.toFixed(2)
-          .replace(/\d(?=(\d{3})+\.)/g, '$&,')} this month</h3>
+        <h3>
+          You have spent $
+          {this.state.totalSpent.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}{' '}
+          this month
+        </h3>
 
         <div>
           <Paper className={classes.root}>
@@ -114,6 +117,13 @@ class Budget extends Component {
                 </Button>
               </NavLink>
             </div>
+            <iframe
+              title="piggybot"
+              allow="microphone;"
+              width="350"
+              height="430"
+              src="https://console.dialogflow.com/api-client/demo/embedded/8da1c4ff-793f-4de9-9ec9-d5168b87c73d"
+            />
           </Paper>
         </div>
       </div>
@@ -124,12 +134,12 @@ class Budget extends Component {
 const mapStateToProps = state => ({
   accounts: state.accounts,
   transactions: state.transactions,
-  budgets: state.budget.budgetList
+  budgets: state.budget.budgetList,
 });
 
 const mapDispatchToProps = dispatch => ({
   getBudgets: () => dispatch(getBudgets()),
-  removeBudget: id => dispatch(removeBudget(id))
+  removeBudget: id => dispatch(removeBudget(id)),
 });
 
 export default withRouter(

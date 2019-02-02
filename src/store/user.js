@@ -21,6 +21,7 @@ const removeUser = () => ({ type: REMOVE_USER });
 /**
  * THUNK CREATORS
  */
+
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me');
@@ -38,17 +39,17 @@ export const auth = (
   firstName,
   lastName
 ) => async dispatch => {
-  let res
+  let res;
   try {
     if (method === 'signup') {
       res = await axios.post(`/auth/${method}`, {
         email,
         password,
         firstName,
-        lastName
-      })
+        lastName,
+      });
     } else {
-      res = await axios.post(`/auth/${method}`, { email, password })
+      res = await axios.post(`/auth/${method}`, { email, password });
     }
   } catch (authError) {
     return dispatch(getUser({ error: authError }));
@@ -76,7 +77,7 @@ export const logout = () => async dispatch => {
 /**
  * REDUCER
  */
-export default function (state = defaultUser, action) {
+export default function(state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
       return action.user;

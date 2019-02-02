@@ -8,12 +8,10 @@ export const gotAllTransactions = transactions => ({
   transactions,
 });
 
-export const getTransactions = token => async dispatch => {
+export const getTransactions = () => async dispatch => {
   try {
-    const { data } = await axios.post(`/api/plaid/get_access_token`, {
-      public_token: token,
-    });
-    dispatch(gotAllTransactions(data.transactions));
+    const { data } = await axios.get(`/api/plaid/transactions/get`);
+    dispatch(gotAllTransactions(data));
   } catch (error) {
     console.error(error);
   }

@@ -3,11 +3,13 @@ import PlaidLink from 'react-plaid-link';
 import { connect } from 'react-redux';
 import { getAccounts, getTransactions } from '../store';
 import Button from '@material-ui/core/Button';
+import Axios from 'axios';
 
 class Plaid extends Component {
-  handleOnSuccess = (token, metadata) => {
-    this.props.getAccounts(token);
-    this.props.getTransactions(token);
+  handleOnSuccess = async (token, metadata) => {
+    await Axios.post('/api/plaid/get_access_token', { public_token: token });
+    this.props.getAccounts();
+    this.props.getTransactions();
   };
   handleOnExit() {
     console.log('handleOnExit');
@@ -32,7 +34,7 @@ class Plaid extends Component {
 
 const mapDispatchToProps = {
   getAccounts,
-  getTransactions
+  getTransactions,
 };
 
 export default connect(
