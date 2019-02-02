@@ -74,7 +74,7 @@ class AddBudget extends Component {
 
   render() {
     const { classes, categories } = this.props;
-
+    console.log('addabudgetprops', this.props);
     return (
       <div>
         <h2>Add Or Update A Budget</h2>

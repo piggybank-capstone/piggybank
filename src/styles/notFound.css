@@ -1,0 +1,15 @@
+#notFound {
+  width: 100vw;
+  min-height: 100vh;
+  background: url('http://www.wwki.com/wp-content/uploads/sites/758/2016/05/broken-piggy-bank.jpg')
+    no-repeat center;
+  background-size: cover;
+  letter-spacing: 0.2rem;
+  color: #63a4ff;
+  font-size: 2em;
+  display: inline-block;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}

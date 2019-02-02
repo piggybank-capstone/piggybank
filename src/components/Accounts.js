@@ -13,12 +13,12 @@ const styles = theme => ({
     width: '80%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
-    margin: 'auto',
+    margin: 'auto'
   },
   table: {
     width: '100%',
-    margin: 'auto',
-  },
+    margin: 'auto'
+  }
 });
 
 /* COMPONENT */
@@ -32,8 +32,8 @@ class Accounts extends Component {
           <Table className={classes.table}>
             <TableHead>
               <TableCell>Account</TableCell>
-              <TableCell align="right">Official Name</TableCell>
-              <TableCell align="right">Type</TableCell>
+              <TableCell align="left">Official Name</TableCell>
+              <TableCell align="left">Type</TableCell>
               <TableCell align="right">Available Balance</TableCell>
               <TableCell align="right">Current Balance</TableCell>
             </TableHead>
@@ -42,13 +42,22 @@ class Accounts extends Component {
                 return (
                   <TableRow key={account.id}>
                     <TableCell>{account.name}</TableCell>
-                    <TableCell align="right">{account.official_name}</TableCell>
-                    <TableCell align="right">{account.subtype}</TableCell>
-                    <TableCell align="right">
-                      {account.balances.available}
+                    <TableCell align="left">{account.official_name}</TableCell>
+                    <TableCell align="left">
+                      {account.subtype.charAt(0).toUpperCase() +
+                        account.subtype.slice(1)}
                     </TableCell>
                     <TableCell align="right">
-                      {account.balances.current}
+                      $
+                      {Number(account.balances.available)
+                        .toFixed(2)
+                        .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                    </TableCell>
+                    <TableCell align="right">
+                      $
+                      {Number(account.balances.current)
+                        .toFixed(2)
+                        .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                     </TableCell>
                   </TableRow>
                 );
@@ -63,7 +72,7 @@ class Accounts extends Component {
 
 const mapState = state => {
   return {
-    accounts: state.accounts,
+    accounts: state.accounts
   };
 };
 

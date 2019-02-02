@@ -1,20 +1,23 @@
 // function takes in an array of transactions and outputs
 // a dataset that contains category names and transaction amounts
 // { name: [cat1, cat2, etc], value: [val1, val2, etc]}
-export const categorizeTransactions = transactionsArr => {
+export const categorizeTransactions = (transactionsArr, month) => {
   let data = {};
   let finalData = [];
   transactionsArr.forEach(transaction => {
+    let monthNum = Number(transaction.date.slice(5, 7));
     if (
       transaction.category &&
       data[transaction.category[0]] &&
       transaction.category[0] !== 'Payment' &&
-      transaction.category[0] !== 'Transfer'
+      transaction.category[0] !== 'Transfer' &&
+      monthNum === month
     ) {
       data[transaction.category[0]] += Math.round(transaction.amount);
     } else if (
       transaction.category[0] !== 'Payment' &&
-      transaction.category[0] !== 'Transfer'
+      transaction.category[0] !== 'Transfer' &&
+      monthNum === month
     ) {
       data[transaction.category[0]] = Math.round(transaction.amount);
     }
@@ -128,7 +131,7 @@ export const spendingByMonth = transactionsArr => {
     'September',
     'October',
     'November',
-    'December',
+    'December'
   ];
   let monthlyTotals = {
     January: 0,
@@ -142,7 +145,7 @@ export const spendingByMonth = transactionsArr => {
     September: 0,
     October: 0,
     November: 0,
-    December: 0,
+    December: 0
   };
 
   transactionsArr.forEach(item => {
@@ -176,7 +179,7 @@ export const sortTransactionsByMonth = transactionsArr => {
 
   const monthlyBudget = {
     transactions: monthlyTransactions,
-    total,
+    total
   };
 
   return monthlyBudget;
@@ -197,7 +200,7 @@ export const sortTransactionsByCategory = (category, transactionsArr) => {
 
   const monthlyBudget = {
     transactions: categorizeTransactions,
-    totalSpent: total,
+    totalSpent: total
   };
 
   return monthlyBudget;
@@ -216,13 +219,28 @@ export const getCurrentMonth = () => {
     'September',
     'October',
     'November',
-    'December',
+    'December'
   ];
 
   const nowDate = new Date();
   const currentMonth = nowDate.getMonth();
   return months[currentMonth];
 };
+
+export const months = [
+  ['January', '01'],
+  ['February', '02'],
+  ['March', '03'],
+  ['April', '04'],
+  ['May', '05'],
+  ['June', '06'],
+  ['July', '07'],
+  ['August', '08'],
+  ['September', '09'],
+  ['October', '10'],
+  ['November', '11'],
+  ['December', '12']
+];
 
 export const COLORS = [
   '#0088FE',
@@ -240,7 +258,7 @@ export const COLORS = [
   '#D81E5B',
   '#F0544F',
   '#C6D8D3',
-  '#FDF0D5',
+  '#FDF0D5'
 ];
 
 // const RADIAN = Math.PI / 180;

@@ -51,6 +51,7 @@
     "start": "node server/index.js",
     "deploy": "script/deploy"
   },
+  "proxy": "http://localhost:8080",
   "eslintConfig": {
     "extends": "react-app"
   },
