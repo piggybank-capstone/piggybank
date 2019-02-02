@@ -25,12 +25,11 @@ import {
   COLORS,
   sortTransactionsByMonth,
   spendingByMonth,
+  categorizeTransactionsByMerchant,
 } from '../utils/transactions';
 import { categorizeAccounts } from '../utils/accounts';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core';
-import MerchantChart from './MerchantChart';
-import MerchantTable from './MerchantTable';
 
 const styles = theme => ({
   root: {
@@ -45,18 +44,12 @@ const styles = theme => ({
   },
 });
 
-class Trends extends Component {
+class MerchantChart extends Component {
   render() {
     const { classes } = this.props;
     let transactions = !this.props.transactions
       ? null
-      : categorizeTransactions(this.props.transactions);
-    let accounts = !this.props.accounts
-      ? null
-      : categorizeAccounts(this.props.accounts);
-    let months = !this.props.transactions
-      ? null
-      : spendingByMonth(this.props.transactions);
+      : categorizeTransactionsByMerchant(this.props.transactions);
     return (
       <div className="App">
         <header className="App-header">
@@ -85,51 +78,6 @@ class Trends extends Component {
               <Tooltip />
             </PieChart>
           </Paper>
-
-          <Paper className={classes.root}>
-            <h3>Total Spending Over Time</h3>
-            <BarChart
-              className={classes.table}
-              width={600}
-              height={300}
-              data={months}
-              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <ReferenceLine y={0} stroke="#000" />
-              <Bar dataKey="value" fill="#82ca9d" cx="50%" cy="50%" />
-            </BarChart>
-          </Paper>
-
-          <Paper className={classes.root}>
-            <h3>Spending by Category</h3>
-            <RadarChart
-              className={classes.root}
-              cx={300}
-              cy={250}
-              outerRadius={150}
-              width={600}
-              height={500}
-              data={transactions}
-            >
-              <PolarGrid />
-              <PolarAngleAxis dataKey="name" />
-              <PolarRadiusAxis />
-              <Radar
-                className={classes.table}
-                dataKey="value"
-                stroke="#8884d8"
-                fill="#8884d8"
-                fillOpacity={0.6}
-              />
-            </RadarChart>
-          </Paper>
-          <MerchantChart />
-          <MerchantTable />
         </header>
       </div>
     );
@@ -141,7 +89,7 @@ const mapStateToProps = state => ({
   transactions: state.transactions,
 });
 
-const WrappedTrends = withStyles(styles)(Trends);
+const WrappedTrends = withStyles(styles)(MerchantChart);
 
 export default withRouter(
   connect(

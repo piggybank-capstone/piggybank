@@ -52,7 +52,7 @@ const SingleBudget = props => {
         {delta.toFixed(2)
           .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
       </TableCell>
-      <TableCell >
+      <TableCell align="center">
         {(delta > 0) ?
           <Emoji text="8-)" className={classes.emojiStyle} />
           :
