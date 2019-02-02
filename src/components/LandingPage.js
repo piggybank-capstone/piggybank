@@ -13,13 +13,6 @@ export const LandingPage = props => {
           <NavBar />
           <div id="header"> We Make Saving Fun</div>
           <h2>Manage your finances and budget with Piggybot.</h2>
-          <iframe
-            title="piggybot"
-            allow="microphone;"
-            width="350"
-            height="430"
-            src="https://console.dialogflow.com/api-client/demo/embedded/8da1c4ff-793f-4de9-9ec9-d5168b87c73d"
-          />
         </div>
       )}
       ;

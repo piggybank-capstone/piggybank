@@ -30,6 +30,93 @@ export const categorizeTransactions = (transactionsArr, month) => {
   return finalData;
 };
 
+export const categorizeTransactionsByMerchant = transactionsArr => {
+  let data = {};
+  let finalData = [];
+  let filtered = transactionsArr.filter(
+    elem => elem.category[0] !== 'Payment' && elem.category[0] !== 'Transfer'
+  );
+  filtered.forEach(transaction => {
+    if (data[transaction.name]) {
+      data[transaction.name] += Math.round(transaction.amount);
+    } else {
+      let included = false;
+      const partialName = transaction.name.slice(0, 4);
+      for (let key in data) {
+        if (key.includes(partialName)) {
+          data[key] += Math.round(transaction.amount);
+          included = true;
+        }
+      }
+      if (!included) {
+        data[transaction.name] = Math.round(transaction.amount);
+      }
+    }
+  });
+  for (let key in data) {
+    if (data.hasOwnProperty(key)) {
+      finalData.push({ name: key, value: data[key] });
+    }
+  }
+  return finalData;
+};
+
+export const maxMerchant = uniqueMerchantArr => {
+  let maxAmountArr = [];
+  let maxAmount = 0;
+
+  for (let i = 0; i < uniqueMerchantArr.length; i++) {
+    if (uniqueMerchantArr[i].value > maxAmount) {
+      maxAmount = uniqueMerchantArr[i].value;
+    }
+  }
+
+  uniqueMerchantArr.forEach(merchant => {
+    if (merchant.value === maxAmount) {
+      let maxMerchant = { value: merchant.value, name: merchant.name };
+      maxAmountArr.push(maxMerchant);
+    }
+  });
+  return maxAmountArr;
+};
+
+export const countMerchant = transactionsArr => {
+  let data = {};
+  let mostCount = [];
+
+  transactionsArr.forEach(transaction => {
+    if (
+      transaction.name &&
+      data[transaction.name] &&
+      transaction.category[0] !== 'Payment' &&
+      transaction.category[0] !== 'Transfer'
+    ) {
+      data[transaction.name] += 1;
+    } else if (
+      transaction.category[0] !== 'Payment' &&
+      transaction.category[0] !== 'Transfer'
+    ) {
+      data[transaction.name] = 1;
+    }
+  });
+
+  let count = 0;
+
+  for (let key in data) {
+    if (data[key] > count) {
+      count = data[key];
+    }
+  }
+
+  for (let key in data) {
+    if (data[key] === count) {
+      mostCount.push(key);
+    }
+  }
+
+  return { merchants: mostCount, count };
+};
+
 export const spendingByMonth = transactionsArr => {
   let results = [];
   const months = [
@@ -161,7 +248,17 @@ export const COLORS = [
   '#00C49F',
   '#FFBB28',
   '#FF8042',
-  '#ff87db'
+  '#ff87db',
+  '#CEE0DC',
+  '#B9CFD4',
+  '#AFAAB9',
+  '#902D41',
+  '#B48291',
+  '#331832',
+  '#D81E5B',
+  '#F0544F',
+  '#C6D8D3',
+  '#FDF0D5'
 ];
 
 // const RADIAN = Math.PI / 180;

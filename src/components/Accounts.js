@@ -43,14 +43,19 @@ class Accounts extends Component {
                   <TableRow key={account.id}>
                     <TableCell>{account.name}</TableCell>
                     <TableCell align="left">{account.official_name}</TableCell>
-                    <TableCell align="left">{account.subtype}</TableCell>
+                    <TableCell align="left">
+                      {account.subtype.charAt(0).toUpperCase() +
+                        account.subtype.slice(1)}
+                    </TableCell>
                     <TableCell align="right">
-                      {account.balances.available
+                      $
+                      {Number(account.balances.available)
                         .toFixed(2)
                         .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                     </TableCell>
                     <TableCell align="right">
-                      {account.balances.current
+                      $
+                      {Number(account.balances.current)
                         .toFixed(2)
                         .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                     </TableCell>

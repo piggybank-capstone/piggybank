@@ -3,6 +3,7 @@
 @import './header.css';
 @import './navbar.css';
 @import './main.css';
+@import './notFound.css';
 
 body {
   /* https://uigradients.com/#Ash */
