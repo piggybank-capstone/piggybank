@@ -71,6 +71,18 @@ const AuthForm = props => {
             {displayName}
           </Typography>
           <form className={classes.form} onSubmit={handleSubmit} name={name}>
+            {name === 'signup' && (
+              <div>
+                <FormControl margin="normal" required fullWidth>
+                  <InputLabel htmlFor="firstName">First Name</InputLabel>
+                  <Input id="firstName" name="firstName" autoComplete="given-name" autoFocus />
+                </FormControl>
+                <FormControl margin="normal" required fullWidth>
+                  <InputLabel htmlFor="lastName">Last Name</InputLabel>
+                  <Input id="lastName" name="lastName" autoComplete="family-name" autoFocus />
+                </FormControl>
+              </div>
+            )}
             <FormControl margin="normal" required fullWidth>
               <InputLabel htmlFor="email">Email Address</InputLabel>
               <Input id="email" name="email" autoComplete="email" autoFocus />
@@ -128,7 +140,13 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name;
       const email = evt.target.email.value;
       const password = evt.target.password.value;
-      dispatch(auth(email, password, formName));
+      if (formName === 'signup') {
+        const firstName = evt.target.firstName.value
+        const lastName = evt.target.lastName.value
+        dispatch(auth(email, password, formName, firstName, lastName))
+      } else {
+        dispatch(auth(email, password, formName))
+      }
     }
   };
 };
