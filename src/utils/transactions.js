@@ -1,3 +1,33 @@
+export const months = [
+  ['January', '01'],
+  ['February', '02'],
+  ['March', '03'],
+  ['April', '04'],
+  ['May', '05'],
+  ['June', '06'],
+  ['July', '07'],
+  ['August', '08'],
+  ['September', '09'],
+  ['October', '10'],
+  ['November', '11'],
+  ['December', '12'],
+];
+
+const month = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
 // function takes in an array of transactions and outputs
 // a dataset that contains category names and transaction amounts
 // { name: [cat1, cat2, etc], value: [val1, val2, etc]}
@@ -151,20 +181,6 @@ export const countMerchant = transactionsArr => {
 
 export const spendingByMonth = transactionsArr => {
   let results = [];
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
   let monthlyTotals = {
     January: 0,
     February: 0,
@@ -182,17 +198,15 @@ export const spendingByMonth = transactionsArr => {
 
   transactionsArr.forEach(item => {
     let monthNum = item.date ? Number(item.date.slice(5, 7)) : 0;
-    let month = months[monthNum - 1];
-    monthlyTotals[month] += item.amount;
+    let thisMonth = month[monthNum - 1];
+    monthlyTotals[thisMonth] += item.amount;
   });
 
   for (let key in monthlyTotals) {
-    console.log(key);
     if (monthlyTotals.hasOwnProperty(key) && key !== 'undefined') {
       results.push({ name: key, value: monthlyTotals[key] });
     }
   }
-  console.log(results);
   return results;
 };
 
@@ -240,40 +254,10 @@ export const sortTransactionsByCategory = (category, transactionsArr) => {
 };
 
 export const getCurrentMonth = () => {
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-
   const nowDate = new Date();
   const currentMonth = nowDate.getMonth();
-  return months[currentMonth];
+  return month[currentMonth];
 };
-
-export const months = [
-  ['January', '01'],
-  ['February', '02'],
-  ['March', '03'],
-  ['April', '04'],
-  ['May', '05'],
-  ['June', '06'],
-  ['July', '07'],
-  ['August', '08'],
-  ['September', '09'],
-  ['October', '10'],
-  ['November', '11'],
-  ['December', '12'],
-];
 
 export const COLORS = [
   '#0088FE',
@@ -293,30 +277,3 @@ export const COLORS = [
   '#C6D8D3',
   '#FDF0D5',
 ];
-
-// const RADIAN = Math.PI / 180;
-// const renderCustomizedLabel = ({
-//   cx,
-//   cy,
-//   midAngle,
-//   innerRadius,
-//   outerRadius,
-//   percent,
-//   index,
-// }) => {
-//   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-//   const x = cx + radius * Math.cos(-midAngle * RADIAN);
-//   const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-//   return (
-//     <text
-//       x={x}
-//       y={y}
-//       fill="white"
-//       textAnchor={x > cx ? 'start' : 'end'}
-//       dominantBaseline="central"
-//     >
-//       {`${(percent * 100).toFixed(0)}%`}
-//     </text>
-//   );
-// };
