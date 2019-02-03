@@ -6,7 +6,7 @@ import {
   getBudgets,
   removeBudget,
   getCategories,
-  createOrUpdateBudget
+  createOrUpdateBudget,
 } from '../store/budget';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -23,34 +23,34 @@ const styles = theme => ({
     width: '60%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
-    margin: 'auto'
+    margin: 'auto',
   },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    marginTop: theme.spacing.unit
+    marginTop: theme.spacing.unit,
   },
   dropDown: {
     width: '100%',
     marginTop: theme.spacing.unit,
     display: 'flex',
-    fullWidth: true
+    fullWidth: true,
   },
   formStyle: {
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
   },
   formControl: {
     margin: 0,
     fullWidth: true,
-    display: 'flex'
-  }
+    display: 'flex',
+  },
 });
 
 class AddBudget extends Component {
   constructor() {
     super();
     this.state = {
-      categeory: ''
+      categeory: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.createBudget = this.createBudget.bind(this);
@@ -90,7 +90,7 @@ class AddBudget extends Component {
                   onChange={this.handleChange}
                   inputProps={{
                     name: 'category',
-                    id: 'cat'
+                    id: 'cat',
                   }}
                   className={classes.dropDown}
                 >
@@ -124,19 +124,23 @@ class AddBudget extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  accounts: state.accounts,
-  transactions: state.transactions,
-  budgets: state.budget.budgetList,
-  categories: state.budget.categories
-});
+const mapStateToProps = state => {
+  const { accounts, transactions, budget } = state;
+  const { budgetList, categories } = budget;
+  return {
+    accounts: accounts.accounts,
+    transactions,
+    budgets: budgetList,
+    categories,
+  };
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   getCategories: () => dispatch(getCategories()),
   createBudget: budget => {
     dispatch(createOrUpdateBudget(budget));
     ownProps.history.push('./budget');
-  }
+  },
 });
 
 export default withRouter(

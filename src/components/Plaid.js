@@ -12,9 +12,6 @@ class Plaid extends Component {
     this.props.getAccounts();
     this.props.getTransactions();
   };
-  handleOnExit() {
-    console.log('handleOnExit');
-  }
   render() {
     return (
       <div id="plaid-link">
