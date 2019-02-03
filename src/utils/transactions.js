@@ -125,6 +125,7 @@ export const countMerchant = transactionsArr => {
     ) {
       data[transaction.name] += 1;
     } else if (
+      transaction.category &&
       transaction.category[0] !== 'Payment' &&
       transaction.category[0] !== 'Transfer'
     ) {
@@ -187,12 +188,10 @@ export const spendingByMonth = transactionsArr => {
   });
 
   for (let key in monthlyTotals) {
-    console.log(key);
     if (monthlyTotals.hasOwnProperty(key) && key !== 'undefined') {
       results.push({ name: key, value: monthlyTotals[key] });
     }
   }
-  console.log(results);
   return results;
 };
 
@@ -293,30 +292,3 @@ export const COLORS = [
   '#C6D8D3',
   '#FDF0D5',
 ];
-
-// const RADIAN = Math.PI / 180;
-// const renderCustomizedLabel = ({
-//   cx,
-//   cy,
-//   midAngle,
-//   innerRadius,
-//   outerRadius,
-//   percent,
-//   index,
-// }) => {
-//   const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-//   const x = cx + radius * Math.cos(-midAngle * RADIAN);
-//   const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
-//   return (
-//     <text
-//       x={x}
-//       y={y}
-//       fill="white"
-//       textAnchor={x > cx ? 'start' : 'end'}
-//       dominantBaseline="central"
-//     >
-//       {`${(percent * 100).toFixed(0)}%`}
-//     </text>
-//   );
-// };

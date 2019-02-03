@@ -26,9 +26,10 @@ export const UserHome = props => {
  */
 const mapStateToProps = state => {
   const { user, accounts, transactions } = state;
+  console.log('state: ', state);
   return {
     name: user.firstName,
-    accounts: accounts.accounts,
+    accounts: accounts,
     isLoading: accounts.isLoading,
     transactions,
   };
