@@ -3,7 +3,6 @@ const plaid = require('plaid');
 const router = express.Router();
 const { User } = require('../db/models');
 
-// const passport = require('passport');
 module.exports = router;
 
 const PLAID_CLIENT_ID = process.env.PLAID_CLIENT_ID;
@@ -20,7 +19,6 @@ const plaidClient = new plaid.Client(
 
 router.get('/accounts/get', async (req, res, next) => {
   try {
-    console.log('get accounts route hit');
     if (req.user) {
       const userId = req.user.id;
       const user = await User.findByPk(userId);
@@ -69,18 +67,6 @@ router.post('/get_access_token', async (req, res, next) => {
           item_id: tokenResponse.item_id,
         });
         res.end();
-        // const accountRes = await plaidClient.getAccounts(
-        //   tokenResponse.access_token
-        // );
-        // const transactionRes = await plaidClient.getTransactions(
-        //   tokenResponse.access_token,
-        //   '2018-01-20',
-        //   '2019-01-20'
-        // );
-        // res.json({
-        //   accounts: accountRes.accounts,
-        //   transactions: transactionRes.transactions,
-        // });
       }
     );
   } catch (err) {
