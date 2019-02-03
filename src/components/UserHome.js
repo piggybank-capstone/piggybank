@@ -9,11 +9,12 @@ import Plaid from './Plaid';
  * COMPONENT
  */
 export const UserHome = props => {
-  const { name, accounts, transactions } = props;
+  const { name, accounts, transactions, isLoading } = props;
   return (
     <div>
       <h3>Welcome {name}!</h3>
       <Plaid />
+      {isLoading && <h2>LOADING...</h2>}
       {accounts.length > 0 && <Accounts />}
       {transactions.length > 0 && <Transactions />}
     </div>
@@ -24,10 +25,12 @@ export const UserHome = props => {
  * CONTAINER
  */
 const mapStateToProps = state => {
+  const { user, accounts, transactions } = state;
   return {
-    name: state.user.firstName,
-    accounts: state.accounts,
-    transactions: state.transactions,
+    name: user.firstName,
+    accounts: accounts.accounts,
+    isLoading: accounts.isLoading,
+    transactions,
   };
 };
 

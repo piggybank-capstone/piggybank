@@ -146,11 +146,15 @@ class Budget extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  accounts: state.accounts,
-  transactions: state.transactions,
-  budgets: state.budget.budgetList
-});
+const mapStateToProps = state => {
+  const { accounts, transactions, budget } = state;
+  const { budgetList } = budget;
+  return {
+    accounts: accounts.accounts,
+    transactions,
+    budgets: budgetList,
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
   getBudgets: () => dispatch(getBudgets()),

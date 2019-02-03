@@ -84,10 +84,13 @@ class MerchantChart extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  accounts: state.accounts,
-  transactions: state.transactions,
-});
+const mapStateToProps = state => {
+  const { accounts, transactions } = state;
+  return {
+    accounts: accounts.accounts,
+    transactions,
+  };
+};
 
 const WrappedTrends = withStyles(styles)(MerchantChart);
 

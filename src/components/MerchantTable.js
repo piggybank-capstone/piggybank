@@ -114,16 +114,19 @@ class MerchantTable extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  accounts: state.accounts,
-  transactions: state.transactions,
-});
+const mapStateToProps = state => {
+  const { accounts, transactions } = state;
+  return {
+    accounts: accounts.accounts,
+    transactions,
+  };
+};
 
-const WrappedMerhcantTable = withStyles(styles)(MerchantTable);
+const WrappedMerchantTable = withStyles(styles)(MerchantTable);
 
 export default withRouter(
   connect(
     mapStateToProps,
     null
-  )(WrappedMerhcantTable)
+  )(WrappedMerchantTable)
 );
