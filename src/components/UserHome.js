@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Plaid from './Plaid';
 import Accounts from './Accounts';
 import Transactions from './Transactions';
+import Plaid from './Plaid';
 
 /**
  * COMPONENT
@@ -27,7 +27,7 @@ const mapStateToProps = state => {
   return {
     name: state.user.firstName,
     accounts: state.accounts,
-    transactions: state.transactions
+    transactions: state.transactions,
   };
 };
 
@@ -37,5 +37,5 @@ export default connect(mapStateToProps)(UserHome);
  * PROP TYPES
  */
 UserHome.propTypes = {
-  email: PropTypes.string
+  email: PropTypes.string,
 };

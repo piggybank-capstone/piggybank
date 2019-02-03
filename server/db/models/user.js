@@ -11,16 +11,10 @@ const User = db.define('user', {
   },
   access_token: {
     type: Sequelize.STRING,
-    get() {
-      return () => this.getDataValue('access_token');
-    },
   },
-  item_id: {
-    type: Sequelize.STRING,
-    get() {
-      return () => this.getDataValue('item_id');
-    },
-  },
+  // item_id: {
+  //   type: Sequelize.STRING,
+  // },
   email: {
     type: Sequelize.STRING,
     unique: true,
