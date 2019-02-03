@@ -52,12 +52,16 @@ function Transactions(props) {
                   {transaction.date}
                 </TableCell>
                 <TableCell align="left">{transaction.name}</TableCell>
-                <TableCell align="left">{transaction.category[0]}</TableCell>
+                <TableCell align="left">
+                  {transaction.category ? transaction.category[0] : null}
+                </TableCell>
                 <TableCell align="right">
                   $
                   {transaction.amount
-                    .toFixed(2)
-                    .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                    ? transaction.amount
+                        .toFixed(2)
+                        .replace(/\d(?=(\d{3})+\.)/g, '$&,')
+                    : null}
                 </TableCell>
               </TableRow>
             ))}

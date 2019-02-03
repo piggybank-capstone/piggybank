@@ -1,11 +1,11 @@
 // function takes in an array of transactions and outputs
 // a dataset that contains category names and transaction amounts
 // { name: [cat1, cat2, etc], value: [val1, val2, etc]}
-export const categorizeTransactions = (transactionsArr, month) => {
+export const categorizeTransactionsByMonth = (transactionsArr, month) => {
   let data = {};
   let finalData = [];
   transactionsArr.forEach(transaction => {
-    let monthNum = Number(transaction.date.slice(5, 7));
+    let monthNum = transaction.date ? Number(transaction.date.slice(5, 7)) : 0;
     if (
       transaction.category &&
       data[transaction.category[0]] &&
@@ -15,9 +15,37 @@ export const categorizeTransactions = (transactionsArr, month) => {
     ) {
       data[transaction.category[0]] += Math.round(transaction.amount);
     } else if (
+      transaction.category &&
       transaction.category[0] !== 'Payment' &&
       transaction.category[0] !== 'Transfer' &&
       monthNum === month
+    ) {
+      data[transaction.category[0]] = Math.round(transaction.amount);
+    }
+  });
+  for (let key in data) {
+    if (data.hasOwnProperty(key) && key !== undefined) {
+      finalData.push({ name: key, value: data[key] });
+    }
+  }
+  return finalData;
+};
+
+export const categorizeTransactions = transactionsArr => {
+  let data = {};
+  let finalData = [];
+  transactionsArr.forEach(transaction => {
+    if (
+      transaction.category &&
+      data[transaction.category[0]] &&
+      transaction.category[0] !== 'Payment' &&
+      transaction.category[0] !== 'Transfer'
+    ) {
+      data[transaction.category[0]] += Math.round(transaction.amount);
+    } else if (
+      transaction.category &&
+      transaction.category[0] !== 'Payment' &&
+      transaction.category[0] !== 'Transfer'
     ) {
       data[transaction.category[0]] = Math.round(transaction.amount);
     }
@@ -34,7 +62,11 @@ export const categorizeTransactionsByMerchant = transactionsArr => {
   let data = {};
   let finalData = [];
   let filtered = transactionsArr.filter(
-    elem => elem.category[0] !== 'Payment' && elem.category[0] !== 'Transfer'
+    elem =>
+      elem.category &&
+      elem.category[0] !== 'Payment' &&
+      elem.category &&
+      elem.category[0] !== 'Transfer'
   );
   filtered.forEach(transaction => {
     if (data[transaction.name]) {
@@ -131,7 +163,7 @@ export const spendingByMonth = transactionsArr => {
     'September',
     'October',
     'November',
-    'December'
+    'December',
   ];
   let monthlyTotals = {
     January: 0,
@@ -145,21 +177,22 @@ export const spendingByMonth = transactionsArr => {
     September: 0,
     October: 0,
     November: 0,
-    December: 0
+    December: 0,
   };
 
   transactionsArr.forEach(item => {
-    let monthNum = Number(item.date.slice(5, 7));
+    let monthNum = item.date ? Number(item.date.slice(5, 7)) : 0;
     let month = months[monthNum - 1];
     monthlyTotals[month] += item.amount;
   });
 
   for (let key in monthlyTotals) {
-    if (monthlyTotals.hasOwnProperty(key)) {
+    console.log(key);
+    if (monthlyTotals.hasOwnProperty(key) && key !== 'undefined') {
       results.push({ name: key, value: monthlyTotals[key] });
     }
   }
-
+  console.log(results);
   return results;
 };
 
@@ -170,7 +203,7 @@ export const sortTransactionsByMonth = transactionsArr => {
   const date = new Date();
   const currentMonth = date.getMonth() + 1;
   transactionsArr.forEach(transaction => {
-    let month = Number(transaction.date.slice(5, 7));
+    let month = transaction.date ? Number(transaction.date.slice(5, 7)) : 0;
     if (month === currentMonth) {
       monthlyTransactions.push(transaction);
       total += transaction.amount;
@@ -179,7 +212,7 @@ export const sortTransactionsByMonth = transactionsArr => {
 
   const monthlyBudget = {
     transactions: monthlyTransactions,
-    total
+    total,
   };
 
   return monthlyBudget;
@@ -200,7 +233,7 @@ export const sortTransactionsByCategory = (category, transactionsArr) => {
 
   const monthlyBudget = {
     transactions: categorizeTransactions,
-    totalSpent: total
+    totalSpent: total,
   };
 
   return monthlyBudget;
@@ -219,7 +252,7 @@ export const getCurrentMonth = () => {
     'September',
     'October',
     'November',
-    'December'
+    'December',
   ];
 
   const nowDate = new Date();
@@ -239,7 +272,7 @@ export const months = [
   ['September', '09'],
   ['October', '10'],
   ['November', '11'],
-  ['December', '12']
+  ['December', '12'],
 ];
 
 export const COLORS = [
@@ -258,7 +291,7 @@ export const COLORS = [
   '#D81E5B',
   '#F0544F',
   '#C6D8D3',
-  '#FDF0D5'
+  '#FDF0D5',
 ];
 
 // const RADIAN = Math.PI / 180;
