@@ -24,7 +24,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 const styles = theme => ({
   main: {
-    width: '45%',
+    width: '50%',
     display: 'block', // Fix IE 11 issue.
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
@@ -50,11 +50,8 @@ const styles = theme => ({
   submit: {
     marginTop: theme.spacing.unit * 3,
     // backgroundColor: 'green'
-    float: 'right',
+    float: 'left',
     padding: '.7em 1.5em'
-  },
-  center: {
-    textAlign: 'center'
   }
 });
 
@@ -75,11 +72,21 @@ const AuthForm = props => {
               <div>
                 <FormControl margin="normal" required fullWidth>
                   <InputLabel htmlFor="firstName">First Name</InputLabel>
-                  <Input id="firstName" name="firstName" autoComplete="given-name" autoFocus />
+                  <Input
+                    id="firstName"
+                    name="firstName"
+                    autoComplete="given-name"
+                    autoFocus
+                  />
                 </FormControl>
                 <FormControl margin="normal" required fullWidth>
                   <InputLabel htmlFor="lastName">Last Name</InputLabel>
-                  <Input id="lastName" name="lastName" autoComplete="family-name" autoFocus />
+                  <Input
+                    id="lastName"
+                    name="lastName"
+                    autoComplete="family-name"
+                    autoFocus
+                  />
                 </FormControl>
               </div>
             )}
@@ -98,8 +105,8 @@ const AuthForm = props => {
             </FormControl>
             <Button
               type="submit"
-              variant="contained"
-              color="inherit"
+              // variant="contained"
+              // color="inherit"
               className={classes.submit}
             >
               {displayName}
@@ -108,9 +115,9 @@ const AuthForm = props => {
               <div className="form-error"> {error.response.data} </div>
             )}
           </form>
-          <a href="/auth/google">
-            {displayName} with Google
-          </a>
+          <Button href="/auth/google" className={classes.submit}>
+            {displayName} with Google{' '}
+          </Button>
         </Paper>
       </main>
     </div>
@@ -141,11 +148,11 @@ const mapDispatch = dispatch => {
       const email = evt.target.email.value;
       const password = evt.target.password.value;
       if (formName === 'signup') {
-        const firstName = evt.target.firstName.value
-        const lastName = evt.target.lastName.value
-        dispatch(auth(email, password, formName, firstName, lastName))
+        const firstName = evt.target.firstName.value;
+        const lastName = evt.target.lastName.value;
+        dispatch(auth(email, password, formName, firstName, lastName));
       } else {
-        dispatch(auth(email, password, formName))
+        dispatch(auth(email, password, formName));
       }
     }
   };

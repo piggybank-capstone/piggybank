@@ -12,7 +12,8 @@ import {
   Budget,
   Accounts,
   AddBudget,
-  NotFound
+  NotFound,
+  LandingPage
 } from './components';
 
 /**
@@ -28,8 +29,10 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
@@ -38,10 +41,13 @@ class Routes extends Component {
             <Route path="/trends" component={Trends} />
             <Route path="/accounts" component={Accounts} />
             <Route path="/addABudget" component={AddBudget} />
+            <Route exact path="/" component={UserHome} />
+            <Route component={NotFound} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback
         // <Route component={Login} /> */}
+        <Route exact path="/" component={LandingPage} />
         <Route component={NotFound} />
       </Switch>
     );

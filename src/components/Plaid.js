@@ -3,6 +3,7 @@ import PlaidLink from 'react-plaid-link';
 import { connect } from 'react-redux';
 import { getAccounts, getTransactions } from '../store';
 import Button from '@material-ui/core/Button';
+import '../styles/index.css';
 
 class Plaid extends Component {
   handleOnSuccess = (token, metadata) => {
@@ -23,7 +24,9 @@ class Plaid extends Component {
           onExit={this.handleOnExit}
           onSuccess={this.handleOnSuccess}
         >
-          <Button>Open Link and Connect Your Bank!</Button>
+          <div id="plaid-button">
+            <Button>Open Link and Connect Your Bank!</Button>
+          </div>
         </PlaidLink>
       </div>
     );

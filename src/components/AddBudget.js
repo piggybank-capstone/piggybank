@@ -82,9 +82,10 @@ class AddBudget extends Component {
         <Paper className={classes.root}>
           {categories.length > 0 ? (
             <form onSubmit={this.createBudget}>
-              <FormControl className={classes.formControl}>
+              <FormControl className={classes.formControl} display="flex">
                 <InputLabel htmlFor="cat">Category</InputLabel>
                 <Select
+                  autoWidth={true}
                   value={this.state.categeory}
                   onChange={this.handleChange}
                   inputProps={{

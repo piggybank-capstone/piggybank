@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import Routes from './routes';
-import LandingPage from './components/LandingPage';
+import NavBar from './components/NavBar';
 
 class App extends Component {
   async componentDidMount() {
@@ -13,7 +13,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <LandingPage />
+          <NavBar />
           <Routes />
         </header>
       </div>
