@@ -54,7 +54,7 @@ class MerchantChart extends Component {
       <div className="App">
         <header className="App-header">
           <Paper className={classes.root}>
-            <h3>Spending by Category</h3>
+            <h3>Spending by Merchants</h3>
             <PieChart
               className={classes.table}
               width={700}

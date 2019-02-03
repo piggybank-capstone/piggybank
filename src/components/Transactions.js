@@ -16,11 +16,11 @@ const styles = theme => ({
     width: '80%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
-    margin: 'auto'
+    margin: 'auto',
   },
   table: {
-    minWidth: 300
-  }
+    minWidth: 300,
+  },
 });
 
 function Transactions(props) {
@@ -47,7 +47,7 @@ function Transactions(props) {
           </TableHead>
           <TableBody>
             {transactions.map(transaction => (
-              <TableRow key={transactions.id}>
+              <TableRow key={transaction.id}>
                 <TableCell component="th" scope="row">
                   {transaction.date}
                 </TableCell>
@@ -69,14 +69,14 @@ function Transactions(props) {
 }
 
 Transactions.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 const WrappedTransactions = withStyles(styles)(Transactions);
 
 const mapState = state => {
   return {
-    transactions: state.transactions
+    transactions: state.transactions,
   };
 };
 
