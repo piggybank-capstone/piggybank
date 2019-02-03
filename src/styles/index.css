@@ -4,6 +4,7 @@
 @import './navbar.css';
 @import './main.css';
 @import './notFound.css';
+@import './progressbar.css';
 
 body {
   /* https://uigradients.com/#Ash */

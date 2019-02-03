@@ -6,7 +6,7 @@ import { getBudgets, removeBudget, getCategories } from '../store/budget';
 import {
   sortTransactionsByMonth,
   getCurrentMonth,
-  sortTransactionsByCategory,
+  sortTransactionsByCategory
 } from '../../src/utils/transactions.js';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -25,22 +25,22 @@ const styles = theme => ({
     width: '70%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
-    margin: 'auto',
+    margin: 'auto'
   },
   table: {
     width: '100%',
-    margin: 'auto',
+    margin: 'auto'
   },
   buttonStyle: {
     width: '50%',
-    margin: 'auto',
+    margin: 'auto'
   },
   buttonContainer: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
     marginBottom: theme.spacing.unit * 3,
-    textAlign: 'center',
-  },
+    textAlign: 'center'
+  }
 });
 
 class Budget extends Component {
@@ -50,7 +50,7 @@ class Budget extends Component {
       transactions: [],
       totalSpent: 0,
       currentMonth: '',
-      chatIsHidden: true,
+      chatIsHidden: true
     };
   }
   componentDidMount() {
@@ -65,13 +65,13 @@ class Budget extends Component {
 
     this.setState({
       transactions: budgetObject.transactions,
-      totalSpent: budgetObject.total,
+      totalSpent: budgetObject.total
     });
   }
   updateToCurrentMonth() {
     const currentMonth = getCurrentMonth();
     this.setState({
-      currentMonth,
+      currentMonth
     });
   }
 
@@ -97,6 +97,7 @@ class Budget extends Component {
                   <TableCell align="right">Amount Left</TableCell>
                   <TableCell align="center">On Goal?</TableCell>
                   <TableCell />
+                  <TableCell />
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -119,6 +120,7 @@ class Budget extends Component {
                 </Button>
               </NavLink>
             </div>
+
             {this.state.chatIsHidden ? (
               <Button
                 onClick={() =>
@@ -156,7 +158,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   getBudgets: () => dispatch(getBudgets()),
-  removeBudget: id => dispatch(removeBudget(id)),
+  removeBudget: id => dispatch(removeBudget(id))
 });
 
 export default withRouter(

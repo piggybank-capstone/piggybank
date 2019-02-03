@@ -13,7 +13,7 @@ class NavBar extends Component {
     return (
       <Toolbar>
         <div id="ico">
-          <NavLink to={'/home'}>
+          <NavLink to={'/'}>
             <img src={Rectangle_Logo} height="40" alt="piggybank logo" />
           </NavLink>
           <div id="nav">
