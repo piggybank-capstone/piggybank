@@ -66,7 +66,7 @@ router.post('/get_access_token', async (req, res, next) => {
         const user = await User.findByPk(userId);
         await user.update({
           access_token: tokenResponse.access_token,
-          item_id: tokenResponse.item_id,
+          item_id: tokenResponse.item_id
         });
         res.end();
         // const accountRes = await plaidClient.getAccounts(

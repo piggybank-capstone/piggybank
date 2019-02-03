@@ -46,7 +46,7 @@ export const auth = (
         email,
         password,
         firstName,
-        lastName,
+        lastName
       });
     } else {
       res = await axios.post(`/auth/${method}`, { email, password });
@@ -69,6 +69,9 @@ export const logout = () => async dispatch => {
     await axios.post('/auth/logout');
     dispatch(removeUser());
     history.push('/');
+    console.log(localStorage, 'beforelogout');
+    localStorage.clear();
+    console.log(localStorage, 'localafterLougout');
   } catch (err) {
     console.error(err);
   }
