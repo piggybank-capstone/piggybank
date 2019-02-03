@@ -13,12 +13,12 @@ const styles = theme => ({
     width: '80%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
-    margin: 'auto'
+    margin: 'auto',
   },
   table: {
     width: '100%',
-    margin: 'auto'
-  }
+    margin: 'auto',
+  },
 });
 
 /* COMPONENT */
@@ -71,8 +71,9 @@ class Accounts extends Component {
 }
 
 const mapState = state => {
+  const { accounts } = state;
   return {
-    accounts: state.accounts
+    accounts: accounts.accounts,
   };
 };
 
