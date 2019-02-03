@@ -73,7 +73,7 @@ class Accounts extends Component {
 const mapState = state => {
   const { accounts } = state;
   return {
-    accounts: accounts.accounts,
+    accounts: accounts,
   };
 };
 

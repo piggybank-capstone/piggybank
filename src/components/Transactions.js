@@ -25,7 +25,6 @@ const styles = theme => ({
 
 function Transactions(props) {
   const { classes, transactions } = props;
-  console.log('transactions', transactions);
   return (
     <div>
       <h2>Transactions</h2>
