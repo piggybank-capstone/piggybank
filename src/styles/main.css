@@ -8,7 +8,7 @@ main {
 
 #plaid-link {
   display: block;
-  align-self: center;
+  text-align: center;
 }
 
 .form-error {
