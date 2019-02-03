@@ -35,7 +35,6 @@ router.get('/accounts/get', async (req, res, next) => {
 
 router.get('/transactions/get', async (req, res, next) => {
   try {
-    console.log('get transactions route hit');
     if (req.user) {
       const userId = req.user.id;
       const user = await User.findByPk(userId);
@@ -45,7 +44,6 @@ router.get('/transactions/get', async (req, res, next) => {
         '2018-01-20',
         '2019-01-20'
       );
-      console.log('transactions are ', response.transactions);
       res.json(response.transactions);
     }
   } catch (error) {

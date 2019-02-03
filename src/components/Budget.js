@@ -18,6 +18,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Button } from '@material-ui/core';
 import SingleBudget from './SingleBudget';
+import Piggybot from './Piggybot';
 
 const styles = theme => ({
   root: {
@@ -49,6 +50,7 @@ class Budget extends Component {
       transactions: [],
       totalSpent: 0,
       currentMonth: '',
+      chatIsHidden: true,
     };
   }
   componentDidMount() {
@@ -117,13 +119,24 @@ class Budget extends Component {
                 </Button>
               </NavLink>
             </div>
-            <iframe
-              title="piggybot"
-              allow="microphone;"
-              width="350"
-              height="430"
-              src="https://console.dialogflow.com/api-client/demo/embedded/8da1c4ff-793f-4de9-9ec9-d5168b87c73d"
-            />
+            {this.state.chatIsHidden ? (
+              <Button
+                onClick={() =>
+                  this.setState({ chatIsHidden: !this.state.chatIsHidden })
+                }
+              >
+                Get Help With Your Budget!
+              </Button>
+            ) : (
+              <Button
+                onClick={() =>
+                  this.setState({ chatIsHidden: !this.state.chatIsHidden })
+                }
+              >
+                Close Piggybot
+              </Button>
+            )}
+            {!this.state.chatIsHidden && <Piggybot />}
           </Paper>
         </div>
       </div>
