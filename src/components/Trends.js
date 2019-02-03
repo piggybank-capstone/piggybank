@@ -23,14 +23,19 @@ import {
 import {
   categorizeTransactions,
   COLORS,
-  sortTransactionsByMonth,
   spendingByMonth,
+  categorizeTransactionsByMonth,
 } from '../utils/transactions';
 import { categorizeAccounts } from '../utils/accounts';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core';
 import MerchantChart from './MerchantChart';
 import MerchantTable from './MerchantTable';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import { Button } from '@material-ui/core';
+import FormControl from '@material-ui/core/FormControl';
 
 const styles = theme => ({
   root: {
@@ -46,23 +51,56 @@ const styles = theme => ({
 });
 
 class Trends extends Component {
+  constructor() {
+    super();
+    this.state = {
+      transactions: [],
+      monthlyTotals: [],
+    };
+    this.handleMonth = this.handleMonth.bind(this);
+  }
+
+  async handleMonth(event) {
+    let allTransactions = this.props.transactions
+      ? categorizeTransactions(this.props.transactions)
+      : [];
+    this.setState({ transactions: allTransactions });
+    if (event.target.value !== 0) {
+      let filteredTransactions = await categorizeTransactionsByMonth(
+        this.props.transactions,
+        event.target.value
+      );
+      this.setState({ transactions: filteredTransactions });
+    }
+  }
+  componentDidMount() {
+    let allTransactions = this.props.transactions
+      ? categorizeTransactions(this.props.transactions)
+      : [];
+    let monthlyTotals = !this.props.transactions
+      ? []
+      : spendingByMonth(this.props.transactions);
+    this.setState({ transactions: allTransactions, monthlyTotals });
+  }
   render() {
     const { classes } = this.props;
-    let transactions = !this.props.transactions
-      ? null
-      : categorizeTransactions(this.props.transactions);
-    let accounts = !this.props.accounts
-      ? null
-      : categorizeAccounts(this.props.accounts);
-    let months = !this.props.transactions
-      ? null
-      : spendingByMonth(this.props.transactions);
 
-    console.log('transactions are ', transactions);
     return (
       <div className="App">
         <header className="App-header">
           <Paper className={classes.root}>
+            <FormControl>
+              <Select onChange={this.handleMonth}>
+                <MenuItem value={0}>All</MenuItem>
+                <MenuItem value={1}>January</MenuItem>
+                <MenuItem value={7}>July</MenuItem>
+                <MenuItem value={8}>August</MenuItem>
+                <MenuItem value={9}>September</MenuItem>
+                <MenuItem value={10}>October</MenuItem>
+                <MenuItem value={11}>November</MenuItem>
+                <MenuItem value={12}>December</MenuItem>
+              </Select>
+            </FormControl>
             <h3>Spending by Category</h3>
             <PieChart
               className={classes.table}
@@ -71,7 +109,7 @@ class Trends extends Component {
               onMouseEnter={this.onPieEnter}
             >
               <Pie
-                data={transactions}
+                data={this.state.transactions}
                 cx="50%"
                 cy="50%"
                 labelLine={true}
@@ -79,7 +117,7 @@ class Trends extends Component {
                 fill="#8884d8"
                 label
               >
-                {transactions.map((entry, index) => (
+                {this.state.transactions.map((entry, index) => (
                   <Cell fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
@@ -94,7 +132,7 @@ class Trends extends Component {
               className={classes.table}
               width={600}
               height={300}
-              data={months}
+              data={this.state.monthlyTotals}
               margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
             >
               <CartesianGrid strokeDasharray="3 3" />
@@ -116,7 +154,7 @@ class Trends extends Component {
               outerRadius={150}
               width={600}
               height={500}
-              data={transactions}
+              data={this.state.transactions}
             >
               <PolarGrid />
               <PolarAngleAxis dataKey="name" />
