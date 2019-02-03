@@ -5,6 +5,7 @@ export { default as Plaid } from './Plaid';
 export { default as Transactions } from './Transactions';
 export { default as Trends } from './Trends';
 export { default as UserHome } from './UserHome';
-export { default as Budget } from './Budget'
-export { default as SingleBudget } from './SingleBudget'
-export { default as AddBudget } from './AddBudget'
+export { default as Budget } from './Budget';
+export { default as SingleBudget } from './SingleBudget';
+export { default as AddBudget } from './AddBudget';
+export { default as NotFound } from './NotFound';
