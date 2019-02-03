@@ -6,10 +6,6 @@ import NavBar from './NavBar';
 const LandingPage = () => {
   return (
     <div>
-<<<<<<< HEAD
-      <div id="header"> We Make Saving Fun</div>
-      <h2>Manage your finances and budget with Piggybot.</h2>
-=======
       {props.isLoggedin ? (
         <NavBar />
       ) : (
@@ -20,14 +16,10 @@ const LandingPage = () => {
         </div>
       )}
       ;
->>>>>>> separated get access token route with get accounts and transactions routes
     </div>
   );
 };
 
-<<<<<<< HEAD
-export default LandingPage;
-=======
 const mapState = state => {
   return {
     isLoggedin: !!state.user.id,
@@ -40,4 +32,3 @@ export default withRouter(
     null
   )(LandingPage)
 );
->>>>>>> separated get access token route with get accounts and transactions routes

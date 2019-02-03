@@ -3,11 +3,8 @@ import PlaidLink from 'react-plaid-link';
 import { connect } from 'react-redux';
 import { getAccounts, getTransactions } from '../store';
 import Button from '@material-ui/core/Button';
-<<<<<<< HEAD
 import '../styles/index.css';
-=======
 import Axios from 'axios';
->>>>>>> separated get access token route with get accounts and transactions routes
 
 class Plaid extends Component {
   handleOnSuccess = async (token, metadata) => {
