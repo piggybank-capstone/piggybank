@@ -23,20 +23,6 @@ const styles = theme => ({
   },
 });
 
-function RenderDollarLabel(props) {
-  return (
-    <text
-      className="recharts-text recharts-pie-label-text"
-      x={props.x}
-      y={props.y}
-      fill={props.fill}
-      textAnchor={props.textAnchor}
-    >
-      <tspan alignmentBaseline="middle">${props.value}</tspan>
-    </text>
-  );
-}
-
 class Trends extends Component {
   constructor() {
     super();
