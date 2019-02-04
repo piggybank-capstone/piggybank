@@ -3,11 +3,11 @@ import { withRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../App.css';
 import { withStyles } from '@material-ui/core';
-import Drawer from '@material-ui/core/Drawer';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 const styles = theme => ({
   root: {
@@ -26,33 +26,38 @@ class Sidebar extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Drawer
-        className={classes.drawer}
-        variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.toolbar} />
-        <Divider />
-        <List>
-          <ListItem button>
-            <NavLink to="/trends/category-spending">
-              <ListItemText primary="Spending by Category" />
-            </NavLink>
-          </ListItem>
-          <ListItem button>
-            <NavLink to="/trends/monthly-totals">
-              <ListItemText primary="Total Monthly Spending" />
-            </NavLink>
-          </ListItem>
-          <ListItem button>
-            <NavLink to="/trends/category-merchant">
-              <ListItemText primary="Spending by Merchant" />
-            </NavLink>
-          </ListItem>
-        </List>
-      </Drawer>
+      <div>
+        <Table className={classes.table}>
+          <TableHead>
+            <TableRow>
+              <TableCell align="left">Chart Types</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell>
+                <NavLink to="/trends/category-spending">
+                  Spending by Category
+                </NavLink>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <NavLink to="/trends/monthly-totals">
+                  Total Monthly Spending
+                </NavLink>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <NavLink to="/trends/category-merchant">
+                  Spending by Merchant
+                </NavLink>
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </div>
     );
   }
 }
