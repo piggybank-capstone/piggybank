@@ -16,7 +16,7 @@ export const theme = createMuiTheme({
 
 theme.overrides.MuiButton = {
   root: {
-    width: 'auto'
+    fullWidth: true
   },
   text: {
     [theme.breakpoints.down('sm')]: {
@@ -24,7 +24,7 @@ theme.overrides.MuiButton = {
       borderRadius: 3,
       border: 1,
       color: 'black',
-      height: 20,
+      height: 30,
       padding: '10px 30px',
       margin: '10px',
       boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
@@ -37,7 +37,8 @@ theme.overrides.MuiButton = {
       height: 40,
       padding: '10px 30px',
       margin: '10px',
-      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)'
+      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+      fullWidth: true
     }
   }
 };

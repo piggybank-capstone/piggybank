@@ -26,12 +26,17 @@ import google_logo from '../styles/google_logo.png';
 
 const styles = theme => ({
   main: {
-    width: '50%',
+    width: '70%',
     display: 'block', // Fix IE 11 issue.
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-      width: 400,
+      width: '60%',
+      marginLeft: 'auto',
+      marginRight: 'auto'
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '80%',
       marginLeft: 'auto',
       marginRight: 'auto'
     },
