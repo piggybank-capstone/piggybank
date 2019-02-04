@@ -21,7 +21,7 @@ import {
   categorizeTransactionsByMonth,
 } from '../utils/transactions';
 import Paper from '@material-ui/core/Paper';
-import { withStyles } from '@material-ui/core';
+import { withStyles, InputLabel } from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
@@ -48,6 +48,10 @@ const styles = theme => ({
   chart: {
     flexGrow: 1,
   },
+  formControl: {
+    minWidth: 180,
+    margin: theme.spacing.unit * 4
+  }
 });
 
 function RenderDollarLabel(props) {
@@ -70,6 +74,7 @@ class CategoryPieChart extends Component {
     this.state = {
       transactions: [],
       monthlyTotals: [],
+      selectedMonth: 0
     };
     this.handleMonth = this.handleMonth.bind(this);
   }
@@ -84,7 +89,10 @@ class CategoryPieChart extends Component {
         this.props.transactions,
         event.target.value
       );
-      this.setState({ transactions: filteredTransactions });
+      this.setState({
+        transactions: filteredTransactions,
+        selectedMonth: event.target.value
+      });
     }
   }
   componentDidMount() {
@@ -104,8 +112,9 @@ class CategoryPieChart extends Component {
         <Sidebar className={classes.sidebar} />
         <div className={classes.chart}>
           <Paper className={classes.root}>
-            <FormControl>
-              <Select onChange={this.handleMonth}>
+            <FormControl className={classes.formControl}>
+              <InputLabel>Month</InputLabel>
+              <Select onChange={this.handleMonth} value={this.state.selectedMonth}>
                 <MenuItem value={0}>All</MenuItem>
                 <MenuItem value={1}>January</MenuItem>
                 <MenuItem value={7}>July</MenuItem>
