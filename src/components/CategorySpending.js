@@ -7,12 +7,6 @@ import {
   Pie,
   Cell,
   Legend,
-  BarChart,
-  Bar,
-  ReferenceLine,
-  XAxis,
-  YAxis,
-  CartesianGrid,
   Tooltip,
   Radar,
   RadarChart,
@@ -31,7 +25,7 @@ import { withStyles } from '@material-ui/core';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
-import { MerchantChart, MerchantTable } from './index';
+import { Sidebar } from './index';
 
 const styles = theme => ({
   root: {
@@ -46,21 +40,7 @@ const styles = theme => ({
   },
 });
 
-function RenderDollarLabel(props) {
-  return (
-    <text
-      className="recharts-text recharts-pie-label-text"
-      x={props.x}
-      y={props.y}
-      fill={props.fill}
-      textAnchor={props.textAnchor}
-    >
-      <tspan alignmentBaseline="middle">${props.value}</tspan>
-    </text>
-  );
-}
-
-class Trends extends Component {
+class CategoryPieChart extends Component {
   constructor() {
     super();
     this.state = {
@@ -94,10 +74,10 @@ class Trends extends Component {
   }
   render() {
     const { classes } = this.props;
-    console.log('transactions are ', this.state.transactions);
     return (
       <div className="App">
         <header className="App-header">
+          <Sidebar />
           <Paper className={classes.root}>
             <FormControl>
               <Select onChange={this.handleMonth}>
@@ -125,36 +105,16 @@ class Trends extends Component {
                 labelLine={true}
                 outerRadius={150}
                 fill="#8884d8"
-                label={<RenderDollarLabel />}
+                label
               >
                 {this.state.transactions.map((entry, index) => (
                   <Cell fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
               <Legend />
-              <Tooltip formatter={value => '$' + value} />
+              <Tooltip />
             </PieChart>
           </Paper>
-
-          <Paper className={classes.root}>
-            <h3>Total Spending Over Time</h3>
-            <BarChart
-              className={classes.table}
-              width={600}
-              height={300}
-              data={this.state.monthlyTotals}
-              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
-              <Tooltip formatter={value => '$' + value} />
-              <Legend />
-              <ReferenceLine y={0} stroke="#000" />
-              <Bar dataKey="value" fill="#82ca9d" cx="50%" cy="50%" />
-            </BarChart>
-          </Paper>
-
           <Paper className={classes.root}>
             <h3>Spending by Category</h3>
             <RadarChart
@@ -178,8 +138,6 @@ class Trends extends Component {
               />
             </RadarChart>
           </Paper>
-          <MerchantChart />
-          <MerchantTable />
         </header>
       </div>
     );
@@ -194,11 +152,11 @@ const mapStateToProps = state => {
   };
 };
 
-const WrappedTrends = withStyles(styles)(Trends);
+const ConnectedPieChart = withStyles(styles)(CategoryPieChart);
 
 export default withRouter(
   connect(
     mapStateToProps,
     null
-  )(WrappedTrends)
+  )(ConnectedPieChart)
 );
