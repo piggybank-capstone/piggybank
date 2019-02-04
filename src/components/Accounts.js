@@ -14,45 +14,67 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
     margin: 'auto',
+    [theme.breakpoints.down(700)]: {
+      width: '100%',
+      height: 10,
+      marginLeft: 'auto',
+      marginRight: 'auto'
+    }
   },
   table: {
     width: '100%',
-    margin: 'auto',
+    margin: 'auto'
   },
+  tableCell: {
+    [theme.breakpoints.down(700)]: {
+      height: '20px',
+      padding: '0',
+      marginLeft: 'auto',
+      marginRight: 'auto'
+    }
+  }
 });
 
 /* COMPONENT */
 class Accounts extends Component {
+  constructor() {
+    super();
+    this.state = {
+      width: window.innerWidth
+    };
+  }
+
+  componentWillMount() {
+    window.addEventListener('resize', this.handleWindowSizeChange);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleWindowSizeChange);
+  }
+
+  handleWindowSizeChange = () => {
+    this.setState({ width: window.innerWidth });
+  };
+
   render() {
     const { accounts, classes } = this.props;
-    return (
-      <div>
-        <h2>Accounts</h2>
-        <Paper className={classes.root}>
+    const { width } = this.state;
+    const isMobile = width <= 700;
+
+    if (isMobile) {
+      return (
+        <div id="accountsTable">
+          <h2>Accounts</h2>
           <Table className={classes.table}>
             <TableHead>
-              <TableCell>Account</TableCell>
               <TableCell align="left">Official Name</TableCell>
-              <TableCell align="left">Type</TableCell>
-              <TableCell align="right">Available Balance</TableCell>
               <TableCell align="right">Current Balance</TableCell>
             </TableHead>
             <TableBody>
               {accounts.map(account => {
                 return (
                   <TableRow key={account.id}>
-                    <TableCell>{account.name}</TableCell>
                     <TableCell align="left">{account.official_name}</TableCell>
-                    <TableCell align="left">
-                      {account.subtype.charAt(0).toUpperCase() +
-                        account.subtype.slice(1)}
-                    </TableCell>
-                    <TableCell align="right">
-                      $
-                      {Number(account.balances.available)
-                        .toFixed(2)
-                        .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
-                    </TableCell>
                     <TableCell align="right">
                       $
                       {Number(account.balances.current)
@@ -64,16 +86,61 @@ class Accounts extends Component {
               })}
             </TableBody>
           </Table>
-        </Paper>
-      </div>
-    );
+        </div>
+      );
+    } else {
+      return (
+        <div id="accountsTable">
+          <h2>Accounts</h2>
+          <Paper className={classes.root}>
+            <Table className={classes.table}>
+              <TableHead>
+                <TableCell>Account</TableCell>
+                <TableCell align="left">Official Name</TableCell>
+                <TableCell align="left">Type</TableCell>
+                <TableCell align="right">Available Balance</TableCell>
+                <TableCell align="right">Current Balance</TableCell>
+              </TableHead>
+              <TableBody>
+                {accounts.map(account => {
+                  return (
+                    <TableRow key={account.id}>
+                      <TableCell>{account.name}</TableCell>
+                      <TableCell align="left">
+                        {account.official_name}
+                      </TableCell>
+                      <TableCell align="left">
+                        {account.subtype.charAt(0).toUpperCase() +
+                          account.subtype.slice(1)}
+                      </TableCell>
+                      <TableCell align="right">
+                        $
+                        {Number(account.balances.available)
+                          .toFixed(2)
+                          .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                      </TableCell>
+                      <TableCell align="right">
+                        $
+                        {Number(account.balances.current)
+                          .toFixed(2)
+                          .replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </Paper>
+        </div>
+      );
+    }
   }
 }
 
 const mapState = state => {
   const { accounts } = state;
   return {
-    accounts: accounts.accounts,
+    accounts: accounts.accounts
   };
 };
 

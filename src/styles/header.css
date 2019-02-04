@@ -2,7 +2,6 @@
   width: 100%;
   min-height: 350px;
   background: url('https://images.pexels.com/photos/34577/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')
-    /* https://images.pexels.com/photos/9660/business-money-pink-coins.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940 */
     no-repeat fixed center;
   background-size: cover;
   letter-spacing: 0.2rem;
@@ -13,4 +12,16 @@
   flex: 1;
   justify-content: center;
   align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+  #header {
+    display: flex;
+    width: 100vw;
+    min-height: 50vh;
+    font-size: 1.5em;
+    font-weight: bold;
+    flex-direction: column;
+    align-content: center;
+  }
 }

@@ -1,4 +1,8 @@
 /* place hold */
+
+* {
+  border: 1px solid red;
+}
 a {
   color: teal;
   text-decoration: none;
@@ -26,6 +30,37 @@ a:visited {
   width: 100%;
   display: flex;
   align-items: center;
+}
+
+@media only screen and (max-width: 500px) {
+  #ico {
+    display: flex;
+    align-self: center;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  #logo {
+    flex-grow: 1;
+    display: flex;
+    align-self: center;
+    height: auto;
+    max-width: 100%;
+  }
+  #nav {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    justify-content: center;
+  }
+
+  #nav-right {
+    display: flex;
+    justify-content: center;
+  }
+  button {
+    height: 1px;
+  }
 }
 
 #nav {

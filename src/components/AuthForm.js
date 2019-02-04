@@ -18,18 +18,25 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
+import google_logo from '../styles/google_logo.png';
+
 /**
  * COMPONENT
  */
 
 const styles = theme => ({
   main: {
-    width: '50%',
+    width: '70%',
     display: 'block', // Fix IE 11 issue.
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-      width: 400,
+      width: '60%',
+      marginLeft: 'auto',
+      marginRight: 'auto'
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '80%',
       marginLeft: 'auto',
       marginRight: 'auto'
     },
@@ -117,6 +124,12 @@ const AuthForm = props => {
           </form>
           <Button href="/auth/google" className={classes.submit}>
             {displayName} with Google{' '}
+            <img
+              id="google logo"
+              src={google_logo}
+              alt="google logo"
+              height="16px"
+            />
           </Button>
         </Paper>
       </main>
