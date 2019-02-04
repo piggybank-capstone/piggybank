@@ -23,7 +23,7 @@ import { Sidebar } from '.';
 
 const styles = theme => ({
   root: {
-    width: '50%',
+    width: '70%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
     margin: 'auto',
@@ -31,6 +31,16 @@ const styles = theme => ({
   table: {
     width: '100%',
     margin: 'auto',
+  },
+  container: {
+    display: 'flex',
+  },
+  sidebar: {
+    flexGrow: 1,
+    width: '30%',
+  },
+  chart: {
+    flexGrow: 1,
   },
 });
 
@@ -70,9 +80,10 @@ class MonthlyTotalChart extends Component {
     const { classes } = this.props;
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <Sidebar />
+      <div className={classes.container}>
+
+        <Sidebar className={classes.sidebar} />
+        <div className={classes.chart}>
           <Paper className={classes.root}>
             <h3>Total Spending Over Time</h3>
             <BarChart
@@ -91,7 +102,7 @@ class MonthlyTotalChart extends Component {
               <Bar dataKey="value" fill="#82ca9d" cx="50%" cy="50%" />
             </BarChart>
           </Paper>
-        </header>
+        </div>
       </div>
     );
   }
