@@ -18,6 +18,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
+import google_logo from '../styles/google_logo.png';
+
 /**
  * COMPONENT
  */
@@ -117,6 +119,12 @@ const AuthForm = props => {
           </form>
           <Button href="/auth/google" className={classes.submit}>
             {displayName} with Google{' '}
+            <img
+              id="google logo"
+              src={google_logo}
+              alt="google logo"
+              height="16px"
+            />
           </Button>
         </Paper>
       </main>
