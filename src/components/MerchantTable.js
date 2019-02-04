@@ -3,33 +3,10 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../App.css';
 import {
-  PieChart,
-  Pie,
-  Cell,
-  Legend,
-  BarChart,
-  Bar,
-  ReferenceLine,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Radar,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-} from 'recharts';
-import {
-  categorizeTransactions,
-  COLORS,
-  sortTransactionsByMonth,
-  spendingByMonth,
   categorizeTransactionsByMerchant,
   maxMerchant,
   countMerchant,
 } from '../utils/transactions';
-import { categorizeAccounts } from '../utils/accounts';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core';
 import Table from '@material-ui/core/Table';
@@ -40,7 +17,7 @@ import TableRow from '@material-ui/core/TableRow';
 
 const styles = theme => ({
   root: {
-    width: '50%',
+    width: '70%',
     marginTop: theme.spacing.unit * 3,
     marginBottom: theme.spacing.unit * 3,
     overflowX: 'auto',

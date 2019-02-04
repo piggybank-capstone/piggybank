@@ -9,11 +9,11 @@ import {
 } from '../utils/transactions';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core';
-import { MerchantTable } from './index';
+import { MerchantTable, Sidebar } from './index';
 
 const styles = theme => ({
   root: {
-    width: '50%',
+    width: '70%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
     margin: 'auto',
@@ -21,6 +21,16 @@ const styles = theme => ({
   table: {
     width: '100%',
     margin: 'auto',
+  },
+  container: {
+    display: 'flex',
+  },
+  sidebar: {
+    flexGrow: 1,
+    width: '30%',
+  },
+  chart: {
+    flexGrow: 1,
   },
 });
 
@@ -45,8 +55,9 @@ class MerchantChart extends Component {
       ? null
       : categorizeTransactionsByMerchant(this.props.transactions);
     return (
-      <div className="App">
-        <header className="App-header">
+      <div className={classes.container}>
+        <Sidebar className={classes.sidebar} />
+        <div className={classes.chart}>
           <Paper className={classes.root}>
             <h3>Spending by Merchant</h3>
             <PieChart
@@ -72,8 +83,8 @@ class MerchantChart extends Component {
               <Tooltip formatter={value => '$' + value} />
             </PieChart>
           </Paper>
-          <MerchantTable />
-        </header>
+          <MerchantTable className={classes.root} />
+        </div>
       </div>
     );
   }
