@@ -16,7 +16,7 @@ export const theme = createMuiTheme({
 
 theme.overrides.MuiButton = {
   root: {
-    fullWidth: true
+    // fullWidth: true
   },
   text: {
     [theme.breakpoints.down('sm')]: {
