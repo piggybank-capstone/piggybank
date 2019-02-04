@@ -29,7 +29,7 @@ import { Sidebar } from './index';
 
 const styles = theme => ({
   root: {
-    width: '50%',
+    width: '70%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
     margin: 'auto',
@@ -37,6 +37,16 @@ const styles = theme => ({
   table: {
     width: '100%',
     margin: 'auto',
+  },
+  container: {
+    display: 'flex',
+  },
+  sidebar: {
+    flexGrow: 1,
+    width: '30%',
+  },
+  chart: {
+    flexGrow: 1,
   },
 });
 
@@ -89,9 +99,10 @@ class CategoryPieChart extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className="App">
-        <header className="App-header">
-          <Sidebar />
+      <div className={classes.container}>
+
+        <Sidebar className={classes.sidebar} />
+        <div className={classes.chart}>
           <Paper className={classes.root}>
             <FormControl>
               <Select onChange={this.handleMonth}>
@@ -152,7 +163,7 @@ class CategoryPieChart extends Component {
               />
             </RadarChart>
           </Paper>
-        </header>
+        </div>
       </div>
     );
   }
