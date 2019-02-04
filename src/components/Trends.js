@@ -179,7 +179,6 @@ class Trends extends Component {
             </RadarChart>
           </Paper>
           <MerchantChart />
-          <MerchantTable />
         </header>
       </div>
     );
