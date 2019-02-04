@@ -2,34 +2,14 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../App.css';
+import { PieChart, Pie, Cell, Legend, Tooltip } from 'recharts';
 import {
-  PieChart,
-  Pie,
-  Cell,
-  Legend,
-  BarChart,
-  Bar,
-  ReferenceLine,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Radar,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-} from 'recharts';
-import {
-  categorizeTransactions,
   COLORS,
-  sortTransactionsByMonth,
-  spendingByMonth,
   categorizeTransactionsByMerchant,
 } from '../utils/transactions';
-import { categorizeAccounts } from '../utils/accounts';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core';
+import { MerchantTable } from './index';
 
 const styles = theme => ({
   root: {
@@ -92,6 +72,7 @@ class MerchantChart extends Component {
               <Tooltip formatter={value => '$' + value} />
             </PieChart>
           </Paper>
+          <MerchantTable />
         </header>
       </div>
     );
