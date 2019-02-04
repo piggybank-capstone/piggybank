@@ -29,7 +29,7 @@ import { Sidebar } from './index';
 
 const styles = theme => ({
   root: {
-    width: '50%',
+    width: '70%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
     margin: 'auto',
@@ -38,7 +38,31 @@ const styles = theme => ({
     width: '100%',
     margin: 'auto',
   },
+  container: {
+    display: 'flex',
+  },
+  sidebar: {
+    flexGrow: 1,
+    width: '30%',
+  },
+  chart: {
+    flexGrow: 1,
+  },
 });
+
+function RenderDollarLabel(props) {
+  return (
+    <text
+      className="recharts-text recharts-pie-label-text"
+      x={props.x}
+      y={props.y}
+      fill={props.fill}
+      textAnchor={props.textAnchor}
+    >
+      <tspan alignmentBaseline="middle">${props.value}</tspan>
+    </text>
+  );
+}
 
 class CategoryPieChart extends Component {
   constructor() {
@@ -75,9 +99,10 @@ class CategoryPieChart extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className="App">
-        <header className="App-header">
-          <Sidebar />
+      <div className={classes.container}>
+
+        <Sidebar className={classes.sidebar} />
+        <div className={classes.chart}>
           <Paper className={classes.root}>
             <FormControl>
               <Select onChange={this.handleMonth}>
@@ -105,7 +130,7 @@ class CategoryPieChart extends Component {
                 labelLine={true}
                 outerRadius={150}
                 fill="#8884d8"
-                label
+                label={<RenderDollarLabel />}
               >
                 {this.state.transactions.map((entry, index) => (
                   <Cell fill={COLORS[index % COLORS.length]} />
@@ -138,7 +163,7 @@ class CategoryPieChart extends Component {
               />
             </RadarChart>
           </Paper>
-        </header>
+        </div>
       </div>
     );
   }

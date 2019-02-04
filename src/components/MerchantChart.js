@@ -2,38 +2,18 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../App.css';
+import { PieChart, Pie, Cell, Legend, Tooltip } from 'recharts';
 import {
-  PieChart,
-  Pie,
-  Cell,
-  Legend,
-  BarChart,
-  Bar,
-  ReferenceLine,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Radar,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis,
-  PolarRadiusAxis,
-} from 'recharts';
-import {
-  categorizeTransactions,
   COLORS,
-  sortTransactionsByMonth,
-  spendingByMonth,
   categorizeTransactionsByMerchant,
 } from '../utils/transactions';
-import { categorizeAccounts } from '../utils/accounts';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core';
+import { MerchantTable, Sidebar } from './index';
 
 const styles = theme => ({
   root: {
-    width: '50%',
+    width: '70%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
     margin: 'auto',
@@ -41,6 +21,16 @@ const styles = theme => ({
   table: {
     width: '100%',
     margin: 'auto',
+  },
+  container: {
+    display: 'flex',
+  },
+  sidebar: {
+    flexGrow: 1,
+    width: '30%',
+  },
+  chart: {
+    flexGrow: 1,
   },
 });
 
@@ -65,8 +55,9 @@ class MerchantChart extends Component {
       ? null
       : categorizeTransactionsByMerchant(this.props.transactions);
     return (
-      <div className="App">
-        <header className="App-header">
+      <div className={classes.container}>
+        <Sidebar className={classes.sidebar} />
+        <div className={classes.chart}>
           <Paper className={classes.root}>
             <h3>Spending by Merchant</h3>
             <PieChart
@@ -92,7 +83,8 @@ class MerchantChart extends Component {
               <Tooltip formatter={value => '$' + value} />
             </PieChart>
           </Paper>
-        </header>
+          <MerchantTable className={classes.root} />
+        </div>
       </div>
     );
   }
