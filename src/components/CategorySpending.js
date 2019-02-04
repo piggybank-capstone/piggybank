@@ -40,6 +40,20 @@ const styles = theme => ({
   },
 });
 
+function RenderDollarLabel(props) {
+  return (
+    <text
+      className="recharts-text recharts-pie-label-text"
+      x={props.x}
+      y={props.y}
+      fill={props.fill}
+      textAnchor={props.textAnchor}
+    >
+      <tspan alignmentBaseline="middle">${props.value}</tspan>
+    </text>
+  );
+}
+
 class CategoryPieChart extends Component {
   constructor() {
     super();
@@ -105,7 +119,7 @@ class CategoryPieChart extends Component {
                 labelLine={true}
                 outerRadius={150}
                 fill="#8884d8"
-                label
+                label={<RenderDollarLabel />}
               >
                 {this.state.transactions.map((entry, index) => (
                   <Cell fill={COLORS[index % COLORS.length]} />
