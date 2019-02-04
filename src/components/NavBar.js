@@ -30,38 +30,38 @@ class NavBar extends Component {
     return (
       <Toolbar>
         <div id="nav">
-          <NavLink to={'/'}>
-            <img
-              id="logo"
-              src={Rectangle_Logo}
-              height="40"
-              alt="piggybank logo"
-            />
-          </NavLink>
-          <div id="nav-right">
-            {isLoggedIn ? (
-              <div>
-                <NavLink to={'/budget'}>
-                  <Button color="inherit">Budgets</Button>
-                </NavLink>
-                <NavLink to={'/trends'}>
-                  <Button color="inherit">Trends</Button>
-                </NavLink>
-                <Button color="inherit" onClick={handleClick}>
-                  Logout
-                </Button>
-              </div>
-            ) : (
-              <div>
-                <Button color="inherit" component={Link} to="/login">
-                  Login
-                </Button>
-                <Button color="inherit" component={Link} to="/signup">
-                  Signup
-                </Button>
-              </div>
-            )}
+          <div id="ico">
+            <NavLink to={'/'}>
+              <img
+                id="logo"
+                src={Rectangle_Logo}
+                height="40"
+                alt="piggybank logo"
+              />
+            </NavLink>
           </div>
+          {isLoggedIn ? (
+            <div id="nav-right">
+              <NavLink to={'/budget'}>
+                <Button color="inherit">Budgets</Button>
+              </NavLink>
+              <NavLink to={'/trends'}>
+                <Button color="inherit">Trends</Button>
+              </NavLink>
+              <Button color="inherit" onClick={handleClick}>
+                Logout
+              </Button>
+            </div>
+          ) : (
+            <div id="nav-right">
+              <Button color="inherit" component={Link} to="/login">
+                Login
+              </Button>
+              <Button color="inherit" component={Link} to="/signup">
+                Signup
+              </Button>
+            </div>
+          )}
         </div>
       </Toolbar>
     );

@@ -25,11 +25,3 @@ h4 {
   color: black;
   text-align: center;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-came with create-react-app. replaced with html */ html {
-  font-family: 'Quicksand', sans-serif;
-}
