@@ -7,7 +7,6 @@ export const theme = createMuiTheme({
     secondary: colors.blue,
     textColor: colors.white
   },
-
   status: {
     danger: 'red'
   },
