@@ -19,6 +19,7 @@ import {
   PolarGrid,
   PolarAngleAxis,
   PolarRadiusAxis,
+  LabelList,
 } from 'recharts';
 import {
   categorizeTransactions,
@@ -49,6 +50,20 @@ const styles = theme => ({
     margin: 'auto',
   },
 });
+
+function RenderDollarLabel(props) {
+  return (
+    <text
+      className="recharts-text recharts-pie-label-text"
+      x={props.x}
+      y={props.y}
+      fill={props.fill}
+      textAnchor={props.textAnchor}
+    >
+      <tspan alignmentBaseline="middle">${props.value}</tspan>
+    </text>
+  );
+}
 
 class Trends extends Component {
   constructor() {
@@ -84,7 +99,7 @@ class Trends extends Component {
   }
   render() {
     const { classes } = this.props;
-
+    console.log('transactions are ', this.state.transactions);
     return (
       <div className="App">
         <header className="App-header">
@@ -115,14 +130,14 @@ class Trends extends Component {
                 labelLine={true}
                 outerRadius={150}
                 fill="#8884d8"
-                label
+                label={<RenderDollarLabel />}
               >
                 {this.state.transactions.map((entry, index) => (
                   <Cell fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
               <Legend />
-              <Tooltip />
+              <Tooltip formatter={value => '$' + value} />
             </PieChart>
           </Paper>
 
@@ -138,7 +153,7 @@ class Trends extends Component {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis />
-              <Tooltip />
+              <Tooltip formatter={value => '$' + value} />
               <Legend />
               <ReferenceLine y={0} stroke="#000" />
               <Bar dataKey="value" fill="#82ca9d" cx="50%" cy="50%" />
