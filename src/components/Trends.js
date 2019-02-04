@@ -61,8 +61,6 @@ class Trends extends Component {
       <div className="App">
         <header className="App-header">
           <CategorySpending />
-          <MonthlyTotalChart />
-          <MerchantChart />
         </header>
       </div>
     );

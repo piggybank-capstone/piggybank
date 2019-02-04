@@ -13,7 +13,7 @@ import { MerchantTable, Sidebar } from './index';
 
 const styles = theme => ({
   root: {
-    width: '80%',
+    width: '70%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
     margin: 'auto',
@@ -27,6 +27,7 @@ const styles = theme => ({
   },
   sidebar: {
     flexGrow: 1,
+    width: '30%',
   },
   chart: {
     flexGrow: 1,
