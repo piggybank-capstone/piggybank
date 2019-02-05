@@ -1,9 +1,9 @@
 #header {
   width: 100%;
-  min-height: 350px;
-  background: url('https://images.pexels.com/photos/34577/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')
+  background: url('https://images.unsplash.com/photo-1459257831348-f0cdd359235f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80')
     no-repeat fixed center;
-  background-size: cover;
+  height: 100vw;
+  /*background-size: cover;*/
   letter-spacing: 0.2rem;
   color: #63a4ff;
   font-size: 2em;
