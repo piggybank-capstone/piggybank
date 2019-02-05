@@ -34,6 +34,11 @@ const styles = theme => ({
     width: '100%',
     margin: 'auto',
   },
+  dropDown: {
+    width: '100%',
+    fullWidth: true,
+    textSize: '1em'
+  },
 });
 
 class Transactions extends Component {
@@ -79,7 +84,7 @@ class Transactions extends Component {
           <InputLabel htmlFor="cat">Category</InputLabel>
           <Select
             autoWidth={true}
-            value={this.state.selectedCategeory}
+            value={this.state.selectedCategory}
             onChange={this.handleChange}
             inputProps={{
               name: 'category',
@@ -88,9 +93,9 @@ class Transactions extends Component {
             className={classes.dropDown}
           >
             <MenuItem value='All'>All</MenuItem>
-            {categories.map(categeory => {
+            {categories.map(category => {
               return (
-                <MenuItem value={categeory.name}>{categeory.name}</MenuItem>
+                <MenuItem value={category.name}>{category.name}</MenuItem>
               );
             })}
           </Select>
@@ -107,7 +112,7 @@ class Transactions extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {transactions.map(transaction => (
+              {filteredTransactions.map(transaction => (
                 <TableRow key={transaction.id}>
                   <TableCell component="th" scope="row">
                     {transaction.date}
@@ -131,24 +136,7 @@ class Transactions extends Component {
       return (
         <div id="transactionsTable">
           <h2>Transactions</h2>
-          <InputLabel htmlFor="cat">Category</InputLabel>
-          <Select
-            autoWidth={true}
-            value={this.state.selectedCategeory}
-            onChange={this.handleChange}
-            inputProps={{
-              name: 'category',
-              id: 'cat',
-            }}
-            className={classes.dropDown}
-          >
-          <MenuItem value='All'>All</MenuItem>
-            {categories.map(categeory => {
-              return (
-                <MenuItem value={categeory.name}>{categeory.name}</MenuItem>
-              );
-            })}
-          </Select>
+
           <Paper className={classes.root}>
             <Table className={classes.table}>
               <TableHead>
@@ -159,6 +147,23 @@ class Transactions extends Component {
                   </TableCell>
                   <TableCell width="20%" align="left">
                     Category
+                    <Select
+                      autoWidth={true}
+                      value={this.state.selectedCategory}
+                      onChange={this.handleChange}
+                      inputProps={{
+                        name: 'category',
+                        id: 'cat',
+                      }}
+                      className={classes.dropDown}
+                    >
+                      <MenuItem value='All'>All</MenuItem>
+                      {categories.map(category => {
+                        return (
+                          <MenuItem value={category.name}>{category.name}</MenuItem>
+                        );
+                      })}
+                    </Select>
                   </TableCell>
                   <TableCell width="20%" align="right">
                     Amount
