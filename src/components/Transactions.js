@@ -61,7 +61,7 @@ class Transactions extends Component {
 
   handleChange = event => {
     event.preventDefault();
-    this.setState({ selectedCategeory: event.target.value });
+    this.setState({ selectedCategory: event.target.value });
   };
 
   render() {
