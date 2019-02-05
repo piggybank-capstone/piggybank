@@ -68,22 +68,6 @@ class MerchantTable extends Component {
                 })}
               </TableBody>
             </Table>
-
-            {/* <h3>Your Spending</h3>
-            <Table className={classes.table}>
-              <TableHead>
-                <TableRow>
-                  <TableCell align="center">Merchant</TableCell>
-                  <TableCell align="center">Spending</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell align="center" />
-                  <TableCell align="center" />
-                </TableRow>
-              </TableBody>
-            </Table> */}
           </Paper>
         </header>
       </div>
