@@ -253,8 +253,8 @@ export const sortTransactionsByMonth = transactionsArr => {
   let monthlyTransactions = [];
   let total = 0;
 
-  const date = new Date();
-  const currentMonth = date.getMonth() + 1;
+  const today = new Date('January 05, 2019 00:20:18');
+  const currentMonth = today.getMonth() + 1;
   transactionsArr.forEach(transaction => {
     let month = transaction.date ? Number(transaction.date.slice(5, 7)) : 0;
     if (month === currentMonth) {
@@ -273,8 +273,8 @@ export const sortTransactionsByMonth = transactionsArr => {
 
 export const sortTransactionsByCategory = (category, transactionsArr) => {
   let categoryTransactions = [];
-  const date = new Date();
-  const currentMonth = date.getMonth() + 1;
+  const today = new Date('January 05, 2019 00:20:18');
+  const currentMonth = today.getMonth() + 1;
   let total = 0;
   transactionsArr.forEach(transaction => {
     let month = Number(transaction.date.slice(5, 7));
@@ -319,7 +319,7 @@ export const COLORS = [
 
 
 export const filterTransactionsByCategory = (transactions, category) => {
-  console.log("CATEGORY ALL ==="+ category)
+  console.log("CATEGORY ALL ===" + category)
   if (category === 'All') {
 
     return transactions;
