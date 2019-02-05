@@ -44,6 +44,14 @@ const styles = theme => ({
   },
 });
 
+function CustomizedYAxisTick(props) {
+  return (
+    <text x={props.x} y={props.y} textAnchor={props.textAnchor}>
+      ${props.payload.value}
+    </text>
+  );
+}
+
 class MonthlyTotalChart extends Component {
   constructor() {
     super();
@@ -81,7 +89,6 @@ class MonthlyTotalChart extends Component {
 
     return (
       <div className={classes.container}>
-
         <Sidebar className={classes.sidebar} />
         <div className={classes.chart}>
           <Paper className={classes.root}>
@@ -91,15 +98,21 @@ class MonthlyTotalChart extends Component {
               width={600}
               height={300}
               data={this.state.monthlyTotals}
-              margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+              margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
             >
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
-              <YAxis />
+              <YAxis dataKey="value" tick={<CustomizedYAxisTick />} />
               <Tooltip />
-              <Legend />
+              <Legend wrapperStyle={{ bottom: 0 }} />
               <ReferenceLine y={0} stroke="#000" />
-              <Bar dataKey="value" fill="#82ca9d" cx="50%" cy="50%" />
+              <Bar
+                name="Month"
+                dataKey="value"
+                fill="#82ca9d"
+                cx="50%"
+                cy="50%"
+              />
             </BarChart>
           </Paper>
         </div>
