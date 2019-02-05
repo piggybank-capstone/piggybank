@@ -22,7 +22,7 @@ import Piggybot from './Piggybot';
 
 const styles = theme => ({
   root: {
-    width: '70%',
+    width: '80%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
     margin: 'auto'
@@ -152,7 +152,7 @@ const mapStateToProps = state => {
   return {
     accounts: accounts.accounts,
     transactions,
-    budgets: budgetList,
+    budgets: budgetList
   };
 };
 

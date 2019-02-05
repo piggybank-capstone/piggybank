@@ -6,7 +6,8 @@ import { withStyles } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Emoji from 'react-emoji-render';
-
+import DeleteIcon from '@material-ui/icons/Delete';
+import Fab from '@material-ui/core/Fab';
 import { Button } from '@material-ui/core';
 import BudgetProgressBar from './BudgetProgressBar';
 
@@ -30,6 +31,9 @@ const styles = theme => ({
   },
   emojiStyle: {
     fontSize: '1.5rem'
+  },
+  fab: {
+    margin: theme.spacing.unit
   }
 });
 
@@ -61,14 +65,16 @@ const SingleBudget = props => {
         <BudgetProgressBar budget={budget.amount} spent={spent} />
       </TableCell>
       <TableCell>
-        <Button
+        <Fab
+          aria-label="Delete"
+          className={classes.fab}
           align="center"
           onClick={id => {
             removeBudget(budget.id);
           }}
         >
-          Remove
-        </Button>
+          <DeleteIcon />
+        </Fab>
       </TableCell>
     </TableRow>
   );

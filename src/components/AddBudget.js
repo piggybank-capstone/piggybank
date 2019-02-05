@@ -6,7 +6,7 @@ import {
   getBudgets,
   removeBudget,
   getCategories,
-  createOrUpdateBudget,
+  createOrUpdateBudget
 } from '../store/budget';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -21,36 +21,39 @@ import FormControl from '@material-ui/core/FormControl';
 const styles = theme => ({
   root: {
     width: '60%',
+    [theme.breakpoints.down(650 + theme.spacing.unit * 3 * 2)]: {
+      width: '90%'
+    },
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
-    margin: 'auto',
+    margin: 'auto'
   },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    marginTop: theme.spacing.unit,
+    marginTop: theme.spacing.unit
   },
   dropDown: {
     width: '100%',
     marginTop: theme.spacing.unit,
     display: 'flex',
-    fullWidth: true,
+    fullWidth: true
   },
   formStyle: {
-    alignItems: 'flex-start',
+    alignItems: 'flex-start'
   },
   formControl: {
     margin: 0,
     fullWidth: true,
-    display: 'flex',
-  },
+    display: 'flex'
+  }
 });
 
 class AddBudget extends Component {
   constructor() {
     super();
     this.state = {
-      categeory: '',
+      categeory: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.createBudget = this.createBudget.bind(this);
@@ -90,7 +93,7 @@ class AddBudget extends Component {
                   onChange={this.handleChange}
                   inputProps={{
                     name: 'category',
-                    id: 'cat',
+                    id: 'cat'
                   }}
                   className={classes.dropDown}
                 >
@@ -131,7 +134,7 @@ const mapStateToProps = state => {
     accounts: accounts.accounts,
     transactions,
     budgets: budgetList,
-    categories,
+    categories
   };
 };
 
@@ -140,7 +143,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   createBudget: budget => {
     dispatch(createOrUpdateBudget(budget));
     ownProps.history.push('./budget');
-  },
+  }
 });
 
 export default withRouter(
