@@ -38,9 +38,14 @@ const styles = theme => ({
     [theme.breakpoints.down('sm')]: {
       width: '80%',
       marginLeft: 'auto',
-      marginRight: 'auto'
+      marginRight: 'auto',
     },
-    backgroundColor: 'transparent'
+    [theme.breakpoints.down('sm')]: {
+      width: '80%',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+    backgroundColor: 'transparent',
   },
   paper: {
     marginTop: theme.spacing.unit * 8,
@@ -48,18 +53,18 @@ const styles = theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme
-      .spacing.unit * 3}px`
+      .spacing.unit * 3}px`,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing.unit
+    marginTop: theme.spacing.unit,
   },
   submit: {
     marginTop: theme.spacing.unit * 3,
     // backgroundColor: 'green'
     float: 'left',
-    padding: '.7em 1.5em'
-  }
+    padding: '.7em 1.5em',
+  },
 });
 
 const AuthForm = props => {
@@ -141,7 +146,7 @@ const mapLogin = state => {
   return {
     name: 'login',
     displayName: 'Login',
-    error: state.user.error
+    error: state.user.error,
   };
 };
 
@@ -149,7 +154,7 @@ const mapSignup = state => {
   return {
     name: 'signup',
     displayName: 'Sign Up',
-    error: state.user.error
+    error: state.user.error,
   };
 };
 
@@ -167,7 +172,7 @@ const mapDispatch = dispatch => {
       } else {
         dispatch(auth(email, password, formName));
       }
-    }
+    },
   };
 };
 
@@ -187,5 +192,5 @@ AuthForm.propTypes = {
   name: PropTypes.string.isRequired,
   displayName: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
-  error: PropTypes.object
+  error: PropTypes.object,
 };
