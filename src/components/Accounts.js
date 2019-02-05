@@ -67,8 +67,8 @@ class Accounts extends Component {
           <h2>Accounts</h2>
           <Table className={classes.table}>
             <TableHead>
-              <TableCell align="left">Official Name</TableCell>
-              <TableCell align="right">Current Balance</TableCell>
+              <TableCell align="left"><h3>Official Name</h3></TableCell>
+              <TableCell align="right"><h3>Current Balance</h3></TableCell>
             </TableHead>
             <TableBody>
               {accounts.map(account => {
@@ -95,11 +95,11 @@ class Accounts extends Component {
           <Paper className={classes.root}>
             <Table className={classes.table}>
               <TableHead>
-                <TableCell>Account</TableCell>
-                <TableCell align="left">Official Name</TableCell>
-                <TableCell align="left">Type</TableCell>
-                <TableCell align="right">Available Balance</TableCell>
-                <TableCell align="right">Current Balance</TableCell>
+                <TableCell><h3>Account</h3></TableCell>
+                <TableCell align="left"><h3>Official Name</h3></TableCell>
+                <TableCell align="left"><h3>Type</h3></TableCell>
+                <TableCell align="right"><h3>Available Balance</h3></TableCell>
+                <TableCell align="right"><h3>Current Balance</h3></TableCell>
               </TableHead>
               <TableBody>
                 {accounts.map(account => {
