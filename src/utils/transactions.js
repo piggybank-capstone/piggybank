@@ -10,7 +10,7 @@ export const months = [
   ['September', '09'],
   ['October', '10'],
   ['November', '11'],
-  ['December', '12'],
+  ['December', '12']
 ];
 
 const month = [
@@ -25,7 +25,7 @@ const month = [
   'September',
   'October',
   'November',
-  'December',
+  'December'
 ];
 
 // function takes in an array of transactions and outputs
@@ -93,6 +93,45 @@ export const categorizeTransactionsByMerchant = transactionsArr => {
   let finalData = [];
   let filtered = transactionsArr.filter(
     elem =>
+      elem.category &&
+      elem.category[0] !== 'Payment' &&
+      elem.category &&
+      elem.category[0] !== 'Transfer'
+  );
+  filtered.forEach(transaction => {
+    if (data[transaction.name]) {
+      data[transaction.name] += Math.round(transaction.amount);
+    } else {
+      let included = false;
+      const partialName = transaction.name.slice(0, 4);
+      for (let key in data) {
+        if (key.includes(partialName)) {
+          data[key] += Math.round(transaction.amount);
+          included = true;
+        }
+      }
+      if (!included) {
+        data[transaction.name] = Math.round(transaction.amount);
+      }
+    }
+  });
+  for (let key in data) {
+    if (data.hasOwnProperty(key)) {
+      finalData.push({ name: key, value: data[key] });
+    }
+  }
+  return finalData;
+};
+
+export const categorizeTransactionsByMerchantByMonth = (
+  transactionsArr,
+  month
+) => {
+  let data = {};
+  let finalData = [];
+  let filtered = transactionsArr.filter(
+    elem =>
+      Number(elem.date.slice(5, 7)) === month &&
       elem.category &&
       elem.category[0] !== 'Payment' &&
       elem.category &&
@@ -193,7 +232,7 @@ export const spendingByMonth = transactionsArr => {
     September: 0,
     October: 0,
     November: 0,
-    December: 0,
+    December: 0
   };
 
   transactionsArr.forEach(item => {
@@ -226,7 +265,7 @@ export const sortTransactionsByMonth = transactionsArr => {
 
   const monthlyBudget = {
     transactions: monthlyTransactions,
-    total,
+    total
   };
 
   return monthlyBudget;
@@ -247,7 +286,7 @@ export const sortTransactionsByCategory = (category, transactionsArr) => {
 
   const monthlyBudget = {
     transactions: categorizeTransactions,
-    totalSpent: total,
+    totalSpent: total
   };
 
   return monthlyBudget;
@@ -275,5 +314,5 @@ export const COLORS = [
   '#D81E5B',
   '#F0544F',
   '#C6D8D3',
-  '#FDF0D5',
+  '#FDF0D5'
 ];

@@ -3,9 +3,10 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../App.css';
 import {
-  categorizeTransactionsByMerchant,
+  categorizeTransactionsByMerchantByMonth,
   maxMerchant,
   countMerchant,
+  categorizeTransactionsByMerchant
 } from '../utils/transactions';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core';
@@ -21,22 +22,28 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     marginBottom: theme.spacing.unit * 3,
     overflowX: 'auto',
-    margin: 'auto',
+    margin: 'auto'
   },
   table: {
     width: '100%',
-    margin: 'auto',
-  },
+    margin: 'auto'
+  }
 });
 
 class MerchantTable extends Component {
   render() {
-    const { classes } = this.props;
-    let transactions = !this.props.transactions
-      ? null
-      : categorizeTransactionsByMerchant(this.props.transactions);
-    let maxMerchants = maxMerchant(transactions);
-    let mostTrans = countMerchant(this.props.transactions);
+    const { classes, month, transactions } = this.props;
+    let categorized;
+    if (month) {
+      categorized = categorizeTransactionsByMerchantByMonth(
+        transactions,
+        month
+      );
+    } else {
+      categorized = categorizeTransactionsByMerchant(transactions);
+    }
+    let maxMerchants = maxMerchant(categorized);
+    let mostTrans = countMerchant(transactions);
     return (
       <div className="App">
         <header className="App-header">
@@ -95,7 +102,7 @@ const mapStateToProps = state => {
   const { accounts, transactions } = state;
   return {
     accounts: accounts.accounts,
-    transactions,
+    transactions
   };
 };
 
