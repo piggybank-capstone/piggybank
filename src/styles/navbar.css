@@ -32,7 +32,7 @@ a:visited {
   align-items: center;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
   #ico {
     display: flex;
     align-self: center;
@@ -53,13 +53,13 @@ a:visited {
     width: 100vw;
     justify-content: center;
   }
-
   #nav-right {
     display: flex;
     justify-content: center;
+    flex-direction: column;
   }
   button {
-    height: 1px;
+    width: 90vw;
   }
 }
 
