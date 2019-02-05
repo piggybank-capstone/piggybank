@@ -277,3 +277,19 @@ export const COLORS = [
   '#C6D8D3',
   '#FDF0D5',
 ];
+
+
+export const filterTransactionsByCategory = (transactions, category) => {
+  console.log("CATEGORY ALL ==="+ category)
+  if (category === 'All') {
+
+    return transactions;
+
+  } else {
+
+    return transactions.filter(transaction => transaction.category[0] === category)
+
+  }
+
+
+}
