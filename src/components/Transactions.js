@@ -39,6 +39,12 @@ const styles = theme => ({
     fullWidth: true,
     textSize: '1em'
   },
+  dropDownMobile: {
+    width: '100%',
+    fullWidth: true,
+    textSize: '1em',
+    padding: '.5em'
+  },
 });
 
 class Transactions extends Component {
@@ -90,7 +96,7 @@ class Transactions extends Component {
               name: 'category',
               id: 'cat',
             }}
-            className={classes.dropDown}
+            className={classes.dropDownMobile}
           >
             <MenuItem value='All'>All</MenuItem>
             {categories.map(category => {
@@ -102,12 +108,12 @@ class Transactions extends Component {
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
-                <TableCell width="20%">Date</TableCell>
+                <TableCell width="20%" align="left"><h3>Date</h3></TableCell>
                 <TableCell width="50%" align="left">
-                  Name
+                  <h3>Name</h3>
                 </TableCell>
                 <TableCell width="30%" align="right">
-                  Amount
+                  <h3>Amount</h3>
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -141,12 +147,12 @@ class Transactions extends Component {
             <Table className={classes.table}>
               <TableHead>
                 <TableRow>
-                  <TableCell width="20%">Date</TableCell>
+                  <TableCell width="20%" align="left"><h3>Date</h3></TableCell>
                   <TableCell width="40%" align="left">
-                    Name
+                    <h3>Name</h3>
                   </TableCell>
                   <TableCell width="20%" align="left">
-                    Category
+                    <h3>Category</h3>
                     <Select
                       autoWidth={true}
                       value={this.state.selectedCategory}
@@ -166,7 +172,7 @@ class Transactions extends Component {
                     </Select>
                   </TableCell>
                   <TableCell width="20%" align="right">
-                    Amount
+                    <h3>Amount</h3>
                   </TableCell>
                 </TableRow>
               </TableHead>
