@@ -33,11 +33,6 @@ const styles = theme => ({
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
       width: '60%',
       marginLeft: 'auto',
-      marginRight: 'auto'
-    },
-    [theme.breakpoints.down('sm')]: {
-      width: '80%',
-      marginLeft: 'auto',
       marginRight: 'auto',
     },
     [theme.breakpoints.down('sm')]: {

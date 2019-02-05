@@ -21,20 +21,20 @@ const styles = theme => ({
       width: '100%',
       height: 10,
       marginLeft: 'auto',
-      marginRight: 'auto'
-    }
+      marginRight: 'auto',
+    },
   },
   table: {
     width: '100%',
-    margin: 'auto'
-  }
+    margin: 'auto',
+  },
 });
 
 class Transactions extends Component {
   constructor() {
     super();
     this.state = {
-      width: window.innerWidth
+      width: window.innerWidth,
     };
   }
 
@@ -143,14 +143,14 @@ class Transactions extends Component {
 }
 
 Transactions.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 const WrappedTransactions = withStyles(styles)(Transactions);
 
 const mapState = state => {
   return {
-    transactions: state.transactions
+    transactions: state.transactions,
   };
 };
 

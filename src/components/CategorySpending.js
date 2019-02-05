@@ -13,6 +13,7 @@ import {
   PolarGrid,
   PolarAngleAxis,
   PolarRadiusAxis,
+  ResponsiveContainer,
 } from 'recharts';
 import {
   categorizeTransactions,
@@ -33,6 +34,13 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
     margin: 'auto',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      flexDirection: 'column',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      width: '100%',
+    },
   },
   table: {
     width: '100%',
@@ -40,6 +48,13 @@ const styles = theme => ({
   },
   container: {
     display: 'flex',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      flexDirection: 'column',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      width: '100vw',
+    },
   },
   sidebar: {
     flexGrow: 1,
@@ -50,8 +65,8 @@ const styles = theme => ({
   },
   formControl: {
     minWidth: 180,
-    margin: theme.spacing.unit * 4
-  }
+    margin: theme.spacing.unit * 4,
+  },
 });
 
 function RenderDollarLabel(props) {
@@ -74,7 +89,7 @@ class CategoryPieChart extends Component {
     this.state = {
       transactions: [],
       monthlyTotals: [],
-      selectedMonth: 0
+      selectedMonth: 0,
     };
     this.handleMonth = this.handleMonth.bind(this);
   }
@@ -91,7 +106,7 @@ class CategoryPieChart extends Component {
       );
       this.setState({
         transactions: filteredTransactions,
-        selectedMonth: event.target.value
+        selectedMonth: event.target.value,
       });
     }
   }
@@ -108,13 +123,15 @@ class CategoryPieChart extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.container}>
-
         <Sidebar className={classes.sidebar} />
         <div className={classes.chart}>
           <Paper className={classes.root}>
             <FormControl className={classes.formControl}>
               <InputLabel>Month</InputLabel>
-              <Select onChange={this.handleMonth} value={this.state.selectedMonth}>
+              <Select
+                onChange={this.handleMonth}
+                value={this.state.selectedMonth}
+              >
                 <MenuItem value={0}>All</MenuItem>
                 <MenuItem value={1}>January</MenuItem>
                 <MenuItem value={7}>July</MenuItem>
@@ -126,28 +143,30 @@ class CategoryPieChart extends Component {
               </Select>
             </FormControl>
             <h3>Spending by Category</h3>
-            <PieChart
-              className={classes.table}
-              width={700}
-              height={400}
-              onMouseEnter={this.onPieEnter}
-            >
-              <Pie
-                data={this.state.transactions}
-                cx="50%"
-                cy="50%"
-                labelLine={true}
-                outerRadius={150}
-                fill="#8884d8"
-                label={<RenderDollarLabel />}
+            <ResponsiveContainer width="99%" height={400}>
+              <PieChart
+                className={classes.table}
+                // width={700}
+                // height={350}
+                onMouseEnter={this.onPieEnter}
               >
-                {this.state.transactions.map((entry, index) => (
-                  <Cell fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Pie>
-              <Legend />
-              <Tooltip />
-            </PieChart>
+                <Pie
+                  data={this.state.transactions}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={true}
+                  outerRadius="95%"
+                  fill="#8884d8"
+                  label={<RenderDollarLabel />}
+                >
+                  {this.state.transactions.map((entry, index) => (
+                    <Cell fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
+                <Legend />
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
           </Paper>
           <Paper className={classes.root}>
             <h3>Spending by Category</h3>
