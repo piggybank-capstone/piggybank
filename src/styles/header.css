@@ -14,6 +14,10 @@
   align-items: center;
 }
 
+#title {
+  height: 50%;
+}
+
 @media only screen and (max-width: 600px) {
   #header {
     display: flex;

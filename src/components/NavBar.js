@@ -1,28 +1,10 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import { logout } from '../store';
 import { NavLink, Link } from 'react-router-dom';
 import Rectangle_Logo from '../styles/Rectangle_Logo.png';
-// import { withStyles } from '@material-ui/core/styles';
-// import  from '@material-ui/core/colors';
-
-// const styles = theme => ({
-//   root: {
-//     padding: theme.spacing.unit,
-//     [theme.breakpoints.down('sm')]: {
-//       backgroundColor: 'green'
-//     },
-//     [theme.breakpoints.down('xs')]: {
-//       backgroundColor: 'blue'
-//     },
-//     [theme.breakpoints.up('lg')]: {
-//       backgroundColor: theme.palette.secondary.main
-//     }
-//   }
-// });
 
 class NavBar extends Component {
   render() {
@@ -69,16 +51,14 @@ class NavBar extends Component {
 }
 
 const mapState = state => ({
-  isLoggedIn: !!state.user.id
+  isLoggedIn: !!state.user.id,
 });
 
 const mapDispatch = dispatch => ({
   handleClick() {
     dispatch(logout());
-  }
+  },
 });
-
-// const WrappedNavBar = withStyles(styles)(NavBar);
 
 export default connect(
   mapState,
