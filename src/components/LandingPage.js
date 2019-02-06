@@ -44,6 +44,11 @@ const styles = theme => ({
   smallSpace: {
     paddingTop: '3em',
   },
+  smallImg: {
+    textAlign: 'center',
+    color: theme.palette.text.primary,
+    width: '60%',
+  },
 });
 
 const LandingPage = props => {
@@ -70,11 +75,10 @@ const LandingPage = props => {
             <CardActionArea>
               <CardMedia
                 component="img"
-                alt="Contemplative Reptile"
+                alt="pie chart"
                 className={classes.media}
                 height="140"
                 image={pie}
-                title="Contemplative Reptile"
               />
               <CardContent>
                 <h3>visualize your spending habits.</h3>
@@ -87,11 +91,10 @@ const LandingPage = props => {
             <CardActionArea>
               <CardMedia
                 component="img"
-                alt="Contemplative Reptile"
+                alt="pig icon"
                 className={classes.media}
                 height="140"
                 image={pig}
-                title="Contemplative Reptile"
               />
               <CardContent>
                 <h3>set goals with the help of piggybot!</h3>
@@ -104,11 +107,10 @@ const LandingPage = props => {
             <CardActionArea>
               <CardMedia
                 component="img"
-                alt="Contemplative Reptile"
+                alt="progress bars"
                 className={classes.media}
                 height="140"
                 image={progress}
-                title="Contemplative Reptile"
               />
               <CardContent>
                 <h3>see progress on your budgets.</h3>
@@ -122,8 +124,26 @@ const LandingPage = props => {
           <div className={classes.smallSpace} />
         </Grid>
         <Grid item xs={12}>
+          <div className={classes.center}>
+            <h1>save anywhere</h1>
+            <h2>track your progress on multiple devices.</h2>
+          </div>
+        </Grid>
+        <Grid item xs={12}>
           <div>
-            <img src={responsive} alt="responsive site" />
+            <img
+              className={classes.smallImg}
+              src={responsive}
+              alt="responsive site"
+            />
+          </div>
+        </Grid>
+        <Grid item xs={12}>
+          <div>
+            <p>
+              created by: Katie Westbrook, Marie Carter, Rebecca Chan and Sara
+              Yoon
+            </p>
           </div>
         </Grid>
       </Grid>
