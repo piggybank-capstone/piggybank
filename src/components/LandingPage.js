@@ -44,6 +44,11 @@ const styles = theme => ({
   smallSpace: {
     paddingTop: '3em',
   },
+  smallImg: {
+    textAlign: 'center',
+    color: theme.palette.text.primary,
+    width: '60%',
+  },
 });
 
 const LandingPage = props => {
@@ -127,7 +132,7 @@ const LandingPage = props => {
         <Grid item xs={12}>
           <div>
             <img
-              className={classes.mainImage}
+              className={classes.smallImg}
               src={responsive}
               alt="responsive site"
             />
