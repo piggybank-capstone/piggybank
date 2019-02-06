@@ -61,8 +61,8 @@ const styles = theme => ({
     width: '30%'
   },
   chart: {
-    flexGrow: 1,
-    margin: 'auto'
+    flexGrow: 1
+    // margin: 'auto'
   },
   formControl: {
     minWidth: 180,
@@ -156,7 +156,7 @@ class CategoryPieChart extends Component {
                   cx="50%"
                   cy="50%"
                   labelLine={true}
-                  outerRadius="95%"
+                  outerRadius="70%"
                   fill="#8884d8"
                   label={<RenderDollarLabel />}
                 >
@@ -165,32 +165,32 @@ class CategoryPieChart extends Component {
                   ))}
                 </Pie>
                 <Legend />
-                <Tooltip />
+                <Tooltip formatter={value => '$' + value.toFixed(2)} />
               </PieChart>
             </ResponsiveContainer>
           </Paper>
           <Paper className={classes.root}>
             <h3>Spending by Category</h3>
-            <RadarChart
-              className={classes.root}
-              cx={300}
-              cy={250}
-              outerRadius={150}
-              width={600}
-              height={500}
-              data={this.state.transactions}
-            >
-              <PolarGrid />
-              <PolarAngleAxis dataKey="name" />
-              <PolarRadiusAxis />
-              <Radar
-                className={classes.table}
-                dataKey="value"
-                stroke="#8884d8"
-                fill="#8884d8"
-                fillOpacity={0.6}
-              />
-            </RadarChart>
+            <ResponsiveContainer width="99%" height={400}>
+              <RadarChart
+                className={classes.root}
+                cx="50%"
+                cy="50%"
+                outerRadius="70%"
+                data={this.state.transactions}
+              >
+                <PolarGrid />
+                <PolarAngleAxis dataKey="name" />
+                <PolarRadiusAxis />
+                <Radar
+                  className={classes.table}
+                  dataKey="value"
+                  stroke="#8884d8"
+                  fill="#8884d8"
+                  fillOpacity={0.6}
+                />
+              </RadarChart>
+            </ResponsiveContainer>
           </Paper>
         </div>
       </div>

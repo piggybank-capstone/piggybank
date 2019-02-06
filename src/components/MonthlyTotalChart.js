@@ -10,7 +10,8 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip
+  Tooltip,
+  ResponsiveContainer
 } from 'recharts';
 import {
   categorizeTransactions,
@@ -107,27 +108,29 @@ class MonthlyTotalChart extends Component {
         <div className={classes.chart}>
           <Paper className={classes.root}>
             <h3>Total Spending Over Time</h3>
-            <BarChart
-              className={classes.table}
-              width={600}
-              height={300}
-              data={this.state.monthlyTotals}
-              margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis dataKey="value" tick={<CustomizedYAxisTick />} />
-              <Tooltip />
-              <Legend wrapperStyle={{ bottom: 0 }} />
-              <ReferenceLine y={0} stroke="#000" />
-              <Bar
-                name="Month"
-                dataKey="value"
-                fill="#82ca9d"
-                cx="50%"
-                cy="50%"
-              />
-            </BarChart>
+            <ResponsiveContainer width="99%" height={350}>
+              <BarChart
+                className={classes.table}
+                // width={600}
+                // height={300}
+                data={this.state.monthlyTotals}
+                margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis dataKey="value" tick={<CustomizedYAxisTick />} />
+                <Tooltip formatter={value => '$' + value} />
+                <Legend wrapperStyle={{ bottom: 0 }} />
+                <ReferenceLine y={0} stroke="#000" />
+                <Bar
+                  name="Month"
+                  dataKey="value"
+                  fill="#82ca9d"
+                  cx="50%"
+                  cy="50%"
+                />
+              </BarChart>
+            </ResponsiveContainer>
           </Paper>
         </div>
       </div>
