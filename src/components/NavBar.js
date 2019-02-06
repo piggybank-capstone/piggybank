@@ -24,12 +24,12 @@ class NavBar extends Component {
           </div>
           {isLoggedIn ? (
             <div id="nav-right">
-              <NavLink to={'/budget'}>
-                <Button color="inherit">Budgets</Button>
-              </NavLink>
-              <NavLink to={'/trends'}>
-                <Button color="inherit">Trends</Button>
-              </NavLink>
+              <Button color="inherit" component={Link} to="/budget">
+                Budgets
+              </Button>
+              <Button color="inherit" component={Link} to="/trends">
+                Trends
+              </Button>
               <Button color="inherit" onClick={handleClick}>
                 Logout
               </Button>

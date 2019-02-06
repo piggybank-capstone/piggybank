@@ -11,6 +11,10 @@ main {
   text-align: center;
 }
 
+#plaid-button {
+  width: 80vw;
+}
+
 .form-error {
   color: red;
 }
