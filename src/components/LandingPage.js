@@ -19,10 +19,10 @@ const styles = theme => ({
   mainImage: {
     textAlign: 'center',
     color: theme.palette.text.primary,
-    width: '30%',
+    width: '25%',
   },
   card: {
-    maxWidth: 200,
+    width: '70%',
     margin: 'auto',
   },
   media: {
@@ -31,12 +31,14 @@ const styles = theme => ({
   },
   center: {
     margin: 'auto',
+    paddingTop: '5em',
+    paddingBottom: '5em',
   },
   title: {
     margin: 0,
   },
   spacing: {
-    paddingTop: '5em',
+    paddingTop: '7em',
   },
 });
 
@@ -52,12 +54,12 @@ const LandingPage = props => {
           <img src={money} className={classes.mainImage} alt="money icons" />
         </Grid>
         <Grid item xs={12}>
-          <h1 className={classes.title}>we make saving fun.</h1>
+          <h1 className={classes.title}>we make saving fun</h1>
         </Grid>
         <Grid item xs={10} className={classes.center}>
           <hr />
         </Grid>
-        <Grid item xs={4} className={classes.center}>
+        <Grid item xs={4}>
           <Card className={classes.card}>
             <CardActionArea>
               <CardMedia
