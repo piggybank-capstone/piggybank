@@ -13,15 +13,24 @@ const styles = theme => ({
   root: {
     width: '100%',
     [theme.breakpoints.down('sm')]: {
-      width: '90%'
+      width: '90%',
     },
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
-    margin: 'auto'
+    margin: 'auto',
   },
   table: {
     width: '100%',
     margin: 'auto'
+  },
+  tableHeader: {
+    fontSize: '1.5em',
+    textAlign: 'center'
+  },
+  tableCell: {
+    fontSize: '1em',
+    height: '50px',
+    textAlign: 'center'
   }
 });
 
@@ -29,30 +38,30 @@ class Sidebar extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div id="sidebar">
+      <div className="sidebar">
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
-              <TableCell align="left">Chart Types</TableCell>
+              <TableCell className={classes.tableHeader}>Chart Types</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell>
+            <TableRow hover>
+              <TableCell className={classes.tableCell}>
                 <NavLink to="/trends/category-spending">
                   Spending by Category
                 </NavLink>
               </TableCell>
             </TableRow>
-            <TableRow>
-              <TableCell>
+            <TableRow hover>
+              <TableCell className={classes.tableCell}>
                 <NavLink to="/trends/monthly-totals">
                   Total Monthly Spending
                 </NavLink>
               </TableCell>
             </TableRow>
-            <TableRow>
-              <TableCell>
+            <TableRow hover>
+              <TableCell className={classes.tableCell}>
                 <NavLink to="/trends/category-merchant">
                   Spending by Merchant
                 </NavLink>
@@ -69,7 +78,7 @@ const mapStateToProps = state => {
   const { accounts, transactions } = state;
   return {
     accounts: accounts.accounts,
-    transactions
+    transactions,
   };
 };
 

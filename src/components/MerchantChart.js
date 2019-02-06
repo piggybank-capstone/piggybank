@@ -8,13 +8,13 @@ import {
   Cell,
   Legend,
   Tooltip,
-  ResponsiveContainer
+  ResponsiveContainer,
 } from 'recharts';
 import {
   COLORS,
   categorizeTransactionsByMerchant,
   categorizeTransactionsByMerchantByMonth,
-  spendingByMonth
+  spendingByMonth,
 } from '../utils/transactions';
 import Paper from '@material-ui/core/Paper';
 import { withStyles, InputLabel } from '@material-ui/core';
@@ -34,34 +34,31 @@ const styles = theme => ({
       flexDirection: 'column',
       marginLeft: 'auto',
       marginRight: 'auto',
-      width: '100%'
-    }
+      width: '100%',
+    },
   },
   table: {
     width: '100%',
-    margin: 'auto'
+    margin: 'auto',
   },
   container: {
     display: 'flex',
+    // width: '80vw',
     [theme.breakpoints.down('sm')]: {
       display: 'flex',
       flexDirection: 'column',
       marginLeft: 'auto',
       marginRight: 'auto',
-      width: '100vw'
-    }
-  },
-  sidebar: {
-    flexGrow: 1,
-    width: '30%'
+      width: '100vw',
+    },
   },
   chart: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   formControl: {
     minWidth: 180,
-    margin: theme.spacing.unit * 4
-  }
+    margin: theme.spacing.unit * 4,
+  },
 });
 
 function RenderDollarLabel(props) {
@@ -84,7 +81,7 @@ class MerchantChart extends Component {
     this.state = {
       transactions: [],
       monthlyTotals: [],
-      selectedMonth: 0
+      selectedMonth: 0,
     };
   }
 
@@ -100,7 +97,7 @@ class MerchantChart extends Component {
       );
       this.setState({
         transactions: filteredTransactions,
-        selectedMonth: event.target.value
+        selectedMonth: event.target.value,
       });
     }
   };
@@ -152,7 +149,7 @@ class MerchantChart extends Component {
                   cx="50%"
                   cy="50%"
                   labelLine={true}
-                  outerRadius="65%"
+                  outerRadius="70%"
                   fill="#8884d8"
                   label={<RenderDollarLabel />}
                 >
@@ -167,7 +164,7 @@ class MerchantChart extends Component {
           </Paper>
 
           <MerchantTable
-            className={classes.root}
+            // className={classes.root}
             transactions={this.state.transactions}
             month={this.state.selectedMonth}
           />
@@ -181,7 +178,7 @@ const mapStateToProps = state => {
   const { accounts, transactions } = state;
   return {
     accounts: accounts.accounts,
-    transactions
+    transactions,
   };
 };
 
