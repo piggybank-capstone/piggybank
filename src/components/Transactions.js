@@ -13,9 +13,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { getCategories } from '../store/budget';
-import { filterTransactionsByCategory } from '../utils/transactions.js'
-
-
+import { filterTransactionsByCategory } from '../utils/transactions.js';
+import { blue } from '@material-ui/core/colors';
 
 const styles = theme => ({
   root: {
@@ -27,12 +26,16 @@ const styles = theme => ({
       width: '100%',
       height: 10,
       marginLeft: 'auto',
-      marginRight: 'auto',
-    },
+      marginRight: 'auto'
+    }
   },
   table: {
     width: '100%',
     margin: 'auto',
+    stripedRows: true
+  },
+  body: {
+    stripedRows: true
   },
   dropDown: {
     width: '100%',
@@ -45,6 +48,10 @@ const styles = theme => ({
     textSize: '1em',
     padding: '.5em'
   },
+  tableCell: {
+    fontSize: '1em',
+    color: 'black'
+  }
 });
 
 class Transactions extends Component {
@@ -52,7 +59,7 @@ class Transactions extends Component {
     super();
     this.state = {
       width: window.innerWidth,
-      selectedCategory: 'All',
+      selectedCategory: 'All'
     };
   }
 
@@ -69,7 +76,6 @@ class Transactions extends Component {
     this.setState({ width: window.innerWidth });
   };
 
-
   handleChange = event => {
     event.preventDefault();
     this.setState({ selectedCategory: event.target.value });
@@ -77,10 +83,12 @@ class Transactions extends Component {
 
   render() {
     const { classes, transactions, categories } = this.props;
-    const filteredTransactions = filterTransactionsByCategory(transactions, this.state.selectedCategory);
+    const filteredTransactions = filterTransactionsByCategory(
+      transactions,
+      this.state.selectedCategory
+    );
     const { width } = this.state;
     const isMobile = width <= 700;
-
 
     if (isMobile) {
       return (
@@ -93,30 +101,42 @@ class Transactions extends Component {
             onChange={this.handleChange}
             inputProps={{
               name: 'category',
-              id: 'cat',
+              id: 'cat'
             }}
             className={classes.dropDownMobile}
           >
-            <MenuItem value='All'>All</MenuItem>
+            <MenuItem value="All">All</MenuItem>
             {categories.map(category => {
-              return (
-                <MenuItem value={category.name}>{category.name}</MenuItem>
-              );
+              return <MenuItem value={category.name}>{category.name}</MenuItem>;
             })}
           </Select>
           <Table className={classes.table}>
-            <TableHead>
+            <TableHead className={classes.head}>
               <TableRow>
-                <TableCell width="20%" align="left"><h3>Date</h3></TableCell>
-                <TableCell width="50%" align="left">
+                <TableCell
+                  width="20%"
+                  align="left"
+                  className={classes.tableCell}
+                >
+                  <h3>Date</h3>
+                </TableCell>
+                <TableCell
+                  width="50%"
+                  align="left"
+                  className={classes.tableCell}
+                >
                   <h3>Name</h3>
                 </TableCell>
-                <TableCell width="30%" align="right">
+                <TableCell
+                  width="30%"
+                  align="right"
+                  className={classes.tableCell}
+                >
                   <h3>Amount</h3>
                 </TableCell>
               </TableRow>
             </TableHead>
-            <TableBody>
+            <TableBody stripedRows={true}>
               {filteredTransactions.map(transaction => (
                 <TableRow key={transaction.id}>
                   <TableCell component="th" scope="row">
@@ -127,8 +147,8 @@ class Transactions extends Component {
                     $
                     {transaction.amount
                       ? transaction.amount
-                        .toFixed(2)
-                        .replace(/\d(?=(\d{3})+\.)/g, '$&,')
+                          .toFixed(2)
+                          .replace(/\d(?=(\d{3})+\.)/g, '$&,')
                       : null}
                   </TableCell>
                 </TableRow>
@@ -144,38 +164,57 @@ class Transactions extends Component {
 
           <Paper className={classes.root}>
             <Table className={classes.table}>
-              <TableHead>
+              <TableHead className={classes.head}>
                 <TableRow>
-                  <TableCell width="20%" align="left"><h3>Date</h3></TableCell>
-                  <TableCell width="40%" align="left">
-                    <h3>Name</h3>
+                  <TableCell
+                    width="20%"
+                    align="left"
+                    className={classes.tableCell}
+                  >
+                    Date
                   </TableCell>
-                  <TableCell width="20%" align="left">
-                    <h3>Category</h3>
+                  <TableCell
+                    width="40%"
+                    align="left"
+                    className={classes.tableCell}
+                  >
+                    Name
+                  </TableCell>
+                  <TableCell
+                    width="20%"
+                    align="left"
+                    className={classes.tableCell}
+                  >
                     <Select
                       autoWidth={true}
                       value={this.state.selectedCategory}
                       onChange={this.handleChange}
                       inputProps={{
                         name: 'category',
-                        id: 'cat',
+                        id: 'cat'
                       }}
                       className={classes.dropDown}
                     >
-                      <MenuItem value='All'>All</MenuItem>
+                      <MenuItem value="All">Category</MenuItem>
                       {categories.map(category => {
                         return (
-                          <MenuItem value={category.name}>{category.name}</MenuItem>
+                          <MenuItem value={category.name}>
+                            {category.name}
+                          </MenuItem>
                         );
                       })}
                     </Select>
                   </TableCell>
-                  <TableCell width="20%" align="right">
-                    <h3>Amount</h3>
+                  <TableCell
+                    width="20%"
+                    align="right"
+                    className={classes.tableCell}
+                  >
+                    Amount
                   </TableCell>
                 </TableRow>
               </TableHead>
-              <TableBody>
+              <TableBody striped={true}>
                 {filteredTransactions.map(transaction => (
                   <TableRow key={transaction.id}>
                     <TableCell component="th" scope="row">
@@ -189,8 +228,8 @@ class Transactions extends Component {
                       $
                       {transaction.amount
                         ? transaction.amount
-                          .toFixed(2)
-                          .replace(/\d(?=(\d{3})+\.)/g, '$&,')
+                            .toFixed(2)
+                            .replace(/\d(?=(\d{3})+\.)/g, '$&,')
                         : null}
                     </TableCell>
                   </TableRow>
@@ -205,7 +244,7 @@ class Transactions extends Component {
 }
 
 Transactions.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 const WrappedTransactions = withStyles(styles)(Transactions);
@@ -220,4 +259,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   getCategories: () => dispatch(getCategories())
 });
 
-export default connect(mapState, mapDispatchToProps)(WrappedTransactions);
+export default connect(
+  mapState,
+  mapDispatchToProps
+)(WrappedTransactions);

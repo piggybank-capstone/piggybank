@@ -24,9 +24,9 @@ import Piggybot from './Piggybot';
 const styles = theme => ({
   root: {
     width: '80%',
-    // [theme.breakpoints.down(450)]: {
-    //   width: '90%'
-    // },
+    [theme.breakpoints.down(450)]: {
+      width: '95%'
+    },
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
     margin: 'auto'
@@ -36,7 +36,11 @@ const styles = theme => ({
     margin: 'auto'
   },
   tableCell: {
-    padding: '0'
+    [theme.breakpoints.down(700)]: { padding: '0' },
+    [theme.breakpoints.between('sm', 'lg')]: {
+      fontSize: '1em'
+    },
+    color: 'black'
   },
   buttonStyle: {
     // width: '100%',
@@ -99,10 +103,16 @@ class Budget extends Component {
             <Table className={classes.table}>
               <TableHead>
                 <TableRow>
-                  <TableCell>Category</TableCell>
-                  <TableCell align="right">Amount Budgeted</TableCell>
-                  <TableCell align="right">Amount Left</TableCell>
-                  <TableCell align="center">On Goal?</TableCell>
+                  <TableCell className={classes.tableCell}>Category</TableCell>
+                  <TableCell align="left" className={classes.tableCell}>
+                    Amount Budgeted
+                  </TableCell>
+                  <TableCell align="left" className={classes.tableCell}>
+                    Amount Left
+                  </TableCell>
+                  <TableCell align="center" className={classes.tableCell}>
+                    On Goal?
+                  </TableCell>
                   <TableCell />
                   <TableCell />
                 </TableRow>

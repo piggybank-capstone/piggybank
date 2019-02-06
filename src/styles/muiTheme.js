@@ -3,10 +3,8 @@ import { colors } from '@material-ui/core';
 
 export const theme = createMuiTheme({
   palette: {
-    primary: {
-      main: '#2196f3'
-    },
-    secondary: colors.blue,
+    primary: colors.black,
+    secondary: colors.grey,
     textColor: colors.teal
   },
   status: {
@@ -21,12 +19,12 @@ export const theme = createMuiTheme({
 theme.overrides.MuiButton = {
   root: {
     [theme.breakpoints.down('sm')]: {
-      background: 'linear-gradient(45deg, #83EAF1 30%, #63A4FF 90%)',
+      background: '#B2EBF2',
       width: '100%'
     },
     marginTop: '10px',
     [theme.breakpoints.between('sm', 'lg')]: {
-      background: 'linear-gradient(45deg, #83EAF1 30%, #63A4FF 90%)',
+      background: '#B2EBF2',
       margin: theme.spacing.unit,
       text: {
         border: 1,
@@ -46,8 +44,14 @@ theme.overrides.MuiButton = {
 theme.overrides.MuiTableCell = {
   root: {
     [theme.breakpoints.down(900)]: {
-      padding: '0'
+      paddingRight: '.5px'
     }
+  },
+  head: {
+    backgroundColor: '#B2EBF2'
+  },
+  text: {
+    color: 'black'
   }
 };
 

@@ -97,7 +97,10 @@ class AddBudget extends Component {
                   className={classes.dropDown}
                 >
                   {categories.map(category => {
-                    if (category.name !== 'Payment' && category.name !== 'Transfer') {
+                    if (
+                      category.name !== 'Payment' &&
+                      category.name !== 'Transfer'
+                    ) {
                       return (
                         <MenuItem value={category.id}>{category.name}</MenuItem>
                       );
@@ -120,8 +123,8 @@ class AddBudget extends Component {
               </FormControl>
             </form>
           ) : (
-              <h3>You have all the budget categories</h3>
-            )}
+            <h3>You have all the budget categories</h3>
+          )}
         </Paper>
       </div>
     );
