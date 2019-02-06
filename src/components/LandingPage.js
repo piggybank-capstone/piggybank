@@ -12,26 +12,29 @@ import progress from './../images/progress.png';
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
-  },
-  element: {
+    display: 'flex',
     textAlign: 'center',
-    color: theme.palette.text.primary,
   },
   mainImage: {
     textAlign: 'center',
     color: theme.palette.text.primary,
     width: '30%',
   },
-  card: {
-    maxWidth: 150,
+  card1: {
+    maxWidth: 200,
+  },
+  card2: {
+    maxWidth: 200,
+  },
+  card3: {
+    maxWidth: 200,
   },
   media: {
     // ⚠️ object-fit is not supported by IE 11.
     objectFit: 'cover',
   },
   spacing: {
-    height: '5%',
+    height: '15%',
   },
 });
 
@@ -43,22 +46,22 @@ const LandingPage = props => {
         <Grid item xs={12} className={classes.elements}>
           <div className={classes.spacing} />
         </Grid>
-        <Grid item xs={12} className={classes.element}>
+        <Grid item xs={12}>
           <img src={money} className={classes.mainImage} alt="money icons" />
         </Grid>
         <Grid item xs={12}>
-          <div className={classes.element}>
+          <div>
             <h1>we make saving fun.</h1>
           </div>
         </Grid>
         <Grid item xs={10}>
-          <div className={classes.element}>
+          <div>
             <hr />
           </div>
         </Grid>
         <Grid item xs={4}>
-          <div className={classes.element}>
-            <Card className={classes.card}>
+          <div>
+            <Card className={classes.card1}>
               <CardActionArea>
                 <CardMedia
                   component="img"
@@ -74,8 +77,8 @@ const LandingPage = props => {
           </div>
         </Grid>
         <Grid item xs={4}>
-          <div className={classes.element}>
-            <Card className={classes.card}>
+          <div>
+            <Card className={classes.card2}>
               <CardActionArea>
                 <CardMedia
                   component="img"
@@ -91,8 +94,8 @@ const LandingPage = props => {
           </div>
         </Grid>
         <Grid item xs={4}>
-          <div className={classes.element}>
-            <Card className={classes.card}>
+          <div>
+            <Card className={classes.card3}>
               <CardActionArea>
                 <CardMedia
                   component="img"
@@ -108,12 +111,12 @@ const LandingPage = props => {
           </div>
         </Grid>
         <Grid item xs={10}>
-          <div className={classes.element}>
+          <div>
             <hr />
           </div>
         </Grid>
         <Grid item xs={12}>
-          <div className={classes.element}>
+          <div>
             <img src={responsive} alt="responsive site" />
           </div>
         </Grid>
