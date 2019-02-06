@@ -51,13 +51,13 @@ class NavBar extends Component {
 }
 
 const mapState = state => ({
-  isLoggedIn: !!state.user.id,
+  isLoggedIn: !!state.user.id
 });
 
 const mapDispatch = dispatch => ({
   handleClick() {
     dispatch(logout());
-  },
+  }
 });
 
 export default connect(

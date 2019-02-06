@@ -11,7 +11,7 @@ body {
 
   background: white; /* fallback for old browsers */
   margin: 0;
-  font-family: 'Quicksand', sans-serif;
+  font-family: 'Quicksand:500', Arial, sans-serif;
   font-style: bold;
   color: black;
 }

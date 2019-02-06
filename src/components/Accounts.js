@@ -31,7 +31,9 @@ const styles = theme => ({
       padding: '0',
       marginLeft: 'auto',
       marginRight: 'auto'
-    }
+    },
+    fontSize: '1em',
+    color: 'black'
   }
 });
 
@@ -67,8 +69,12 @@ class Accounts extends Component {
           <h2>Accounts</h2>
           <Table className={classes.table}>
             <TableHead>
-              <TableCell align="left"><h3>Official Name</h3></TableCell>
-              <TableCell align="right"><h3>Current Balance</h3></TableCell>
+              <TableCell align="left" className={classes.tableCell}>
+                Official Name
+              </TableCell>
+              <TableCell align="right" className={classes.tableCell}>
+                Current Balance
+              </TableCell>
             </TableHead>
             <TableBody>
               {accounts.map(account => {
@@ -95,11 +101,19 @@ class Accounts extends Component {
           <Paper className={classes.root}>
             <Table className={classes.table}>
               <TableHead>
-                <TableCell><h3>Account</h3></TableCell>
-                <TableCell align="left"><h3>Official Name</h3></TableCell>
-                <TableCell align="left"><h3>Type</h3></TableCell>
-                <TableCell align="right"><h3>Available Balance</h3></TableCell>
-                <TableCell align="right"><h3>Current Balance</h3></TableCell>
+                <TableCell className={classes.tableCell}>Account</TableCell>
+                <TableCell align="left" className={classes.tableCell}>
+                  Official Name
+                </TableCell>
+                <TableCell align="left" className={classes.tableCell}>
+                  Type
+                </TableCell>
+                <TableCell align="right" className={classes.tableCell}>
+                  Available Balance
+                </TableCell>
+                <TableCell align="right" className={classes.tableCell}>
+                  Current Balance
+                </TableCell>
               </TableHead>
               <TableBody>
                 {accounts.map(account => {
