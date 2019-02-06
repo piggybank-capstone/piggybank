@@ -19,7 +19,7 @@ const styles = theme => ({
   mainImage: {
     textAlign: 'center',
     color: theme.palette.text.primary,
-    width: '25%',
+    width: '30%',
   },
   card: {
     width: '70%',
@@ -36,9 +36,13 @@ const styles = theme => ({
   },
   title: {
     margin: 0,
+    fontSize: '3em',
   },
   spacing: {
     paddingTop: '7em',
+  },
+  smallSpace: {
+    paddingTop: '3em',
   },
 });
 
@@ -56,8 +60,10 @@ const LandingPage = props => {
         <Grid item xs={12}>
           <h1 className={classes.title}>we make saving fun</h1>
         </Grid>
-        <Grid item xs={10} className={classes.center}>
+        <Grid item xs={9} className={classes.center}>
+          <div className={classes.smallSpace} />
           <hr />
+          <div className={classes.smallSpace} />
         </Grid>
         <Grid item xs={4}>
           <Card className={classes.card}>
@@ -110,8 +116,10 @@ const LandingPage = props => {
             </CardActionArea>
           </Card>
         </Grid>
-        <Grid item xs={10} className={classes.center}>
+        <Grid item xs={9} className={classes.center}>
+          <div className={classes.smallSpace} />
           <hr />
+          <div className={classes.smallSpace} />
         </Grid>
         <Grid item xs={12}>
           <div>
