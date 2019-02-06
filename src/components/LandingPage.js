@@ -138,6 +138,14 @@ const LandingPage = props => {
             />
           </div>
         </Grid>
+        <Grid item xs={12}>
+          <div>
+            <p>
+              created by: Katie Westbrook, Marie Carter, Rebecca Chan and Sara
+              Yoon
+            </p>
+          </div>
+        </Grid>
       </Grid>
     </div>
   );
