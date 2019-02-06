@@ -80,8 +80,7 @@ class Transactions extends Component {
     const filteredTransactions = filterTransactionsByCategory(transactions, this.state.selectedCategory);
     const { width } = this.state;
     const isMobile = width <= 700;
-    console.log("Selected Category", this.state.selectedCategory);
-    console.log(filteredTransactions)
+
 
     if (isMobile) {
       return (
