@@ -18,11 +18,15 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Button } from '@material-ui/core';
 import SingleBudget from './SingleBudget';
+import piggybot from '../styles/piggybot.jpg';
 import Piggybot from './Piggybot';
 
 const styles = theme => ({
   root: {
     width: '80%',
+    // [theme.breakpoints.down(450)]: {
+    //   width: '90%'
+    // },
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
     margin: 'auto'
@@ -31,8 +35,11 @@ const styles = theme => ({
     width: '100%',
     margin: 'auto'
   },
+  tableCell: {
+    padding: '0'
+  },
   buttonStyle: {
-    width: '50%',
+    // width: '100%',
     margin: 'auto'
   },
   buttonContainer: {
@@ -80,7 +87,7 @@ class Budget extends Component {
 
     return (
       <div>
-        <h2>The budget</h2>
+        <h2>Your Budget</h2>
         <h3>
           You have spent $
           {this.state.totalSpent.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}{' '}
@@ -127,6 +134,7 @@ class Budget extends Component {
                   this.setState({ chatIsHidden: !this.state.chatIsHidden })
                 }
               >
+                <img id="piggybot" src={piggybot} alt="pig chatbot icon" />
                 Get Help With Your Budget!
               </Button>
             ) : (
@@ -135,6 +143,7 @@ class Budget extends Component {
                   this.setState({ chatIsHidden: !this.state.chatIsHidden })
                 }
               >
+                <img id="piggybot" src={piggybot} alt="pig chatbot icon" />
                 Close Piggybot
               </Button>
             )}

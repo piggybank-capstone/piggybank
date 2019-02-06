@@ -1,8 +1,17 @@
 progress[value] {
   appearance: none;
   background-color: whiteSmoke;
-  /* width: 100%;
-  margin: 0 auto; */
+  /* width: 100%; */
+  /* margin: 0 auto; */
+}
+
+@media only screen and (max-width: 500px) {
+  progress[value] {
+    appearance: none;
+    background-color: whiteSmoke;
+    width: 100%;
+    /* margin: 0 auto; */
+  }
 }
 
 progress[value]::-webkit-progress-bar {

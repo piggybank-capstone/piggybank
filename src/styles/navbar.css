@@ -50,16 +50,13 @@ a:visited {
   #nav {
     display: flex;
     flex-direction: column;
-    width: 100vw;
+    /* width: 80%; */
     justify-content: center;
   }
   #nav-right {
     display: flex;
     justify-content: center;
     flex-direction: column;
-  }
-  button {
-    width: 90vw;
   }
 }
 

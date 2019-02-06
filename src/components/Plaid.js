@@ -24,7 +24,7 @@ class Plaid extends Component {
           onSuccess={this.handleOnSuccess}
         >
           <div id="plaid-button">
-            <Button>Open Link and Connect Your Bank!</Button>
+            <Button color="inherit">Open Link and Connect Your Bank!</Button>
           </div>
         </PlaidLink>
       </div>
@@ -34,7 +34,7 @@ class Plaid extends Component {
 
 const mapDispatchToProps = {
   getAccounts,
-  getTransactions,
+  getTransactions
 };
 
 export default connect(
