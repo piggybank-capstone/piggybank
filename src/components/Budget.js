@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { withRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../App.css';
-import { getBudgets, removeBudget, getCategories } from '../store/budget';
+import { getBudgets, removeBudget } from '../store/budget';
 import {
   sortTransactionsByMonth,
-  getCurrentMonth,
-  sortTransactionsByCategory
+  getCurrentMonth
 } from '../../src/utils/transactions.js';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -18,7 +17,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Button } from '@material-ui/core';
 import SingleBudget from './SingleBudget';
-import piggybot from '../styles/piggybot.jpg';
+import pig from '../images/pigPic.png';
 import Piggybot from './Piggybot';
 
 const styles = theme => ({
@@ -94,7 +93,7 @@ class Budget extends Component {
 
     return (
       <div>
-        <h2>Your Budget</h2>
+        <h1>Your Budget</h1>
         <h3>
           You have spent $
           {this.state.totalSpent.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}{' '}
@@ -147,7 +146,7 @@ class Budget extends Component {
                   this.setState({ chatIsHidden: !this.state.chatIsHidden })
                 }
               >
-                <img id="piggybot" src={piggybot} alt="pig chatbot icon" />
+                <img id="piggybot" src={pig} alt="pig chatbot icon" />
                 Get Help With Your Budget!
               </Button>
             ) : (
@@ -156,7 +155,7 @@ class Budget extends Component {
                   this.setState({ chatIsHidden: !this.state.chatIsHidden })
                 }
               >
-                <img id="piggybot" src={piggybot} alt="pig chatbot icon" />
+                <img id="piggybot" src={pig} alt="pig chatbot icon" />
                 Close Piggybot
               </Button>
             )}

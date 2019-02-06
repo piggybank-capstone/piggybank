@@ -14,9 +14,8 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
     margin: 'auto',
-    [theme.breakpoints.down(700)]: {
+    [theme.breakpoints.down('sm')]: {
       width: '100%',
-      height: 10,
       marginLeft: 'auto',
       marginRight: 'auto'
     }
@@ -26,7 +25,7 @@ const styles = theme => ({
     margin: 'auto'
   },
   tableCell: {
-    [theme.breakpoints.down(700)]: {
+    [theme.breakpoints.down('sm')]: {
       height: '20px',
       padding: '0',
       marginLeft: 'auto',
@@ -36,7 +35,8 @@ const styles = theme => ({
   },
   tableHead: {
     fontSize: '1em',
-    color: 'black'
+    color: 'black',
+    height: '40px'
   }
 });
 
