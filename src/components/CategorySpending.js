@@ -13,13 +13,13 @@ import {
   PolarGrid,
   PolarAngleAxis,
   PolarRadiusAxis,
-  ResponsiveContainer,
+  ResponsiveContainer
 } from 'recharts';
 import {
   categorizeTransactions,
   COLORS,
   spendingByMonth,
-  categorizeTransactionsByMonth,
+  categorizeTransactionsByMonth
 } from '../utils/transactions';
 import Paper from '@material-ui/core/Paper';
 import { withStyles, InputLabel } from '@material-ui/core';
@@ -37,14 +37,14 @@ const styles = theme => ({
     [theme.breakpoints.down('sm')]: {
       display: 'flex',
       flexDirection: 'column',
-      marginLeft: 'auto',
+      marginLeft: '0',
       marginRight: 'auto',
-      width: '100%',
-    },
+      width: '100%'
+    }
   },
   table: {
     width: '100%',
-    margin: 'auto',
+    margin: 'auto'
   },
   container: {
     display: 'flex',
@@ -53,20 +53,21 @@ const styles = theme => ({
       flexDirection: 'column',
       marginLeft: 'auto',
       marginRight: 'auto',
-      width: '100vw',
-    },
+      width: '100vw'
+    }
   },
   sidebar: {
     flexGrow: 1,
-    width: '30%',
+    width: '30%'
   },
   chart: {
-    flexGrow: 1,
+    flexGrow: 1
+    // margin: 'auto'
   },
   formControl: {
     minWidth: 180,
-    margin: theme.spacing.unit * 4,
-  },
+    margin: theme.spacing.unit * 4
+  }
 });
 
 function RenderDollarLabel(props) {
@@ -89,7 +90,7 @@ class CategoryPieChart extends Component {
     this.state = {
       transactions: [],
       monthlyTotals: [],
-      selectedMonth: 0,
+      selectedMonth: 0
     };
     this.handleMonth = this.handleMonth.bind(this);
   }
@@ -106,7 +107,7 @@ class CategoryPieChart extends Component {
       );
       this.setState({
         transactions: filteredTransactions,
-        selectedMonth: event.target.value,
+        selectedMonth: event.target.value
       });
     }
   }
@@ -155,7 +156,7 @@ class CategoryPieChart extends Component {
                   cx="50%"
                   cy="50%"
                   labelLine={true}
-                  outerRadius="95%"
+                  outerRadius="70%"
                   fill="#8884d8"
                   label={<RenderDollarLabel />}
                 >
@@ -164,32 +165,32 @@ class CategoryPieChart extends Component {
                   ))}
                 </Pie>
                 <Legend />
-                <Tooltip />
+                <Tooltip formatter={value => '$' + value.toFixed(2)} />
               </PieChart>
             </ResponsiveContainer>
           </Paper>
           <Paper className={classes.root}>
             <h3>Spending by Category</h3>
-            <RadarChart
-              className={classes.root}
-              cx={300}
-              cy={250}
-              outerRadius={150}
-              width={600}
-              height={500}
-              data={this.state.transactions}
-            >
-              <PolarGrid />
-              <PolarAngleAxis dataKey="name" />
-              <PolarRadiusAxis />
-              <Radar
-                className={classes.table}
-                dataKey="value"
-                stroke="#8884d8"
-                fill="#8884d8"
-                fillOpacity={0.6}
-              />
-            </RadarChart>
+            <ResponsiveContainer width="99%" height={400}>
+              <RadarChart
+                className={classes.root}
+                cx="50%"
+                cy="50%"
+                outerRadius="70%"
+                data={this.state.transactions}
+              >
+                <PolarGrid />
+                <PolarAngleAxis dataKey="name" />
+                <PolarRadiusAxis />
+                <Radar
+                  className={classes.table}
+                  dataKey="value"
+                  stroke="#8884d8"
+                  fill="#8884d8"
+                  fillOpacity={0.6}
+                />
+              </RadarChart>
+            </ResponsiveContainer>
           </Paper>
         </div>
       </div>
@@ -201,7 +202,7 @@ const mapStateToProps = state => {
   const { accounts, transactions } = state;
   return {
     accounts: accounts.accounts,
-    transactions,
+    transactions
   };
 };
 

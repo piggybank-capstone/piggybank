@@ -243,7 +243,7 @@ export const spendingByMonth = transactionsArr => {
 
   for (let key in monthlyTotals) {
     if (monthlyTotals.hasOwnProperty(key) && key !== 'undefined') {
-      results.push({ name: key, value: monthlyTotals[key] });
+      results.push({ name: key, value: Math.round(monthlyTotals[key]) });
     }
   }
   return results;
@@ -317,18 +317,13 @@ export const COLORS = [
   '#FDF0D5'
 ];
 
-
 export const filterTransactionsByCategory = (transactions, category) => {
-  console.log("CATEGORY ALL ===" + category)
+  console.log('CATEGORY ALL ===' + category);
   if (category === 'All') {
-
     return transactions;
-
   } else {
-
-    return transactions.filter(transaction => transaction.category[0] === category)
-
+    return transactions.filter(
+      transaction => transaction.category[0] === category
+    );
   }
-
-
-}
+};

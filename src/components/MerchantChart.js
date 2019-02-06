@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../App.css';
-import { PieChart, Pie, Cell, Legend, Tooltip } from 'recharts';
+import {
+  PieChart,
+  Pie,
+  Cell,
+  Legend,
+  Tooltip,
+  ResponsiveContainer
+} from 'recharts';
 import {
   COLORS,
   categorizeTransactionsByMerchant,
@@ -21,14 +28,28 @@ const styles = theme => ({
     width: '70%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
-    margin: 'auto'
+    margin: 'auto',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      flexDirection: 'column',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      width: '100%'
+    }
   },
   table: {
     width: '100%',
     margin: 'auto'
   },
   container: {
-    display: 'flex'
+    display: 'flex',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      flexDirection: 'column',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      width: '100vw'
+    }
   },
   sidebar: {
     flexGrow: 1,
@@ -119,29 +140,32 @@ class MerchantChart extends Component {
               </Select>
             </FormControl>
             <h3>Spending by Merchant</h3>
-            <PieChart
-              className={classes.table}
-              width={700}
-              height={400}
-              onMouseEnter={this.onPieEnter}
-            >
-              <Pie
-                data={this.state.transactions}
-                cx="50%"
-                cy="50%"
-                labelLine={true}
-                outerRadius={150}
-                fill="#8884d8"
-                label={<RenderDollarLabel />}
+            <ResponsiveContainer width="99%" height={500}>
+              <PieChart
+                className={classes.table}
+                // width={700}
+                // height={400}
+                onMouseEnter={this.onPieEnter}
               >
-                {this.state.transactions.map((entry, index) => (
-                  <Cell fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Pie>
-              <Legend />
-              <Tooltip formatter={value => '$' + value} />
-            </PieChart>
+                <Pie
+                  data={this.state.transactions}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={true}
+                  outerRadius="65%"
+                  fill="#8884d8"
+                  label={<RenderDollarLabel />}
+                >
+                  {this.state.transactions.map((entry, index) => (
+                    <Cell fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
+                <Legend />
+                <Tooltip formatter={value => '$' + value} />
+              </PieChart>
+            </ResponsiveContainer>
           </Paper>
+
           <MerchantTable
             className={classes.root}
             transactions={this.state.transactions}

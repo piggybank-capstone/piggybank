@@ -11,11 +11,12 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
+  ResponsiveContainer
 } from 'recharts';
 import {
   categorizeTransactions,
   spendingByMonth,
-  categorizeTransactionsByMonth,
+  categorizeTransactionsByMonth
 } from '../utils/transactions';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core';
@@ -27,21 +28,35 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
     margin: 'auto',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      flexDirection: 'column',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      width: '100%'
+    }
   },
   table: {
     width: '100%',
-    margin: 'auto',
+    margin: 'auto'
   },
   container: {
     display: 'flex',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      flexDirection: 'column',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      width: '100vw'
+    }
   },
   sidebar: {
     flexGrow: 1,
-    width: '30%',
+    width: '30%'
   },
   chart: {
-    flexGrow: 1,
-  },
+    flexGrow: 1
+  }
 });
 
 function CustomizedYAxisTick(props) {
@@ -57,7 +72,7 @@ class MonthlyTotalChart extends Component {
     super();
     this.state = {
       transactions: [],
-      monthlyTotals: [],
+      monthlyTotals: []
     };
     this.handleMonth = this.handleMonth.bind(this);
   }
@@ -93,27 +108,29 @@ class MonthlyTotalChart extends Component {
         <div className={classes.chart}>
           <Paper className={classes.root}>
             <h3>Total Spending Over Time</h3>
-            <BarChart
-              className={classes.table}
-              width={600}
-              height={300}
-              data={this.state.monthlyTotals}
-              margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis dataKey="value" tick={<CustomizedYAxisTick />} />
-              <Tooltip />
-              <Legend wrapperStyle={{ bottom: 0 }} />
-              <ReferenceLine y={0} stroke="#000" />
-              <Bar
-                name="Month"
-                dataKey="value"
-                fill="#82ca9d"
-                cx="50%"
-                cy="50%"
-              />
-            </BarChart>
+            <ResponsiveContainer width="99%" height={350}>
+              <BarChart
+                className={classes.table}
+                // width={600}
+                // height={300}
+                data={this.state.monthlyTotals}
+                margin={{ top: 20, right: 30, left: 20, bottom: 20 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis dataKey="value" tick={<CustomizedYAxisTick />} />
+                <Tooltip formatter={value => '$' + value} />
+                <Legend wrapperStyle={{ bottom: 0 }} />
+                <ReferenceLine y={0} stroke="#000" />
+                <Bar
+                  name="Month"
+                  dataKey="value"
+                  fill="#82ca9d"
+                  cx="50%"
+                  cy="50%"
+                />
+              </BarChart>
+            </ResponsiveContainer>
           </Paper>
         </div>
       </div>
@@ -125,7 +142,7 @@ const mapStateToProps = state => {
   const { accounts, transactions } = state;
   return {
     accounts: accounts.accounts,
-    transactions,
+    transactions
   };
 };
 
