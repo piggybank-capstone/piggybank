@@ -4,9 +4,10 @@ import '../styles/progressbar.css';
 class BudgetProgressBar extends React.Component {
   render() {
     const { budget, spent } = this.props;
+
     return (
       <div>
-        <progress value={Math.min(spent / budget, 100)} max={100} />
+        <progress value={Math.min(spent / budget * 100, 100)} max={100} />
       </div>
     );
   }
