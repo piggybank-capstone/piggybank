@@ -318,7 +318,7 @@ export const COLORS = [
 ];
 
 export const filterTransactionsByCategory = (transactions, category) => {
-  console.log('CATEGORY ALL ===' + category);
+
   if (category === 'All') {
     return transactions;
   } else {
