@@ -10,12 +10,12 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
+  Tooltip
 } from 'recharts';
 import {
   categorizeTransactions,
   spendingByMonth,
-  categorizeTransactionsByMonth,
+  categorizeTransactionsByMonth
 } from '../utils/transactions';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core';
@@ -27,21 +27,35 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
     margin: 'auto',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      flexDirection: 'column',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      width: '100%'
+    }
   },
   table: {
     width: '100%',
-    margin: 'auto',
+    margin: 'auto'
   },
   container: {
     display: 'flex',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      flexDirection: 'column',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      width: '100vw'
+    }
   },
   sidebar: {
     flexGrow: 1,
-    width: '30%',
+    width: '30%'
   },
   chart: {
-    flexGrow: 1,
-  },
+    flexGrow: 1
+  }
 });
 
 function CustomizedYAxisTick(props) {
@@ -57,7 +71,7 @@ class MonthlyTotalChart extends Component {
     super();
     this.state = {
       transactions: [],
-      monthlyTotals: [],
+      monthlyTotals: []
     };
     this.handleMonth = this.handleMonth.bind(this);
   }
@@ -125,7 +139,7 @@ const mapStateToProps = state => {
   const { accounts, transactions } = state;
   return {
     accounts: accounts.accounts,
-    transactions,
+    transactions
   };
 };
 

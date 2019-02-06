@@ -11,22 +11,25 @@ import TableRow from '@material-ui/core/TableRow';
 
 const styles = theme => ({
   root: {
-    width: '50%',
+    width: '100%',
+    [theme.breakpoints.down('sm')]: {
+      width: '90%'
+    },
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
-    margin: 'auto',
+    margin: 'auto'
   },
   table: {
     width: '100%',
-    margin: 'auto',
-  },
+    margin: 'auto'
+  }
 });
 
 class Sidebar extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
+      <div id="sidebar">
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
@@ -66,7 +69,7 @@ const mapStateToProps = state => {
   const { accounts, transactions } = state;
   return {
     accounts: accounts.accounts,
-    transactions,
+    transactions
   };
 };
 

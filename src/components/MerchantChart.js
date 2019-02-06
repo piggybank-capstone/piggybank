@@ -21,14 +21,28 @@ const styles = theme => ({
     width: '70%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
-    margin: 'auto'
+    margin: 'auto',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      flexDirection: 'column',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      width: '100%'
+    }
   },
   table: {
     width: '100%',
     margin: 'auto'
   },
   container: {
-    display: 'flex'
+    display: 'flex',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      flexDirection: 'column',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      width: '100vw'
+    }
   },
   sidebar: {
     flexGrow: 1,
