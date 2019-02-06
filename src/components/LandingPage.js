@@ -126,7 +126,11 @@ const LandingPage = props => {
         </Grid>
         <Grid item xs={12}>
           <div>
-            <img src={responsive} alt="responsive site" />
+            <img
+              className={classes.mainImage}
+              src={responsive}
+              alt="responsive site"
+            />
           </div>
         </Grid>
       </Grid>
