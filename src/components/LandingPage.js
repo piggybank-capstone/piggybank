@@ -26,13 +26,17 @@ const LandingPage = props => {
     // <h2>Manage your finances and budget with Piggybot.</h2>
     <div className={classes.root}>
       <Grid container spacing={24}>
-        <Grid item xs={12}>
-          <div className={classes.element}>
-            <img src="https://via.placeholder.com/200" alt="cash" />
-            <img src="https://via.placeholder.com/200" alt="piggybank" />
-            <img src="https://via.placeholder.com/200" alt="coins" />
-          </div>
+        {/* <Grid item xs={12}> */}
+        <Grid item xs={4} className={classes.element}>
+          <img src="https://via.placeholder.com/100" alt="cash" />
         </Grid>
+        <Grid item xs={4} className={classes.element}>
+          <img src="https://via.placeholder.com/100" alt="piggybank" />
+        </Grid>
+        <Grid item xs={4} className={classes.element}>
+          <img src="https://via.placeholder.com/100" alt="coins" />
+        </Grid>
+        {/* </Grid> */}
         <Grid item xs={12}>
           <div className={classes.element}>
             <h2>we make saving fun.</h2>
@@ -44,15 +48,22 @@ const LandingPage = props => {
           </div>
         </Grid>
         <Grid item xs={4}>
-          <div className={classes.element}>visualize your spending habits.</div>
+          <div className={classes.element}>
+            <img src="https://via.placeholder.com/100" alt="pie chart" />
+            visualize your spending habits.
+          </div>
         </Grid>
         <Grid item xs={4}>
           <div className={classes.element}>
+            <img src="https://via.placeholder.com/100" alt="piggybot" />
             set goals with the help of piggybot!
           </div>
         </Grid>
         <Grid item xs={4}>
-          <div className={classes.element}>see progress on your budgets.</div>
+          <div className={classes.element}>
+            <img src="https://via.placeholder.com/100" alt="progress bar" />
+            see progress on your budgets.
+          </div>
         </Grid>
         <Grid item xs={10}>
           <div className={classes.element}>
