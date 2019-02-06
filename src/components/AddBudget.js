@@ -53,7 +53,7 @@ class AddBudget extends Component {
   constructor() {
     super();
     this.state = {
-      categeory: ''
+      category: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.createBudget = this.createBudget.bind(this);
@@ -64,7 +64,7 @@ class AddBudget extends Component {
 
   handleChange = event => {
     event.preventDefault();
-    this.setState({ categeory: event.target.value });
+    this.setState({ category: event.target.value });
   };
 
   createBudget = event => {
@@ -77,7 +77,6 @@ class AddBudget extends Component {
 
   render() {
     const { classes, categories } = this.props;
-    console.log('addabudgetprops', this.props);
     return (
       <div>
         <h2>Add Or Update A Budget</h2>
@@ -89,7 +88,7 @@ class AddBudget extends Component {
                 <InputLabel htmlFor="cat">Category</InputLabel>
                 <Select
                   autoWidth={true}
-                  value={this.state.categeory}
+                  value={this.state.category}
                   onChange={this.handleChange}
                   inputProps={{
                     name: 'category',
@@ -97,10 +96,12 @@ class AddBudget extends Component {
                   }}
                   className={classes.dropDown}
                 >
-                  {categories.map(categeory => {
-                    return (
-                      <MenuItem value={categeory.id}>{categeory.name}</MenuItem>
-                    );
+                  {categories.map(category => {
+                    if (category.name !== 'Payment' && category.name !== 'Transfer') {
+                      return (
+                        <MenuItem value={category.id}>{category.name}</MenuItem>
+                      );
+                    }
                   })}
                 </Select>
               </FormControl>
@@ -119,8 +120,8 @@ class AddBudget extends Component {
               </FormControl>
             </form>
           ) : (
-            <h3>You have all the budget categories</h3>
-          )}
+              <h3>You have all the budget categories</h3>
+            )}
         </Paper>
       </div>
     );
