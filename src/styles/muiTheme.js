@@ -3,14 +3,19 @@ import { colors } from '@material-ui/core';
 
 export const theme = createMuiTheme({
   palette: {
-    primary: colors.white,
+    primary: {
+      main: '#2196f3'
+    },
     secondary: colors.blue,
-    textColor: colors.white
+    textColor: colors.teal
   },
   status: {
     danger: 'red'
   },
-  typography: { useNextVariants: true }
+  typography: {
+    fontFamily: 'quicksand',
+    useNextVariants: true
+  }
 });
 
 theme.overrides.MuiButton = {

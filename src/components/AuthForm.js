@@ -5,7 +5,6 @@ import { auth } from '../store';
 import { createGenerateClassName } from '@material-ui/core';
 
 //material ui form components
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
@@ -19,6 +18,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import '../App.css';
 import google_logo from '../styles/google_logo.png';
+import TextField from '@material-ui/core/TextField';
 
 /**
  * COMPONENT
@@ -54,6 +54,10 @@ const styles = theme => ({
     // width: '90%', // Fix IE 11 issue.
     marginTop: theme.spacing.unit
   },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit
+  },
   submit: {
     // marginTop: theme.spacing.unit * 3
     // backgroundColor: 'green'
@@ -84,19 +88,27 @@ const AuthForm = props => {
             {name === 'signup' && (
               <div>
                 <FormControl margin="normal" required fullWidth>
-                  <InputLabel htmlFor="firstName">First Name</InputLabel>
-                  <Input
+                  <TextField
+                    required
                     id="firstName"
                     name="firstName"
+                    defaultValue="First Name"
+                    className={classes.textField}
+                    margin="normal"
+                    variant="outlined"
                     autoComplete="given-name"
                     autoFocus
                   />
                 </FormControl>
                 <FormControl margin="normal" required fullWidth>
-                  <InputLabel htmlFor="lastName">Last Name</InputLabel>
-                  <Input
+                  <TextField
+                    required
                     id="lastName"
                     name="lastName"
+                    defaultValue="Last Name"
+                    className={classes.textField}
+                    margin="normal"
+                    variant="outlined"
                     autoComplete="family-name"
                     autoFocus
                   />
@@ -104,15 +116,27 @@ const AuthForm = props => {
               </div>
             )}
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="email">Email Address</InputLabel>
-              <Input id="email" name="email" autoComplete="email" autoFocus />
+              <TextField
+                required
+                id="email"
+                label="Required"
+                defaultValue="Email"
+                className={classes.textField}
+                margin="normal"
+                variant="outlined"
+                autoFocus
+              />
             </FormControl>
             <FormControl margin="normal" required fullWidth>
-              <InputLabel htmlFor="password">Password</InputLabel>
-              <Input
-                name="password"
-                type="password"
+              <TextField
+                required
                 id="password"
+                label="Required"
+                type="password"
+                defaultValue="Password"
+                className={classes.textField}
+                margin="normal"
+                variant="outlined"
                 autoComplete="current-password"
               />
             </FormControl>
