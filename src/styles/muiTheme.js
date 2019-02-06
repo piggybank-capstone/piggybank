@@ -44,11 +44,11 @@ theme.overrides.MuiButton = {
 theme.overrides.MuiTableCell = {
   root: {
     [theme.breakpoints.down(900)]: {
-      paddingRight: '.5px'
+      paddingRight: '.2px'
     }
   },
   head: {
-    backgroundColor: '#B2EBF2'
+    backgroundColor: '#F0F0F0	'
   },
   text: {
     color: 'black'
@@ -57,10 +57,12 @@ theme.overrides.MuiTableCell = {
 
 theme.overrides.MuiToolbar = {
   root: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       width: '80%',
       margin: 'auto',
-      marginBottom: '10px'
-    }
+      marginBottom: '10px',
+      backgroundColor: '#fff'
+    },
+    backgroundColor: '#B2EBF2'
   }
 };

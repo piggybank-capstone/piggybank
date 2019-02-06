@@ -12,7 +12,7 @@ export const UserHome = props => {
   const { name, accounts, transactions, isLoading } = props;
   return (
     <div>
-      <h3>Welcome {name}!</h3>
+      <h2>Welcome {name}!</h2>
       <Plaid />
       {isLoading && <h2>LOADING...</h2>}
       {accounts.length > 0 && <Accounts />}
@@ -30,7 +30,7 @@ const mapStateToProps = state => {
     name: user.firstName,
     accounts: accounts.accounts,
     isLoading: accounts.isLoading,
-    transactions,
+    transactions
   };
 };
 
@@ -40,5 +40,5 @@ export default connect(mapStateToProps)(UserHome);
  * PROP TYPES
  */
 UserHome.propTypes = {
-  email: PropTypes.string,
+  email: PropTypes.string
 };

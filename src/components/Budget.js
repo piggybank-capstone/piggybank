@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { withRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../App.css';
-import { getBudgets, removeBudget, getCategories } from '../store/budget';
+import { getBudgets, removeBudget } from '../store/budget';
 import {
   sortTransactionsByMonth,
-  getCurrentMonth,
-  sortTransactionsByCategory
+  getCurrentMonth
 } from '../../src/utils/transactions.js';
 
 import { withStyles } from '@material-ui/core/styles';
@@ -18,7 +17,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Button } from '@material-ui/core';
 import SingleBudget from './SingleBudget';
-import piggybot from '../styles/piggybot.jpg';
+import pig from '../images/pigPic.png';
 import Piggybot from './Piggybot';
 
 const styles = theme => ({
@@ -36,11 +35,14 @@ const styles = theme => ({
     margin: 'auto'
   },
   tableCell: {
-    [theme.breakpoints.down(700)]: { padding: '0' },
+    padding: '0'
+  },
+  tableHead: {
     [theme.breakpoints.between('sm', 'lg')]: {
-      fontSize: '1em'
+      fontSize: '1em',
+      color: 'black'
     },
-    color: 'black'
+    padding: '0'
   },
   buttonStyle: {
     // width: '100%',
@@ -91,7 +93,7 @@ class Budget extends Component {
 
     return (
       <div>
-        <h2>Your Budget</h2>
+        <h1>Your Budget</h1>
         <h3>
           You have spent $
           {this.state.totalSpent.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}{' '}
@@ -103,14 +105,14 @@ class Budget extends Component {
             <Table className={classes.table}>
               <TableHead>
                 <TableRow>
-                  <TableCell className={classes.tableCell}>Category</TableCell>
-                  <TableCell align="left" className={classes.tableCell}>
+                  <TableCell className={classes.tableHead}>Category</TableCell>
+                  <TableCell align="left" className={classes.tableHead}>
                     Amount Budgeted
                   </TableCell>
-                  <TableCell align="left" className={classes.tableCell}>
+                  <TableCell align="left" className={classes.tableHead}>
                     Amount Left
                   </TableCell>
-                  <TableCell align="center" className={classes.tableCell}>
+                  <TableCell align="left" className={classes.tableHead}>
                     On Goal?
                   </TableCell>
                   <TableCell />
@@ -144,7 +146,7 @@ class Budget extends Component {
                   this.setState({ chatIsHidden: !this.state.chatIsHidden })
                 }
               >
-                <img id="piggybot" src={piggybot} alt="pig chatbot icon" />
+                <img id="piggybot" src={pig} alt="pig chatbot icon" />
                 Get Help With Your Budget!
               </Button>
             ) : (
@@ -153,7 +155,7 @@ class Budget extends Component {
                   this.setState({ chatIsHidden: !this.state.chatIsHidden })
                 }
               >
-                <img id="piggybot" src={piggybot} alt="pig chatbot icon" />
+                <img id="piggybot" src={pig} alt="pig chatbot icon" />
                 Close Piggybot
               </Button>
             )}
