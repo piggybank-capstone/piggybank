@@ -62,7 +62,7 @@ async function seed() {
     Budget.create({
       amount: 100,
       userId: 1,
-      categoryId: 4
+      categoryId: 1
     }),
   ]);
   console.log(`seeded ${users.length} users`);
