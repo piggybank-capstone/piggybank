@@ -25,13 +25,9 @@ const styles = theme => ({
     margin: '0',
     padding: '0'
   },
-  column: {
-    width: '3%'
-  },
-  checkboxstyle: {
-    margin: 'auto',
-    width: '100%'
-  },
+  // column: {
+  //   width: '3%'
+  // },
   emojiStyle: {
     fontSize: '1.5rem'
   },
@@ -57,20 +53,20 @@ class SingleBudget extends Component {
         <TableCell component="th" scope="row">
           {budget.category.name}
         </TableCell>
-        <TableCell align="right">
+        <TableCell align="left">
           ${budget.amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
         </TableCell>
-        <TableCell align="right">
+        <TableCell align="left">
           ${delta.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
         </TableCell>
-        <TableCell align="center">
+        <TableCell align="left">
           {delta > 0 ? (
             <Emoji text="8-)" className={classes.emojiStyle} />
           ) : (
             <Emoji text=":,-(" className={classes.emojiStyle} />
           )}
         </TableCell>
-        <TableCell align="center" className={classes.tableCell}>
+        <TableCell align="left" className={classes.tableCell}>
           <BudgetProgressBar budget={budget.amount} spent={spent} />
         </TableCell>
         <TableCell>
@@ -78,7 +74,7 @@ class SingleBudget extends Component {
             color="secondary"
             aria-label="Delete"
             className={classes.fab}
-            align="center"
+            align="left"
             onClick={id => {
               removeBudget(budget.id);
             }}

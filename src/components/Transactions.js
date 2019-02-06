@@ -29,7 +29,7 @@ const styles = theme => ({
       marginRight: 'auto'
     }
   },
-  table: {
+  tableRow: {
     width: '100%',
     margin: 'auto',
     stripedRows: true
@@ -118,21 +118,21 @@ class Transactions extends Component {
                   align="left"
                   className={classes.tableCell}
                 >
-                  <h3>Date</h3>
+                  Date
                 </TableCell>
                 <TableCell
                   width="50%"
                   align="left"
                   className={classes.tableCell}
                 >
-                  <h3>Name</h3>
+                  Name
                 </TableCell>
                 <TableCell
                   width="30%"
                   align="right"
                   className={classes.tableCell}
                 >
-                  <h3>Amount</h3>
+                  Amount
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -216,7 +216,7 @@ class Transactions extends Component {
               </TableHead>
               <TableBody striped={true}>
                 {filteredTransactions.map(transaction => (
-                  <TableRow key={transaction.id}>
+                  <TableRow hover key={transaction.id}>
                     <TableCell component="th" scope="row">
                       {transaction.date}
                     </TableCell>

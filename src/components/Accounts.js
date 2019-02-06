@@ -32,6 +32,9 @@ const styles = theme => ({
       marginLeft: 'auto',
       marginRight: 'auto'
     },
+    height: '40px'
+  },
+  tableHead: {
     fontSize: '1em',
     color: 'black'
   }
@@ -69,10 +72,10 @@ class Accounts extends Component {
           <h2>Accounts</h2>
           <Table className={classes.table}>
             <TableHead>
-              <TableCell align="left" className={classes.tableCell}>
+              <TableCell align="left" className={classes.tableHead}>
                 Official Name
               </TableCell>
-              <TableCell align="right" className={classes.tableCell}>
+              <TableCell align="right" className={classes.tableHead}>
                 Current Balance
               </TableCell>
             </TableHead>
@@ -101,24 +104,24 @@ class Accounts extends Component {
           <Paper className={classes.root}>
             <Table className={classes.table}>
               <TableHead>
-                <TableCell className={classes.tableCell}>Account</TableCell>
-                <TableCell align="left" className={classes.tableCell}>
+                <TableCell className={classes.tableHead}>Account</TableCell>
+                <TableCell align="left" className={classes.tableHead}>
                   Official Name
                 </TableCell>
-                <TableCell align="left" className={classes.tableCell}>
+                <TableCell align="left" className={classes.tableHead}>
                   Type
                 </TableCell>
-                <TableCell align="right" className={classes.tableCell}>
+                <TableCell align="right" className={classes.tableHead}>
                   Available Balance
                 </TableCell>
-                <TableCell align="right" className={classes.tableCell}>
+                <TableCell align="right" className={classes.tableHead}>
                   Current Balance
                 </TableCell>
               </TableHead>
               <TableBody>
                 {accounts.map(account => {
                   return (
-                    <TableRow key={account.id}>
+                    <TableRow hover key={account.id}>
                       <TableCell>{account.name}</TableCell>
                       <TableCell align="left">
                         {account.official_name}
