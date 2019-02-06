@@ -92,7 +92,7 @@ const AuthForm = props => {
                     required
                     id="firstName"
                     name="firstName"
-                    defaultValue="First Name"
+                    label="First Name"
                     className={classes.textField}
                     margin="normal"
                     variant="outlined"
@@ -105,7 +105,7 @@ const AuthForm = props => {
                     required
                     id="lastName"
                     name="lastName"
-                    defaultValue="Last Name"
+                    label="Last Name"
                     className={classes.textField}
                     margin="normal"
                     variant="outlined"
@@ -119,8 +119,7 @@ const AuthForm = props => {
               <TextField
                 required
                 id="email"
-                label="Required"
-                defaultValue="Email"
+                label="Email"
                 className={classes.textField}
                 margin="normal"
                 variant="outlined"
@@ -131,9 +130,8 @@ const AuthForm = props => {
               <TextField
                 required
                 id="password"
-                label="Required"
+                label="Password"
                 type="password"
-                defaultValue="Password"
                 className={classes.textField}
                 margin="normal"
                 variant="outlined"
