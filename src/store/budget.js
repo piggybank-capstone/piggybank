@@ -57,7 +57,6 @@ export const removeBudget = id => async dispatch => {
 export const createOrUpdateBudget = budget => async dispatch => {
   try {
     const res = await axios.post(`/api/budget/`, budget);
-    console.log(res.data, 'BUDGET FOUND');
     dispatch(createdOrUpdatedBudget(res.data));
   } catch (error) {
     console.error(error);
@@ -104,7 +103,6 @@ export default function budgetsReducer(state = initialState, action) {
       if (!isUpdate) {
         newArr.push(action.budget);
       }
-      console.log(newArr, 'NEW ARR');
       return { ...state, budgetList: newArr };
     }
 

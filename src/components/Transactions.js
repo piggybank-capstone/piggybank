@@ -147,8 +147,8 @@ class Transactions extends Component {
                     $
                     {transaction.amount
                       ? transaction.amount
-                          .toFixed(2)
-                          .replace(/\d(?=(\d{3})+\.)/g, '$&,')
+                        .toFixed(2)
+                        .replace(/\d(?=(\d{3})+\.)/g, '$&,')
                       : null}
                   </TableCell>
                 </TableRow>
@@ -228,8 +228,8 @@ class Transactions extends Component {
                       $
                       {transaction.amount
                         ? transaction.amount
-                            .toFixed(2)
-                            .replace(/\d(?=(\d{3})+\.)/g, '$&,')
+                          .toFixed(2)
+                          .replace(/\d(?=(\d{3})+\.)/g, '$&,')
                         : null}
                     </TableCell>
                   </TableRow>
