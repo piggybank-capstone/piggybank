@@ -1,8 +1,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import pig from './../images/pig.png';
+import money from './../images/icons.png';
+import responsive from './../images/responsive.png';
 
 const styles = theme => ({
   root: {
@@ -12,34 +12,26 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2,
     textAlign: 'center',
     color: theme.palette.text.primary,
-    border: 1,
+  },
+  mainImage: {
+    padding: theme.spacing.unit * 2,
+    textAlign: 'center',
+    color: theme.palette.text.primary,
+    maxWidth: '50%',
   },
 });
 
 const LandingPage = props => {
   const { classes } = props;
-  console.log(pig);
   return (
-    // <div id="header">
-    //   <h2 id="title">We Make Saving Fun</h2>
-    // </div>
-    // <h2>Manage your finances and budget with Piggybot.</h2>
     <div className={classes.root}>
       <Grid container spacing={24}>
-        {/* <Grid item xs={12}> */}
-        <Grid item xs={4} className={classes.element}>
-          <img src="https://via.placeholder.com/100" alt="cash" />
+        <Grid item xs={12} className={classes.element}>
+          <img src={money} alt="money icons" />
         </Grid>
-        <Grid item xs={4} className={classes.element}>
-          <img src="https://via.placeholder.com/100" alt="piggybank" />
-        </Grid>
-        <Grid item xs={4} className={classes.element}>
-          <img src="https://via.placeholder.com/100" alt="coins" />
-        </Grid>
-        {/* </Grid> */}
         <Grid item xs={12}>
           <div className={classes.element}>
-            <h2>we make saving fun.</h2>
+            <h1>we make saving fun.</h1>
           </div>
         </Grid>
         <Grid item xs={10}>
@@ -49,19 +41,19 @@ const LandingPage = props => {
         </Grid>
         <Grid item xs={4}>
           <div className={classes.element}>
-            <img src="https://via.placeholder.com/100" alt="pie chart" />
+            {/* <img src={pie} alt="pie chart" /> */}
             visualize your spending habits.
           </div>
         </Grid>
         <Grid item xs={4}>
           <div className={classes.element}>
-            <img src="https://via.placeholder.com/100" alt="piggybot" />
+            {/* <img src={pig} alt="piggybot" /> */}
             set goals with the help of piggybot!
           </div>
         </Grid>
         <Grid item xs={4}>
           <div className={classes.element}>
-            <img src="https://via.placeholder.com/100" alt="progress bar" />
+            {/* <img src="https://via.placeholder.com/100" alt="progress bar" /> */}
             see progress on your budgets.
           </div>
         </Grid>
@@ -71,7 +63,9 @@ const LandingPage = props => {
           </div>
         </Grid>
         <Grid item xs={12}>
-          <div className={classes.element}>responsive image</div>
+          <div className={classes.element}>
+            <img src={responsive} alt="responsive site" />
+          </div>
         </Grid>
       </Grid>
     </div>
