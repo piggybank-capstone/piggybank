@@ -9,6 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import money from './../images/icons.png';
 import pie from './../images/pie.png';
 import progress from './../images/progress.png';
+import pig from './../images/pig.png';
 
 const styles = theme => ({
   root: {
@@ -20,21 +21,22 @@ const styles = theme => ({
     color: theme.palette.text.primary,
     width: '30%',
   },
-  card1: {
+  card: {
     maxWidth: 200,
-  },
-  card2: {
-    maxWidth: 200,
-  },
-  card3: {
-    maxWidth: 200,
+    margin: 'auto',
   },
   media: {
     // ⚠️ object-fit is not supported by IE 11.
     objectFit: 'cover',
   },
+  center: {
+    margin: 'auto',
+  },
+  title: {
+    margin: 0,
+  },
   spacing: {
-    height: '15%',
+    paddingTop: '5em',
   },
 });
 
@@ -50,70 +52,64 @@ const LandingPage = props => {
           <img src={money} className={classes.mainImage} alt="money icons" />
         </Grid>
         <Grid item xs={12}>
-          <div>
-            <h1>we make saving fun.</h1>
-          </div>
+          <h1 className={classes.title}>we make saving fun.</h1>
         </Grid>
-        <Grid item xs={10}>
-          <div>
-            <hr />
-          </div>
+        <Grid item xs={10} className={classes.center}>
+          <hr />
         </Grid>
-        <Grid item xs={4}>
-          <div>
-            <Card className={classes.card1}>
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  alt="Contemplative Reptile"
-                  className={classes.media}
-                  height="140"
-                  image={pie}
-                  title="Contemplative Reptile"
-                />
-                <CardContent>visualize your spending habits.</CardContent>
-              </CardActionArea>
-            </Card>
-          </div>
+        <Grid item xs={4} className={classes.center}>
+          <Card className={classes.card}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                alt="Contemplative Reptile"
+                className={classes.media}
+                height="140"
+                image={pie}
+                title="Contemplative Reptile"
+              />
+              <CardContent>
+                <h3>visualize your spending habits.</h3>
+              </CardContent>
+            </CardActionArea>
+          </Card>
         </Grid>
         <Grid item xs={4}>
-          <div>
-            <Card className={classes.card2}>
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  alt="Contemplative Reptile"
-                  className={classes.media}
-                  height="140"
-                  image={pie}
-                  title="Contemplative Reptile"
-                />
-                <CardContent>set goals with the help of piggybot!</CardContent>
-              </CardActionArea>
-            </Card>
-          </div>
+          <Card className={classes.card}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                alt="Contemplative Reptile"
+                className={classes.media}
+                height="140"
+                image={pig}
+                title="Contemplative Reptile"
+              />
+              <CardContent>
+                <h3>set goals with the help of piggybot!</h3>
+              </CardContent>
+            </CardActionArea>
+          </Card>
         </Grid>
         <Grid item xs={4}>
-          <div>
-            <Card className={classes.card3}>
-              <CardActionArea>
-                <CardMedia
-                  component="img"
-                  alt="Contemplative Reptile"
-                  className={classes.media}
-                  height="140"
-                  image={progress}
-                  title="Contemplative Reptile"
-                />
-                <CardContent>see progress on your budgets.</CardContent>
-              </CardActionArea>
-            </Card>
-          </div>
+          <Card className={classes.card}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                alt="Contemplative Reptile"
+                className={classes.media}
+                height="140"
+                image={progress}
+                title="Contemplative Reptile"
+              />
+              <CardContent>
+                <h3>see progress on your budgets.</h3>
+              </CardContent>
+            </CardActionArea>
+          </Card>
         </Grid>
-        <Grid item xs={10}>
-          <div>
-            <hr />
-          </div>
+        <Grid item xs={10} className={classes.center}>
+          <hr />
         </Grid>
         <Grid item xs={12}>
           <div>
