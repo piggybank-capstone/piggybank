@@ -15,6 +15,13 @@ const styles = theme => ({
   root: {
     display: 'flex',
     textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      flexDirection: 'column',
+      marginLeft: '0',
+      marginRight: 'auto',
+      width: '100%',
+    },
   },
   mainImage: {
     textAlign: 'center',
@@ -70,7 +77,8 @@ const LandingPage = props => {
           <hr />
           <div className={classes.smallSpace} />
         </Grid>
-        <Grid item xs={4}>
+            <div className={classes.root}>
+        <Grid item m={4}>
           <Card className={classes.card}>
             <CardActionArea>
               <CardMedia
@@ -86,7 +94,7 @@ const LandingPage = props => {
             </CardActionArea>
           </Card>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item m={4}>
           <Card className={classes.card}>
             <CardActionArea>
               <CardMedia
@@ -102,7 +110,7 @@ const LandingPage = props => {
             </CardActionArea>
           </Card>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item m={4}>
           <Card className={classes.card}>
             <CardActionArea>
               <CardMedia
@@ -118,6 +126,7 @@ const LandingPage = props => {
             </CardActionArea>
           </Card>
         </Grid>
+        </div>
         <Grid item xs={9} className={classes.center}>
           <div className={classes.smallSpace} />
           <hr />

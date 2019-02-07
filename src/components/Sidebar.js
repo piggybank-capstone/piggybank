@@ -21,7 +21,12 @@ const styles = theme => ({
   },
   table: {
     width: '100%',
-    margin: 'auto'
+    margin: 'auto',
+    [theme.breakpoints.down('sm')]: {
+    width: '100vw',
+    marginLeft: 'auto',
+    marginRight: 'auto'
+    },
   },
   tableHeader: {
     fontSize: '1.5em',
