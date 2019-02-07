@@ -7,21 +7,7 @@ import {
   spendingByMonth,
   categorizeTransactionsByMonth,
 } from '../utils/transactions';
-import { withStyles } from '@material-ui/core';
-import { MerchantChart, CategorySpending, MonthlyTotalChart } from './index';
-
-const styles = theme => ({
-  root: {
-    width: '50%',
-    marginTop: theme.spacing.unit * 3,
-    overflowX: 'auto',
-    margin: 'auto',
-  },
-  table: {
-    width: '100%',
-    margin: 'auto',
-  },
-});
+import { CategorySpending } from './index';
 
 class Trends extends Component {
   constructor() {
@@ -56,14 +42,7 @@ class Trends extends Component {
     this.setState({ transactions: allTransactions, monthlyTotals });
   }
   render() {
-    const { classes } = this.props;
-    return (
-      <div className="App">
-        <header className="App-header">
-          <CategorySpending />
-        </header>
-      </div>
-    );
+    return <CategorySpending />;
   }
 }
 
@@ -75,11 +54,9 @@ const mapStateToProps = state => {
   };
 };
 
-const WrappedTrends = withStyles(styles)(Trends);
-
 export default withRouter(
   connect(
     mapStateToProps,
     null
-  )(WrappedTrends)
+  )(Trends)
 );
