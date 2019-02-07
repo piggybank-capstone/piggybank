@@ -61,7 +61,7 @@ a:visited {
 }
 
 #nav {
-  width: 100%;
+  width: 80%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,7 +76,7 @@ a:visited {
 }
 
 #nav-right {
-  width: 100%;
+  width: 80%;
   display: flex;
   justify-content: flex-end;
   align-items: center;

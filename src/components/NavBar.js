@@ -24,11 +24,11 @@ class NavBar extends Component {
           </div>
           {isLoggedIn ? (
             <div id="nav-right">
-              <Button color="inherit" component={Link} to="/budget">
-                Budgets
-              </Button>
               <Button color="inherit" component={Link} to="/trends">
                 Trends
+              </Button>
+              <Button color="inherit" component={Link} to="/budget">
+                Budgets
               </Button>
               <Button color="inherit" onClick={handleClick}>
                 Logout
@@ -51,13 +51,13 @@ class NavBar extends Component {
 }
 
 const mapState = state => ({
-  isLoggedIn: !!state.user.id
+  isLoggedIn: !!state.user.id,
 });
 
 const mapDispatch = dispatch => ({
   handleClick() {
     dispatch(logout());
-  }
+  },
 });
 
 export default connect(

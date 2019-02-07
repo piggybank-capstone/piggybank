@@ -67,7 +67,7 @@ const LandingPage = props => {
           <div className={classes.spacing} />
         </Grid>
         <Grid item xs={12}>
-          <img src={money} className={classes.mainImage} alt="money icons" />
+          <img src={money} className="mainImage" alt="money icons" />
         </Grid>
         <Grid item xs={12}>
           <h1 className={classes.title}>we make saving fun</h1>
@@ -77,55 +77,55 @@ const LandingPage = props => {
           <hr />
           <div className={classes.smallSpace} />
         </Grid>
-            <div className={classes.root}>
-        <Grid item m={4}>
-          <Card className={classes.card}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                alt="pie chart"
-                className={classes.media}
-                height="140"
-                image={pie}
-              />
-              <CardContent>
-                <h3>visualize your spending habits.</h3>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        </Grid>
-        <Grid item m={4}>
-          <Card className={classes.card}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                alt="pig icon"
-                className={classes.media}
-                height="140"
-                image={pig}
-              />
-              <CardContent>
-                <h3>set goals with the help of piggybot!</h3>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        </Grid>
-        <Grid item m={4}>
-          <Card className={classes.card}>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                alt="progress bars"
-                className={classes.media}
-                height="140"
-                image={progress}
-              />
-              <CardContent>
-                <h3>see progress on your budgets.</h3>
-              </CardContent>
-            </CardActionArea>
-          </Card>
-        </Grid>
+        <div className={classes.root}>
+          <Grid item m={4}>
+            <Card className={classes.card}>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  alt="pie chart"
+                  className={classes.media}
+                  height="140"
+                  image={pie}
+                />
+                <CardContent>
+                  <h3>visualize your spending habits.</h3>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+          <Grid item m={4}>
+            <Card className={classes.card}>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  alt="pig icon"
+                  className={classes.media}
+                  height="140"
+                  image={pig}
+                />
+                <CardContent>
+                  <h3>set goals with the help of piggybot!</h3>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+          <Grid item m={4}>
+            <Card className={classes.card}>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  alt="progress bars"
+                  className={classes.media}
+                  height="140"
+                  image={progress}
+                />
+                <CardContent>
+                  <h3>see progress on your budgets.</h3>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
         </div>
         <Grid item xs={9} className={classes.center}>
           <div className={classes.smallSpace} />
