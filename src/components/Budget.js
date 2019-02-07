@@ -40,12 +40,11 @@ const styles = theme => ({
   tableHead: {
     [theme.breakpoints.between('sm', 'lg')]: {
       fontSize: '1em',
-      color: 'black'
+      color: 'black',
     },
     padding: '0'
   },
   buttonStyle: {
-    // width: '100%',
     margin: 'auto'
   },
   buttonContainer: {
@@ -105,7 +104,7 @@ class Budget extends Component {
             <Table className={classes.table}>
               <TableHead>
                 <TableRow>
-                  <TableCell className={classes.tableHead}>Category</TableCell>
+                  <TableCell align="left" className={classes.tableHead}>Category</TableCell>
                   <TableCell align="left" className={classes.tableHead}>
                     Amount Budgeted
                   </TableCell>

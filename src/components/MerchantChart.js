@@ -43,7 +43,6 @@ const styles = theme => ({
   },
   container: {
     display: 'flex',
-    // width: '80vw',
     [theme.breakpoints.down('sm')]: {
       display: 'flex',
       flexDirection: 'column',

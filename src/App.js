@@ -11,7 +11,7 @@ class App extends Component {
         <header className="App-header">
           <NavBar />
           <Routes />
-        </header>
+          </header>
       </div>
     );
   }
